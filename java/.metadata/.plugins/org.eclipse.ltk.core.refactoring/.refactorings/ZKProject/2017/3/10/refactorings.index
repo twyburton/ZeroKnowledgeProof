@@ -1,0 +1,17 @@
+1488808100284	Rename local variable 'U1d'
+1488808107075	Rename local variable 'U2d'
+1489002751113	Copy compilation unit
+1489002910868	Delete element
+1489106232500	Rename type 'ComponentType'
+1489146495513	Rename type 'ZKPComponentBasic'
+1489146509886	Rename type 'ZKPComponent'
+1489146543116	Move compilation unit
+1489146545782	Move compilation unit
+1489146617922	Rename type 'ZPKComponentVerifier'
+1489146626659	Rename type 'ZKPComponentProverBasic'
+1489146633381	Rename type 'ZKPComponentProver'
+1489146649041	Rename type 'ZKPComponentType'
+1489146861037	Move compilation unit
+1489146867741	Rename type 'ZKPComponentAlpha'
+1489146931268	Rename type 'PKComponentAlpha'
+1489154921701	Delete element

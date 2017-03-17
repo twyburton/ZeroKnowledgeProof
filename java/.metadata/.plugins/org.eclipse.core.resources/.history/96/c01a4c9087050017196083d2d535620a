@@ -1,0 +1,40 @@
+package uk.ac.ncl.burton.twy.ZPK.components;
+
+import java.math.BigInteger;
+
+import uk.ac.ncl.burton.twy.maths.CyclicGroup;
+
+public abstract class ZKPComponentProverBasic implements ZKPComponentProver {
+
+	private BigInteger tValue;
+	private BigInteger cValue;
+	private BigInteger sValue;
+	
+	private CyclicGroup G = null;
+	
+	ZKPComponentProverBasic( CyclicGroup G, BigInteger tValue, BigInteger cValue, BigInteger sValue ){
+		this.G = G;
+		this.tValue = tValue;
+		this.cValue = cValue;
+		this.sValue = sValue;
+	}
+	
+	@Override
+	public BigInteger getCommitment() {
+		return tValue;
+	}
+
+	@Override
+	public BigInteger getChallenge() {
+		return cValue;
+	}
+
+	@Override
+	public BigInteger getResponse(BigInteger c) {
+		return sValue;
+	}
+
+	@Override
+	public abstract boolean verify( BigInteger commitment, BigInteger response);
+
+}

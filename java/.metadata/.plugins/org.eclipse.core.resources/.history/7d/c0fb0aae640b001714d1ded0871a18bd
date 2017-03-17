@@ -1,0 +1,36 @@
+package uk.ac.ncl.burton.twy.exam;
+
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
+public class ExamTesting {
+
+	public static void main(String[] args) {
+		
+		
+		/*SecureRandom ran = new SecureRandom();
+		ran.setSeed(0L);
+		
+		BigInteger p = BigInteger.probablePrime(8, ran);
+		BigInteger q = BigInteger.probablePrime(8, ran);
+		System.out.println("p:" + p);
+		System.out.println("q:" + q);
+		
+		BigInteger a = BigInteger.valueOf(324);
+		
+		
+		BigInteger x = a.modPow(p.subtract(BigInteger.ONE), p);
+		
+		System.out.println("a^(p-q) = " + x);
+		
+		
+		BigInteger O = ((p.subtract(BigInteger.ONE)).multiply(q.subtract(BigInteger.ONE)));
+		BigInteger eul = a.modPow(O.subtract(BigInteger.ONE), p.multiply(q));
+		
+		System.out.println(eul);*/
+		
+		
+	}
+
+	
+}

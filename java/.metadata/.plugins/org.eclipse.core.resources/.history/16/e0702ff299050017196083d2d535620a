@@ -1,0 +1,57 @@
+package uk.ac.ncl.burton.twy.ZPK.components.prover;
+
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+
+import uk.ac.ncl.burton.twy.maths.CyclicGroup;
+
+public abstract class PKComponentProverBasic implements PKComponentProver {
+
+	protected CyclicGroup G = null;
+	
+	private BigInteger tValue;
+	private BigInteger sValue;
+	
+	PKComponentProverBasic( CyclicGroup G ){
+		this.G = G;
+	}
+	
+	@Override
+	public BigInteger getCommitment() {
+		generateTValue();
+		return tValue;
+	}
+	public abstract void generateTValue();
+
+	
+	@Override
+	public BigInteger getResponse(BigInteger c) {
+		generateSValue( c );
+		return sValue;
+	}
+	public abstract void generateSValue( BigInteger c );
+
+
+	
+	/* USED BY SUB CLASSES TO SET VALUES FOR t AND s */
+	protected void setTValue( BigInteger tValue){
+		this.tValue = tValue;
+	}
+	protected void setSValue( BigInteger sValue){
+		this.sValue = sValue;
+	}
+	
+	
+	// == PASSING VARIABLES ==
+	protected List<BigInteger> passingVariables = new ArrayList<BigInteger>();
+	
+	@Override
+	public final List<BigInteger> getPassingVariables(){
+		passingVariables.clear();
+		generatePassingVariables();
+		return passingVariables;
+	}
+	
+	protected abstract void generatePassingVariables();
+}

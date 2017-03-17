@@ -1,0 +1,30 @@
+package uk.ac.ncl.burton.twy.ZPK;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import uk.ac.ncl.burton.twy.ZPK.components.prover.PKComponentProver;
+import uk.ac.ncl.burton.twy.maths.CyclicGroup;
+
+public class PKProver {
+
+	private List<PKComponentProver> components = new ArrayList<PKComponentProver>();
+	
+	private CyclicGroup G;
+	
+	public PKProver( CyclicGroup G ){
+		this.G = G;
+	}
+	
+	
+	public void addPKComponent( PKComponentProver comp ){
+		components.add( comp );
+	}
+	
+	
+	
+	public List<BigInteger> getCommitmentList(){
+		
+	}
+	
+}

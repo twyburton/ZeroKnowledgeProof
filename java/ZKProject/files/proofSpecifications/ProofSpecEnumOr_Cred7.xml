@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProofSpecification xmlns="http://www.zurich.ibm.com/security/idemix"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zurich.ibm.com/security/idemix ../xsd/ProofSpecification.xsd">
+
+	<Declaration>
+		<AttributeId name="id1" proofMode="unrevealed" type="enum" />
+		<AttributeId name="id2" proofMode="unrevealed" type="enum" />
+	</Declaration>
+
+	<Specification>
+		<Credentials>
+			<Credential issuerPublicKey="http://www.issuer.com/ipk.xml"
+				credStruct="http://www.ngo.org/CredStruct5.xml" name="someRandomNameMatchingTheOneInTheProofSpec">
+				<Attribute name="primeEncoding1">id1</Attribute>
+				<Attribute name="primeEncoding2">id2</Attribute>
+			</Credential>
+		</Credentials>
+
+		<EnumAttributes>
+			<EnumAttribute attributeId="id2" operator="or">
+				<EnumValue attributeName="officialLanguage">German</EnumValue>
+				<EnumValue attributeName="officialLanguage">Rhaeto-Romanic</EnumValue>
+			</EnumAttribute>
+			<EnumAttribute attributeId="id1" operator="or">
+				<EnumValue attributeName="civilStatus">NeverMarried</EnumValue>
+				<EnumValue attributeName="civilStatus">Widowed</EnumValue>
+				<EnumValue attributeName="civilStatus">LegallySeparated</EnumValue>
+				<EnumValue attributeName="civilStatus">AnnulledMarriage</EnumValue>
+				<EnumValue attributeName="civilStatus">Marriage</EnumValue>
+			</EnumAttribute>
+		</EnumAttributes>
+
+		<Inequalities />
+
+		<Commitments />
+
+		<Representations />
+
+		<Pseudonyms />
+
+		<VerifiableEncryptions />
+
+		<Messages />
+
+	</Specification>
+
+</ProofSpecification>

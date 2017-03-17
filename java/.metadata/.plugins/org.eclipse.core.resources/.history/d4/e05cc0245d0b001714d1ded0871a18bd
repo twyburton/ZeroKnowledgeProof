@@ -1,0 +1,30 @@
+package uk.ac.ncl.burton.twy.ZPK.network;
+
+import uk.ac.ncl.burton.twy.ZPK.PKConfig;
+import uk.ac.ncl.burton.twy.ZPK.PKProver;
+
+public class NetworkedProver implements Runnable {
+
+	private PKProver prover;
+	
+	NetworkedProver( PKProver prover ){
+		this.prover = prover;
+	}
+
+	@Override
+	public void run() {
+		
+		Socket socket = new Socket("localhost",PKConfig.PROTOCOL_PORT);
+		
+		runNetworkedProof();
+		
+	}
+	
+	
+	
+	public boolean runNetworkedProof(){
+		
+		return false;
+	}
+	
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><Message xmlns="http://www.zurich.ibm.com/security/idemix" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.zurich.ibm.com/security/idemix ../xsd/Message.xsd">
+  <Values>
+    <Value name="nonce">4114720305120818211319</Value>
+  </Values>
+  <Counter>0</Counter>
+</Message>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContextState>
+<org.eclipse.mylyn.context.ui.editors>
+<MonitoredWindowOpenEditors class="org.eclipse.ui.internal.WorkbenchWindow" isActive="true" isLaunching="true" number="0">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PKVerifier.java" partName="PKVerifier.java" title="PKVerifier.java" tooltip="ZKProject/src/uk/ac/ncl/burton/twy/ZPK/PKVerifier.java">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ZKProject/src/uk/ac/ncl/burton/twy/ZPK/PKVerifier.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1319" selectionTopPixel="44"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PKConfig.java" partName="PKConfig.java" title="PKConfig.java" tooltip="ZKProject/src/uk/ac/ncl/burton/twy/ZPK/PKConfig.java">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ZKProject/src/uk/ac/ncl/burton/twy/ZPK/PKConfig.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="135" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PKComponentProverBasic.java" partName="PKComponentProverBasic.java" title="PKComponentProverBasic.java" tooltip="ZKProject/src/uk/ac/ncl/burton/twy/ZPK/components/prover/PKComponentProverBasic.java">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ZKProject/src/uk/ac/ncl/burton/twy/ZPK/components/prover/PKComponentProverBasic.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="947" selectionTopPixel="90"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PKComponentVerifierBasic.java" partName="PKComponentVerifierBasic.java" title="PKComponentVerifierBasic.java" tooltip="ZKProject/src/uk/ac/ncl/burton/twy/ZPK/components/verifier/PKComponentVerifierBasic.java">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ZKProject/src/uk/ac/ncl/burton/twy/ZPK/components/verifier/PKComponentVerifierBasic.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1084" selectionTopPixel="120"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PKTesting.java" partName="PKTesting.java" title="PKTesting.java" tooltip="ZKProject/src/uk/ac/ncl/burton/twy/ZPK/components/testing/PKTesting.java">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ZKProject/src/uk/ac/ncl/burton/twy/ZPK/components/testing/PKTesting.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1229" selectionTopPixel="1289"/>
+</editor>
+</MonitoredWindowOpenEditors>
+</org.eclipse.mylyn.context.ui.editors>
+</ContextState>

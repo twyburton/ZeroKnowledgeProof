@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CredentialStructure xmlns="http://www.zurich.ibm.com/security/idemix/credentialStructure"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xsi:schemaLocation="http://www.zurich.ibm.com/security/idemix/credentialStructure ../xsd/CredentialStructure.xsd">
+
+	<References>
+		<IssuerPublicKey>
+			http://www.zurich.ibm.com/security/idmx/v2/testIssuer/ipk.xml
+		</IssuerPublicKey>
+	</References>
+
+	<Attributes>
+		<Attribute issuanceMode="known" name="civilStatus" type="enum">
+			<EnumValue>Marriage</EnumValue>
+			<EnumValue>NeverMarried</EnumValue>
+			<EnumValue>Widowed</EnumValue>
+			<EnumValue>LegallySeparated</EnumValue>
+			<EnumValue>AnnulledMarriage</EnumValue>
+			<EnumValue>Divorced</EnumValue>
+			<EnumValue>Common-lawPartner</EnumValue>
+		</Attribute>
+		<Attribute issuanceMode="known" name="officialLanguage"
+			type="enum">
+			<EnumValue>German</EnumValue>
+			<EnumValue>French</EnumValue>
+			<EnumValue>Italian</EnumValue>
+			<EnumValue>Rhaeto-Romanic</EnumValue>
+		</Attribute>
+		<Attribute issuanceMode="committed" name="driverCategory"
+			type="enum">
+			<EnumValue>A1</EnumValue>
+			<EnumValue>B</EnumValue>
+			<EnumValue>B1</EnumValue>
+			<EnumValue>C</EnumValue>
+			<EnumValue>C1</EnumValue>
+			<EnumValue>D</EnumValue>
+			<EnumValue>D1</EnumValue>
+			<EnumValue>BE</EnumValue>
+			<EnumValue>CE</EnumValue>
+			<EnumValue>DE</EnumValue>
+			<EnumValue>C1E</EnumValue>
+			<EnumValue>D1E</EnumValue>
+			<EnumValue>F</EnumValue>
+			<EnumValue>G</EnumValue>
+			<EnumValue>M</EnumValue>
+		</Attribute>
+		<Attribute issuanceMode="known" name="sex" type="enum">
+			<EnumValue>Male</EnumValue>
+			<EnumValue>Female</EnumValue>
+		</Attribute>
+	</Attributes>
+
+	<Features />
+
+	<Implementation>
+		<PrimeEncoding name="primeEncoding1" numValues="13">
+			<PrimeFactor attName="civilStatus" attValue="Marriage">3
+			</PrimeFactor>
+			<PrimeFactor attName="civilStatus" attValue="NeverMarried">5
+			</PrimeFactor>
+			<PrimeFactor attName="civilStatus" attValue="Widowed">7
+			</PrimeFactor>
+			<PrimeFactor attName="civilStatus" attValue="LegallySeparated">11
+			</PrimeFactor>
+			<PrimeFactor attName="civilStatus" attValue="AnnulledMarriage">13
+			</PrimeFactor>
+			<PrimeFactor attName="civilStatus" attValue="Divorced">17
+			</PrimeFactor>
+			<PrimeFactor attName="civilStatus" attValue="Common-lawPartner">19
+			</PrimeFactor>
+			<PrimeFactor attName="officialLanguage" attValue="German">23
+			</PrimeFactor>
+			<PrimeFactor attName="officialLanguage" attValue="French">29
+			</PrimeFactor>
+			<PrimeFactor attName="officialLanguage" attValue="Italian">31
+			</PrimeFactor>
+			<PrimeFactor attName="officialLanguage" attValue="Rhaeto-Romanic">37
+			</PrimeFactor>
+			<PrimeFactor attName="sex" attValue="Male">41
+			</PrimeFactor>
+			<PrimeFactor attName="sex" attValue="Female">43
+			</PrimeFactor>
+		</PrimeEncoding>
+		<PrimeEncoding name="primeEncoding2" numValues="15">
+			<PrimeFactor attName="driverCategory" attValue="A1">3
+			</PrimeFactor>
+			<PrimeFactor attName="driverCategory" attValue="B">5
+			</PrimeFactor>
+			<PrimeFactor attName="driverCategory" attValue="B1">7
+			</PrimeFactor>
+			<PrimeFactor attName="driverCategory" attValue="C">11
+			</PrimeFactor>
+			<PrimeFactor attName="driverCategory" attValue="C1">13
+			</PrimeFactor>
+			<PrimeFactor attName="driverCategory" attValue="D">17
+			</PrimeFactor>
+			<PrimeFactor attName="driverCategory" attValue="D1">19
+			</PrimeFactor>
+			<PrimeFactor attName="driverCategory" attValue="BE">23
+			</PrimeFactor>
+			<PrimeFactor attName="driverCategory" attValue="CE">29
+			</PrimeFactor>
+			<PrimeFactor attName="driverCategory" attValue="DE">31
+			</PrimeFactor>
+			<PrimeFactor attName="driverCategory" attValue="C1E">37
+			</PrimeFactor>
+			<PrimeFactor attName="driverCategory" attValue="D1E">41
+			</PrimeFactor>
+			<PrimeFactor attName="driverCategory" attValue="F">43
+			</PrimeFactor>
+			<PrimeFactor attName="driverCategory" attValue="G">47
+			</PrimeFactor>
+			<PrimeFactor attName="driverCategory" attValue="M">53
+			</PrimeFactor>
+		</PrimeEncoding>
+		<AttributeOrder>
+			<Attribute name="primeEncoding1">1</Attribute>
+			<Attribute name="primeEncoding2">2</Attribute>
+		</AttributeOrder>
+	</Implementation>
+
+</CredentialStructure>

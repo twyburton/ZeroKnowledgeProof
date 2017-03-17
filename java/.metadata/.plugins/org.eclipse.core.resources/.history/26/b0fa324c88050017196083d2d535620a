@@ -1,0 +1,11 @@
+package uk.ac.ncl.burton.twy.ZPK.components;
+
+public class ZKPComponentAlpha {
+
+	/*
+	 * This component is used for proving knowledge of r in the form u = g^r
+	 * {PK(r): u = g^r}
+	 * 
+	 */
+	
+}

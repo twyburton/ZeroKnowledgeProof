@@ -1,0 +1,20 @@
+package uk.ac.ncl.burton.twy.ZPK.components.prover;
+
+import java.math.BigInteger;
+
+import uk.ac.ncl.burton.twy.maths.CyclicGroup;
+
+public class PKComponentAlpha extends PKComponentProverBasic {
+
+	PKComponentAlpha(CyclicGroup G, BigInteger tValue, BigInteger cValue, BigInteger sValue) {
+		super(G, tValue, cValue, sValue);
+
+	}
+
+	/*
+	 * This component is used for proving knowledge of r in the form u = g^r
+	 * {PK(r): u = g^r}
+	 * 
+	 */
+	
+}

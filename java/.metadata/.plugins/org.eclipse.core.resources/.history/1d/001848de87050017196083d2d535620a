@@ -1,0 +1,15 @@
+package uk.ac.ncl.burton.twy.ZPK.components.verifier;
+
+import java.math.BigInteger;
+
+public interface PKComponentVerifier {
+
+public BigInteger getCommitment();
+	
+	public BigInteger getChallenge();
+	
+	public BigInteger getResponse( BigInteger c );
+	
+	public boolean verify(BigInteger commitment, BigInteger response);
+	
+}

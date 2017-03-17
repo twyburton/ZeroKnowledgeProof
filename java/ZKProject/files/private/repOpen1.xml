@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><RepresentationOpening xmlns="http://www.zurich.ibm.com/security/idemix" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.zurich.ibm.com/security/idemix ../xsd/RepresentationOpening.xsd">
+  <name>rep1</name>
+  <value>107235</value>
+  <modulus>148171</modulus>
+  <term>
+    <base>337</base>
+    <exponent>1314</exponent>
+  </term>
+  <term>
+    <base>1009</base>
+    <exponent>1315</exponent>
+  </term>
+  <term>
+    <base>743</base>
+    <exponent>1317</exponent>
+  </term>
+</RepresentationOpening>

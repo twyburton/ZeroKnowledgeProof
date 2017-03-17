@@ -1,0 +1,12 @@
+package uk.ac.ncl.burton.twy.ZPK.components.prover;
+
+import java.math.BigInteger;
+
+public interface PKComponentProver {
+	
+	
+	public BigInteger getCommitment();
+	
+	public BigInteger getResponse( BigInteger c );
+
+}

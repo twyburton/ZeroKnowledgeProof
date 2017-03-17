@@ -1,0 +1,51 @@
+package uk.ac.ncl.burton.twy.ZPK;
+
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+
+import uk.ac.ncl.burton.twy.ZPK.components.prover.PKComponentProver;
+
+public class ProofOfKnowledge {
+
+
+	public ProofOfKnowledge(){
+		
+	}
+	
+	
+	/**
+	 * This is an ordered list of the components that make up the proof
+	 */
+	private List<PKComponentProver> components = new ArrayList<PKComponentProver>();
+	
+	
+	
+	/*
+	 *	==  C/c/R -Protocol Methods ==
+	 */
+	
+	public List<BigInteger> getCommitment(){
+		
+		
+		return null;
+	}
+	
+	public BigInteger getChallenge(){
+		
+		
+		return null;
+	}
+	
+	public List<BigInteger> getResponse( BigInteger c ){
+		
+		
+		return null;
+	}
+	
+	public boolean verify(){
+		
+		return false;
+	}
+	
+}

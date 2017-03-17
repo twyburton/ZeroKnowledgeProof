@@ -1,0 +1,38 @@
+package uk.ac.ncl.burton.twy.ZPK.components.prover;
+
+import java.math.BigInteger;
+
+import uk.ac.ncl.burton.twy.maths.CyclicGroup;
+
+public abstract class PKComponentProverBasic implements PKComponentProver {
+
+	private CyclicGroup G = null;
+	
+	private BigInteger tValue;
+	private BigInteger sValue;
+	
+	PKComponentProverBasic( CyclicGroup G ){
+		this.G = G;
+	}
+	
+	@Override
+	public BigInteger getCommitment() {
+		generateTValue();
+		return tValue;
+	}
+
+	@Override
+	public BigInteger getResponse(BigInteger c) {
+		generateSValue( c );
+		return sValue;
+	}
+	
+	
+	
+	public abstract void generateTValue();
+
+	
+	public abstract void generateSValue( BigInteger c );
+
+
+}

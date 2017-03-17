@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProofSpecification xmlns="http://www.zurich.ibm.com/security/idemix"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xsi:schemaLocation="http://www.zurich.ibm.com/security/idemix ../xsd/ProofSpecification.xsd">
+
+	<Declaration>
+		<AttributeId name="id1" proofMode="unrevealed" type="string" />
+		<AttributeId name="id2" proofMode="unrevealed" type="string" />
+		<AttributeId name="id3" proofMode="unrevealed" type="int" />
+	</Declaration>
+
+	<Specification>
+		<Credentials>
+			<Credential name="dsk239fsk23er90" issuerPublicKey="http://www.utopia.ut/security/idmx/ipk.xml"
+				credStruct="http://www.utopia.ut/identityCard/v2012/CredentialStructureUtopia.xml">
+				<Attribute name="firstName">id1</Attribute>
+				<Attribute name="lastName">id2</Attribute>
+				<Attribute name="dateOfBirth">id3</Attribute>
+			</Credential>
+		</Credentials>
+
+		<EnumAttributes />
+
+		<Inequalities>
+			<Inequality publicKey="http://www.utopia.ut/security/idmx/ipk.xml" operator="geq"
+				secondArgument="71908">id3</Inequality>
+			<Inequality publicKey="http://www.utopia.ut/security/idmx/ipk.xml" operator="leq"
+				secondArgument="77021">id3</Inequality>
+		</Inequalities>
+
+		<Commitments />
+
+		<Representations />
+
+		<Pseudonyms />
+
+		<VerifiableEncryptions />
+
+		<Messages />
+
+	</Specification>
+
+</ProofSpecification>

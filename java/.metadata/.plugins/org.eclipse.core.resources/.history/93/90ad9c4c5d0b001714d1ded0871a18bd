@@ -1,0 +1,58 @@
+package uk.ac.ncl.burton.twy.ZPK.network;
+
+import static org.junit.Assert.assertTrue;
+
+import java.io.IOException;
+import java.math.BigInteger;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.List;
+
+import uk.ac.ncl.burton.twy.ZPK.PKConfig;
+import uk.ac.ncl.burton.twy.ZPK.PKProver;
+import uk.ac.ncl.burton.twy.ZPK.PKVerifier;
+import uk.ac.ncl.burton.twy.ZPK.components.prover.PKComponentProver;
+import uk.ac.ncl.burton.twy.ZPK.components.prover.PKComponentProverAlpha;
+import uk.ac.ncl.burton.twy.ZPK.components.prover.PKComponentProverBeta;
+import uk.ac.ncl.burton.twy.ZPK.components.verifier.PKComponentVerifier;
+import uk.ac.ncl.burton.twy.ZPK.components.verifier.PKComponentVerifierAlpha;
+import uk.ac.ncl.burton.twy.ZPK.components.verifier.PKComponentVerifierBeta;
+import uk.ac.ncl.burton.twy.maths.CyclicGroup;
+
+public class NetworkedVerifier implements Runnable{
+
+	private PKVerifier verifier;
+	
+	NetworkedVerifier( PKVerifier verifier ){
+		this.verifier = verifier;
+	}
+
+	@Override
+	public void run() {
+		
+		
+		try {
+			ServerSocket ss = new ServerSocket(PKConfig.PROTOCOL_PORT);
+			Socket s = ss.accept();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		runNetworkedProof();
+	}
+	
+	
+	public boolean runNetworkedProof(){
+		
+		
+		
+		
+		return false;
+	}
+	
+	
+	
+	
+}

@@ -1,0 +1,13 @@
+package uk.ac.ncl.burton.twy.ZPK.network;
+
+import uk.ac.ncl.burton.twy.ZPK.PKProver;
+
+public class NetworkedProver {
+
+	private PKProver prover;
+	
+	NetworkedProver( PKProver prover ){
+		this.prover = prover;
+	}
+	
+}

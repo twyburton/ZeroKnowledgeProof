@@ -1,0 +1,9 @@
+package uk.ac.ncl.burton.twy.ZPK;
+
+import java.util.ArrayList;
+
+public class PKProver {
+
+	
+	List<PKComponentProver> components = new ArrayList<PKComponentProver>();
+}

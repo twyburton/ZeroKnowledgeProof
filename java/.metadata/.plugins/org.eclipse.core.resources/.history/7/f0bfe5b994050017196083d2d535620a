@@ -1,0 +1,60 @@
+package uk.ac.ncl.burton.twy.ZPK.components.prover;
+
+import java.math.BigInteger;
+import java.util.List;
+
+import uk.ac.ncl.burton.twy.maths.CyclicGroup;
+
+public class PKComponentProverBeta extends PKComponentProverBasic {
+
+	/*
+	 * This component is used for proving knowledge of r  and a  in the form u = g^r # e = g^a . d^r
+	 * {PK(r): u = g^r # e = g^a . d^r}
+	 *
+	 *	!!!!! This requires a component of type alpha in order to prove knowledge of r first
+	 * 
+	 * 
+	 * 
+	 *  (Capital values refer to random generated values. Instead of the lower case with a tilde above.)
+	 *  (# replaces the conjunction  symbol)
+	 *  (. represents multiplication)
+	 * 
+	 * 
+	 *	Proving PK{(a,r): u = g^r # e = g^a . d^r }
+	 * 	
+	 *  Commitment: t1 = g^R		t2 = g^A . d^R
+	 *  Challenge: 	c = random
+	 *  Response: 	s1 = R + c.r	s2 = A + c.a
+	 *  
+	 *  Verification:	g^s1 == t1.(u)^c 	g^s2 . d^s1 == t2.(e)^c
+	 * 
+	 * 
+	 */
+	
+	private PKComponentProverAlpha alpha;
+	
+	
+	PKComponentProverBeta(CyclicGroup G) {
+		super(G);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public List<BigInteger> getPassingVariables() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void generateTValue() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void generateSValue(BigInteger c) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

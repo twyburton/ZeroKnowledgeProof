@@ -1,0 +1,344 @@
+package uk.ac.ncl.burton.twy.testing;
+
+import static org.junit.Assert.*;
+
+import java.math.BigInteger;
+
+import org.junit.Test;
+
+import uk.ac.ncl.burton.twy.maths.CyclicGroup;
+import uk.ac.ncl.burton.twy.maths.SchnorrGroup;
+import uk.ac.ncl.burton.twy.utils.BigIntegerUtils;
+
+public class ProofOfKnowledgeTesting {
+
+	@Test
+	public void SimplePKTest() {
+		
+		System.out.println("========================================================");
+		System.out.println("===== Simple PK Test");
+		
+		/*
+		 *  (Capital values refer to random generated values. Instead of the lower case with a tilde above.)
+		 *  (. represents multiplication)
+		 * 
+		 * 
+		 *	Proving PK{(r): u1 = g^r }
+		 * 	
+		 *  Commitment: t = g^R
+		 *  Challenge: 	c = random
+		 *  Response: 	s = R + c.r
+		 *  
+		 *  Verification:	g^s == t.(u1)^c 	
+		 * 
+		 * 
+		 */	
+		
+		CyclicGroup G = CyclicGroup.generateGroup(256);
+		BigInteger mod = G.getQ();
+		BigInteger modp = G.getP();
+		
+		// Trying to prove u1 = g^r		
+		BigInteger g = G.getG();
+		BigInteger r = BigInteger.TEN;
+		BigInteger u1 = g.modPow(r, modp);
+		System.out.println("u1: " + u1 );
+		
+		// == Witness ==
+		BigInteger rd = BigIntegerUtils.randomBetween( BigInteger.ONE, G.getQ() );
+		
+		BigInteger t = g.modPow(rd, modp );
+		System.out.println("t: " + t );
+				
+		// == Challenge ==
+		BigInteger c = 	BigIntegerUtils.randomBetween( BigInteger.ONE, G.getQ() );
+		System.out.println("c: " + c );
+				
+		// == Response == 
+		BigInteger s = rd.add( c.multiply(r).mod(mod) ).mod( mod );
+		System.out.println("s: " + s );
+		
+		
+		// == Verify ==
+		BigInteger gs = g.modPow(s, modp);
+		BigInteger tu1c = t.multiply(u1.modPow(c, modp)).mod(modp);
+		
+		System.out.println();
+		System.out.println("g^s: " + gs );
+		System.out.println("t*(u1)^c: " + tu1c );
+		
+		
+		assertTrue( gs.equals(tu1c) );
+		
+	}
+	
+	
+	@Test
+	public void DoublePKTest() {	
+		
+		System.out.println("========================================================");
+		System.out.println("===== Double PK Test");
+		
+		/*
+		 *  (Capital values refer to random generated values. Instead of the lower case with a tilde above.)
+		 *  (# replaces the conjunction  symbol)
+		 *  (. represents multiplication)
+		 * 
+		 * 
+		 *	Proving PK{(a,r): u = g^r # e = g^a . d^r }
+		 * 	
+		 *  Commitment: t1 = g^R		t2 = g^A . d^R
+		 *  Challenge: 	c = random
+		 *  Response: 	s1 = R + c.r	s2 = A + c.a
+		 *  
+		 *  Verification:	g^s1 == t1.(u)^c 	g^s2 . d^s1 == t2.(e)^c
+		 * 
+		 * 
+		 */	
+		
+		CyclicGroup G = CyclicGroup.generateGroup(256);
+		BigInteger mod = G.getQ();
+		BigInteger modp = G.getP();
+		BigInteger g = G.getG();
+		BigInteger h = G.generateGenerator();
+		
+		BigInteger x1 = BigInteger.valueOf( 873 );
+		BigInteger x2 = BigInteger.valueOf( 2945 );
+		BigInteger d = g.modPow(x1, modp).multiply( h.modPow(x2, modp) ).mod(modp); // <<<< THIS IS REQUIRED
+		
+		// Trying to prove u = g^r	# 	e = g^a . d^r
+		BigInteger r = BigInteger.valueOf(53);
+		BigInteger u = g.modPow(r, modp);
+		System.out.println("u: " + u );
+		
+		BigInteger a = BigInteger.valueOf(100);
+		BigInteger e = g.modPow(a, modp).multiply( d.modPow(r, modp)).mod(modp);
+		System.out.println("e: " + e );
+		
+		
+		
+		// == Witness ==
+		System.out.println("\n== Witness ==");
+		BigInteger rd = BigIntegerUtils.randomBetween( BigInteger.ONE, G.getQ() );
+		BigInteger ad = BigIntegerUtils.randomBetween( BigInteger.ONE, G.getQ() );
+		
+		BigInteger t1 = g.modPow(rd, modp );
+		System.out.println("t1: " + t1 );
+	
+		BigInteger t2 = g.modPow(ad, modp).multiply( d.modPow(rd, modp)).mod(modp);
+		System.out.println("t2: " + t2 );
+		
+		// == Challenge ==
+		System.out.println("\n== Challenge ==");
+		BigInteger c = 	BigIntegerUtils.randomBetween( BigInteger.ONE, G.getQ() );
+		System.out.println("c: " + c );
+		
+		
+		// == Response == 
+		System.out.println("\n== Response ==");
+		BigInteger s1 = rd.add( c.multiply(r).mod(mod) ).mod( mod );
+		System.out.println("s1: " + s1 );
+		
+		BigInteger s2 = ad.add( c.multiply(a).mod(mod) ).mod( mod );
+		System.out.println("s2: " + s2 );
+		
+		// == Verify ==
+		System.out.println("\n== Verify ==");
+		BigInteger gs1 = g.modPow(s1, modp);
+		BigInteger t1uc = t1.multiply(u.modPow(c, modp)).mod(modp);
+		
+		System.out.println("g^s1: " + gs1 );
+		System.out.println("t1*(u)^c: " + t1uc );
+		
+		BigInteger ds1 = d.modPow(s1, modp);
+		BigInteger gs2 = g.modPow(s2, modp);
+		BigInteger ds1gs2 = ds1.multiply(gs2).mod(modp);
+		BigInteger t2ec = t2.multiply(e.modPow(c, modp)).mod(modp);
+		
+		System.out.println("d^s1*g^s2: " + ds1gs2 );
+		System.out.println("t2*(e)^c: " + t2ec );
+		
+		assertTrue( gs1.equals(t1uc) );
+		assertTrue( ds1gs2.equals(t2ec) );
+		
+	}
+	
+	@Test
+	public void TriplePKTest() {
+		
+		System.out.println("========================================================");
+		System.out.println("===== Triple PK Test");
+		
+		/*
+		 *  (Capital values refer to random generated values. Instead of the lower case with a tilde above.)
+		 *  (# replaces the conjunction  symbol)
+		 *  (. represents multiplication)
+		 * 
+		 * 
+		 *	Proving PK{(a,r): u1 = g^r #  u2 = h^r # e = g^a . d^r }
+		 * 	
+		 *  Commitment: t1 = g^R		t2 = h^R				t3 = g^A . d^R
+		 *  Challenge: 	c = random
+		 *  Response: 	s1 = R + c.r	s2 = R + c.r			s3 = A + c.a
+		 *  
+		 *  Verification:	g^s1 == t1.(u1)^c 		h^s2 == t2.(u2)^c		g^s3 . d^s1 == t2.(e)^c
+		 * 
+		 * 
+		 */	
+		
+		CyclicGroup G = CyclicGroup.generateGroup(256);
+		BigInteger mod = G.getQ();
+		BigInteger modp = G.getP();
+		BigInteger g = G.getG();
+		BigInteger h = G.generateGenerator();
+		
+		BigInteger x1 = BigInteger.valueOf( 873 );
+		BigInteger x2 = BigInteger.valueOf( 2945 );
+		BigInteger d = g.modPow(x1, modp).multiply( h.modPow(x2, modp) ).mod(modp); // <<<< THIS IS REQUIRED
+		
+		// Trying to prove u = g^r	# 	e = g^a . d^r
+		BigInteger r = BigInteger.valueOf(53);
+		BigInteger u1 = g.modPow(r, modp);
+		BigInteger u2 = h.modPow(r, modp);
+		System.out.println("u1: " + u1 );
+		System.out.println("u2: " + u2 );
+		
+		BigInteger a = BigInteger.valueOf(100);
+		BigInteger e = g.modPow(a, modp).multiply( d.modPow(r, modp)).mod(modp);
+		System.out.println("e: " + e );
+		
+		
+		
+		// == Witness ==
+		System.out.println("\n== Witness ==");
+		BigInteger rd = BigIntegerUtils.randomBetween( BigInteger.ONE, G.getQ() );
+		BigInteger ad = BigIntegerUtils.randomBetween( BigInteger.ONE, G.getQ() );
+		
+		BigInteger t1 = g.modPow(rd, modp );
+		System.out.println("t1: " + t1 );
+		
+		BigInteger t2 = h.modPow(rd, modp );
+		System.out.println("t2: " + t2 );
+	
+		BigInteger t3 = g.modPow(ad, modp).multiply( d.modPow(rd, modp)).mod(modp);
+		System.out.println("t3: " + t3 );
+		
+		// == Challenge ==
+		System.out.println("\n== Challenge ==");
+		BigInteger c = 	BigIntegerUtils.randomBetween( BigInteger.ONE, G.getQ() );
+		System.out.println("c: " + c );
+		
+		
+		// == Response == 
+		System.out.println("\n== Response ==");
+		BigInteger s1 = rd.add( c.multiply(r).mod(mod) ).mod( mod );
+		System.out.println("s1: " + s1 );
+		
+		BigInteger s2 = rd.add( c.multiply(r).mod(mod) ).mod( mod );
+		System.out.println("s2: " + s2 );
+		
+		BigInteger s3 = ad.add( c.multiply(a).mod(mod) ).mod( mod );
+		System.out.println("s3: " + s3 );
+		
+		// == Verify ==
+		System.out.println("\n== Verify ==");
+		BigInteger gs1 = g.modPow(s1, modp);
+		BigInteger t1uc = t1.multiply(u1.modPow(c, modp)).mod(modp);
+		
+		System.out.println("g^s1: " + gs1 );
+		System.out.println("t1*(u)^c: " + t1uc );
+		
+		
+		BigInteger hs2 = h.modPow(s2, modp);
+		BigInteger t2uc = t2.multiply(u2.modPow(c, modp)).mod(modp);
+		
+		System.out.println("h^s2: " + hs2 );
+		System.out.println("t2*(u)^c: " + t2uc );
+		
+		
+		BigInteger ds1 = d.modPow(s1, modp);
+		BigInteger gs3 = g.modPow(s3, modp);
+		BigInteger ds1gs3 = ds1.multiply(gs3).mod(modp);
+		BigInteger t3ec = t3.multiply(e.modPow(c, modp)).mod(modp);
+		
+		System.out.println("d^s1*g^s3: " + ds1gs3 );
+		System.out.println("t3*(e)^c: " + t3ec );
+		
+		assertTrue( gs1.equals(t1uc) );
+		assertTrue( hs2.equals(t2uc) );
+		assertTrue( ds1gs3.equals(t3ec) );
+		
+	}
+
+	
+	@Test
+	public void GcdPKTest() {
+		
+		System.out.println("========================================================");
+		System.out.println("===== GCD PK Test");
+		
+		/*
+		 *  (Capital values refer to random generated values (Except C & D). Instead of the lower case with a tilde above.)
+		 *  (# replaces the conjunction symbol)
+		 *  (. represents multiplication)
+		 * 
+		 * 
+		 *	Proving PK{(z,q,a,b): C = g^z # D = g^q # g = C^a . D^b }							g = g^(az+bq)
+		 * 	
+		 *  Commitment: t1 = g^Z		t2 = g^Q		t3 = C^A . D^B
+		 *  Challenge: 	c = random
+		 *  Response: 	s1 = Z + c.z	s2 = Q + c.q	s3 = A.z + c.a.z + B.q + c.b.q
+		 *  
+		 *  Verification:	g^s1 == t1.(C)^c		g^s2 == t2.(D)^c		g^s3 == t3.(g)^c ???					/////g^s2 . d^s1 == t2.(e)^c 
+		 * 
+		 * 
+		 */	
+		
+		CyclicGroup G = CyclicGroup.generateGroup(256);
+		BigInteger mod = G.getQ();
+		BigInteger modp = G.getP();
+		BigInteger g = G.getG();
+
+		
+		// Trying to prove u = g^r	# 	e = g^a . d^r
+		BigInteger a = BigInteger.valueOf(53);
+		BigInteger z = BigInteger.valueOf(10);
+		System.out.println("a: " + a );
+		System.out.println("z: " + z );
+		
+		BigInteger b = BigInteger.valueOf(100);
+		BigInteger q = BigInteger.valueOf(100);
+		System.out.println("b: " + b );
+		System.out.println("q: " + q );
+		
+		// == Witness ==
+		System.out.println("\n== Witness ==");
+		BigInteger zd = BigIntegerUtils.randomBetween( BigInteger.ONE, G.getQ() );
+		BigInteger qd = BigIntegerUtils.randomBetween( BigInteger.ONE, G.getQ() );
+		
+		BigInteger t1 = g.modPow(zd, modp );
+		System.out.println("t1: " + t1 );
+		
+		BigInteger t2 = g.modPow(qd, modp );
+		System.out.println("t2: " + t2 );
+		
+		
+		// == Challenge ==
+		System.out.println("\n== Challenge ==");
+		BigInteger c = 	BigIntegerUtils.randomBetween( BigInteger.ONE, G.getQ() );
+		System.out.println("c: " + c );
+		
+		// == Response ==
+		System.out.println("\n== Response ==");
+		BigInteger s1 = zd.add(c.multiply(z).mod(mod)).mod(mod);
+		System.out.println("s1: " + s1 );
+		
+		BigInteger s2 = qd.add(c.multiply(q).mod(mod)).mod(mod);
+		System.out.println("s2: " + s2 );
+		
+		// == Verify ==
+		System.out.println("\n== Verify ==");
+		
+	}
+}
+

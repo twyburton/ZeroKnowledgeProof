@@ -1,0 +1,52 @@
+package uk.ac.ncl.burton.twy.ZPK.components.prover;
+
+import java.math.BigInteger;
+
+import uk.ac.ncl.burton.twy.maths.CyclicGroup;
+import uk.ac.ncl.burton.twy.utils.BigIntegerUtils;
+
+public class PKComponentProverAlpha extends PKComponentProverBasic {
+
+	/*
+	 * This component is used for proving knowledge of r in the form u = g^r
+	 * {PK(r): u = g^r}
+	 * 
+	 */
+	
+	// Values for proof
+	private final BigInteger u,g,r;
+	
+	// Random values
+	private BigInteger rd;
+	
+	public PKComponentProverAlpha(CyclicGroup G, BigInteger g, BigInteger r ) {
+		super(G);
+		this.g = g;
+		this.r = r;
+		this.u = g.modPow(r, G.getP() );
+	}
+
+
+	@Override
+	public void generateTValue() {
+		
+		 rd = BigIntegerUtils.randomBetween( BigInteger.ONE, G.getQ() );
+		 BigInteger tValue = g.modPow(rd, G.getP() );
+		 
+		 this.setTValue( tValue );
+		
+	}
+
+	@Override
+	public void generateSValue(BigInteger c) {
+		
+		BigInteger sValue = rd.add( c.multiply(r).mod( G.getQ() ) ).mod( G.getQ() );
+		this.setSValue(sValue);
+		
+	}
+
+
+
+	
+	
+}

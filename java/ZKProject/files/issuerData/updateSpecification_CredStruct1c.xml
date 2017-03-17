@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UpdateSpecification xmlns="http://www.zurich.ibm.com/security/idemix"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xsi:schemaLocation="http://www.zurich.ibm.com/security/idemix ../xsd/UpdateSpecification.xsd">
+
+	<BaseURI>http://www.base.of.uri/where/the/updates/will/be/published</BaseURI>
+
+	<Attributes>
+		<Attribute name="attr3">
+			<Interval amount="45000" unit="s" />
+		</Attribute>
+		<Attribute name="attr4">
+			<Interval amount="90000" unit="s" />
+		</Attribute>
+	</Attributes>
+</UpdateSpecification>

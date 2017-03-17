@@ -1,0 +1,9 @@
+package uk.ac.ncl.burton.twy.ZPK.network;
+
+public class NetworkedVerifier {
+
+	NetworkVerifier( PKVerifier verifier ){
+		
+	}
+	
+}

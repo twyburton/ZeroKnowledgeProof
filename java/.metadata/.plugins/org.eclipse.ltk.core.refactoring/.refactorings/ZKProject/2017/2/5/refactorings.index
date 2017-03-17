@@ -1,0 +1,11 @@
+1486058292851	Rename type 'SchnorrKeyGenerator'
+1486060032305	Rename type 'SchnorrProtocol'
+1486060389568	Move compilation unit
+1486060392112	Move compilation unit
+1486060719939	Rename method 'generateProof'
+1486070393764	Rename method 'gen'
+1486070405905	Rename method 'gen'
+1486140597452	Move compilation unit
+1486140641353	Rename type 'Prover'
+1486140654298	Rename type 'Verifier'
+1486240590079	Delete element

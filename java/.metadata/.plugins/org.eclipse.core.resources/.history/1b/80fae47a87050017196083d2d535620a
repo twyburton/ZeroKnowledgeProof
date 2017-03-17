@@ -1,0 +1,16 @@
+package uk.ac.ncl.burton.twy.ZPK.components;
+
+import java.math.BigInteger;
+
+public interface ZKPComponent {
+	
+	public BigInteger getCommitment();
+	
+	public BigInteger getChallenge();
+	
+	public BigInteger getResponse( BigInteger c );
+	
+	public boolean verify(BigInteger commitment, BigInteger response);
+	
+	
+}

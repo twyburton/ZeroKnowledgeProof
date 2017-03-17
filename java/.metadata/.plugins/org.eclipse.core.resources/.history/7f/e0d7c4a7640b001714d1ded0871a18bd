@@ -1,0 +1,52 @@
+package uk.ac.ncl.burton.twy.library;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.math.BigInteger;
+import java.net.URI;
+
+import com.ibm.zurich.idmx.dm.Nym;
+import com.ibm.zurich.idmx.issuance.AdvancedIssuer;
+import com.ibm.zurich.idmx.key.IssuerKeyPair;
+import com.ibm.zurich.idmx.key.IssuerPrivateKey;
+import com.ibm.zurich.idmx.utils.GroupParameters;
+import com.ibm.zurich.idmx.utils.StructureStore;
+import com.ibm.zurich.idmx.utils.SystemParameters;
+
+public class LibTest {
+
+	public static void main(String[] args) throws IOException {	
+		
+		
+		URI URI_systemParameters = URI.create("SystemParameters");
+		URI URI_groupParameters = URI.create("GroupParameters");
+		URI URI_issuerKeyPair = URI.create("IssuerKeyPair");
+		
+		System.out.println("Generating System Parameters...");
+		SystemParameters systemParameters = new SystemParameters( 597, 120, 1632, 256,
+	            160, 256, 2048, 80, 80, 80,
+	            1, 256, 2724, 1500);
+		StructureStore.getInstance().add( URI_systemParameters.toString() , systemParameters);
+		
+		System.out.println("Generating Group Parameters...");
+		GroupParameters groupParams = GroupParameters.generateGroupParams( URI_systemParameters );
+		StructureStore.getInstance().add( URI_groupParameters.toString() , groupParams);
+		
+		System.out.println("DONE");
+		
+		
+		// Create issuer
+		
+		IssuerKeyPair ikp = new IssuerKeyPair(URI_issuerKeyPair, URI_groupParameters, 20, 1);
+		AdvancedIssuer issuer = new AdvancedIssuer( ikp );
+		
+		Nym pseudonymAlice = new Nym( groupParams, BigInteger.valueOf(10), "Alice" );
+		Nym pseudonymBob = new Nym( groupParams, BigInteger.valueOf(10), "Bob" );
+		
+		
+	}
+
+}

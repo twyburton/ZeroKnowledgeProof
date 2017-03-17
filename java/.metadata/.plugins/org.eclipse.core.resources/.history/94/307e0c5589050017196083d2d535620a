@@ -1,0 +1,24 @@
+package uk.ac.ncl.burton.twy.ZPK.components.verifier;
+
+import java.math.BigInteger;
+
+import uk.ac.ncl.burton.twy.maths.CyclicGroup;
+
+public abstract  class PKComponentVerifierBasic implements PKComponentVerifier {
+
+	private CyclicGroup G;
+	
+	
+	PKComponentVerifierBasic(CyclicGroup G ){
+		this.G = G;
+	}
+	
+	@Override
+	public BigInteger getChallenge() {
+		return cValue;
+	}
+
+	@Override
+	public abstract boolean verify(BigInteger commitment, BigInteger response);
+
+}

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProofSpecification xmlns="http://www.zurich.ibm.com/security/idemix"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zurich.ibm.com/security/idemix ../xsd/ProofSpecification.xsd">
+
+	<Declaration>
+		<AttributeId name="id1" proofMode="revealed" type="string" />
+		<AttributeId name="id2" proofMode="unrevealed" type="string" />
+		<AttributeId name="id3" proofMode="unrevealed" type="enum" />
+		<AttributeId name="id4" proofMode="unrevealed" type="enum" />
+		<AttributeId name="id5" proofMode="unrevealed" type="int" />
+		<AttributeId name="id6" proofMode="unrevealed" type="int" />
+		<AttributeId name="id7" proofMode="unrevealed" type="epoch" />
+		<AttributeId name="id8" proofMode="unrevealed" type="string" />
+	</Declaration>
+
+	<Specification>
+		<Credentials>
+			<Credential issuerPublicKey="http://www.ch.ch/identityCard/v2012/ipk.xml"
+				credStruct="http://www.ch.ch/identityCard/v2012/CredStructComplete.xml"
+				name="kdsfjk230fsefj329">
+				<Attribute name="FirstName">id1</Attribute>
+				<Attribute name="LastName">id2</Attribute>
+				<Attribute name="PrimeEncoding1">id3</Attribute>
+				<Attribute name="PrimeEncoding2">id4</Attribute>
+				<Attribute name="SocialSecurityNumber">id5</Attribute>
+				<Attribute name="Diet">id8</Attribute>
+				<Attribute name="Epoch">id7</Attribute>
+				<Attribute name="BirthDate">id6</Attribute>
+			</Credential>
+		</Credentials>
+
+		<EnumAttributes>
+			<EnumAttribute attributeId="id3" operator="and">
+				<EnumValue attributeName="OfficialLanguage">German</EnumValue>
+			</EnumAttribute>
+			<EnumAttribute attributeId="id3" operator="not">
+				<EnumValue attributeName="OfficialLanguage">Rhaeto-Romanic</EnumValue>
+				<EnumValue attributeName="OfficialLanguage">Italian</EnumValue>
+			</EnumAttribute>
+			<EnumAttribute attributeId="id3" operator="not">
+				<EnumValue attributeName="CivilStatus">NeverMarried</EnumValue>
+				<EnumValue attributeName="CivilStatus">Widowed</EnumValue>
+				<EnumValue attributeName="CivilStatus">Divorced</EnumValue>
+			</EnumAttribute>
+			<EnumAttribute attributeId="id4" operator="and">
+				<EnumValue attributeName="DriverCategory">F</EnumValue>
+				<EnumValue attributeName="DriverCategory">G</EnumValue>
+				<EnumValue attributeName="DriverCategory">M</EnumValue>
+			</EnumAttribute>
+		</EnumAttributes>
+
+		<Inequalities>
+			<Inequality publicKey="http://www.ch.ch/identityCard/v2012/ipk.xml"
+				operator="geq" secondArgument="1313">id5</Inequality>
+			<Inequality publicKey="http://www.ch.ch/identityCard/v2012/ipk.xml"
+				operator="lt" secondArgument="1320">id5</Inequality>
+			<Inequality publicKey="http://www.ch.ch/identityCard/v2012/ipk.xml"
+				operator="lt" secondArgument="23949832742">id5</Inequality>
+			<Inequality publicKey="http://www.ch.ch/identityCard/v2012/ipk.xml"
+				operator="gt" secondArgument="-328428374921315">id5</Inequality>
+			<Inequality publicKey="http://www.ch.ch/identityCard/v2012/ipk.xml"
+				operator="geq" secondArgument="CURRENT_EPOCH">id7</Inequality>
+		</Inequalities>
+
+		<Commitments>
+			<Commitment name="j39rfj3rf903jfsga">
+				<Exponent index="0">id1</Exponent>
+				<Exponent index="1">id2</Exponent>
+			</Commitment>
+			<Commitment name="29saoxcznbfjsapqw">
+				<Exponent index="0">id5</Exponent>
+			</Commitment>
+		</Commitments>
+
+
+		<Representations>
+    <!-- TODO(enr): This part fails when you update the public key
+			<Representation name="eoifdvak924dzl021">
+				<Exponent index="0"
+					base="98289032754965029522987172272416152206914220003924334904228169551230690863827399527230784978456351032301868496052847763471349015661937691733931682598723325776018214091657919520578411559072304119030392471534952423089051271214633922605622027288648737752414155875562568167292153644756122319944333140073796289307">id5</Exponent>
+				<Exponent index="1"
+					base="133494739626994103588986145913083998074438240470276018628660675293015975688153172410306706568591668655176289604494795967988230755502569831546327169477700100097993330458805529752366324125799389305875964457532422623348769160092339960055217914728819831535236091959518476202831754034202999405254632079239139679023">id8</Exponent>
+			</Representation>
+           -->
+		</Representations>
+
+
+		<Pseudonyms />
+
+		<VerifiableEncryptions>
+			<VerifiableEncryption name="jd2e0asfdkkj3rqq1"
+				publicKey="http://www.zurich.ibm.com/security/idmx/v2/testTrustedParty/vepk.xml"
+				label="TestLabel">id5
+			</VerifiableEncryption>
+			<VerifiableEncryption name="39asxz0x09dfsdka2"
+				publicKey="http://www.zurich.ibm.com/security/idmx/v2/testTrustedParty/vepk.xml"
+				label="TestLabel">id2
+			</VerifiableEncryption>
+		</VerifiableEncryptions>
+
+		<Messages>
+			<Message name="d0fsdfkii2fucxzkl">Some message that is going to be included into
+				the Hash.</Message>
+		</Messages>
+
+	</Specification>
+
+</ProofSpecification>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProofSpecification xmlns="http://www.zurich.ibm.com/security/idemix"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zurich.ibm.com/security/idemix ../xsd/ProofSpecification.xsd">
+
+	<Declaration />
+
+
+	<Specification>
+		<Credentials>
+			<Credential issuerPublicKey="http://www.issuer.com/ipk.xml"
+				credStruct="http://www.ngo.org/CredStruct0.xml" name="someRandomName">
+			</Credential>
+		</Credentials>
+
+		<EnumAttributes />
+
+		<Inequalities />
+
+		<Commitments />
+
+		<Representations />
+
+		<Pseudonyms>
+			<Pseudonym name="someName" secretName="blabla"/>
+		</Pseudonyms>
+
+		<VerifiableEncryptions />
+
+		<Messages />
+
+	</Specification>
+
+</ProofSpecification>

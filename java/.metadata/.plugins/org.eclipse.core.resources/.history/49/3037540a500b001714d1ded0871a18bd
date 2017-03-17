@@ -1,0 +1,81 @@
+package uk.ac.ncl.burton.twy.ZPK.components.verifier;
+
+import java.math.BigInteger;
+import java.util.List;
+import java.util.UUID;
+
+import uk.ac.ncl.burton.twy.ZPK.PKConfig;
+import uk.ac.ncl.burton.twy.maths.CyclicGroup;
+import uk.ac.ncl.burton.twy.utils.BigIntegerUtils;
+
+public abstract  class PKComponentVerifierBasic implements PKComponentVerifier {
+
+	/**
+	 * The component id. Used for linking components
+	 */
+	private UUID ComponentID = UUID.randomUUID();
+	public UUID getComponentID(){
+		return ComponentID;
+	}
+	
+
+	protected CyclicGroup G;
+	private BigInteger challenge = null;
+	
+	
+	
+	PKComponentVerifierBasic( CyclicGroup G ){
+		this.G = G;
+		
+	}
+	
+	
+	@Override
+	public BigInteger getChallenge() {
+		
+		if( challenge == null ){
+			generateChallenge();
+			if( PKConfig.PRINT_PK_COMPONENTS_LOG ) System.out.println(ComponentID + " Challenge: " + challenge );
+		}
+		
+		return challenge;
+	}
+	
+	
+	/**
+	 * Generate a challenge. Should only be used once otherwise this could cause syncronisation issues.
+	 */
+	private void generateChallenge(){
+		challenge = BigIntegerUtils.randomBetween( BigInteger.ONE, G.getQ() );
+	}
+	
+	/**
+	 * This is used to override the default generated challenge when there are multiple components in a PK.
+	 * @param newChallenge The new challenge value
+	 */
+	public void setChallenge( BigInteger newChallenge ) {
+		this.challenge = newChallenge;
+	}
+
+	@Override
+	public abstract boolean verify(BigInteger commitment, BigInteger response, List<BigInteger> passingVariables);
+	
+	// ==  Saved values of s and t ==
+	// Saved copy of the commitment and response
+	private BigInteger savedT;
+	private BigInteger savedS;
+	
+	protected void saveTS( BigInteger t , BigInteger s){
+		this.savedT = t;
+		this.savedS = s;
+	}
+	
+	protected BigInteger getSavedT(){
+		return savedT;
+	}
+	protected BigInteger getSavedS(){
+		return savedS;
+	}
+	
+
+}

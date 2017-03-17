@@ -1,0 +1,91 @@
+package uk.ac.ncl.burton.twy.ZPK.network;
+
+import static org.junit.Assert.assertTrue;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.math.BigInteger;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.List;
+
+import uk.ac.ncl.burton.twy.ZPK.PKConfig;
+import uk.ac.ncl.burton.twy.ZPK.PKProver;
+import uk.ac.ncl.burton.twy.ZPK.PKVerifier;
+import uk.ac.ncl.burton.twy.ZPK.components.prover.PKComponentProver;
+import uk.ac.ncl.burton.twy.ZPK.components.prover.PKComponentProverAlpha;
+import uk.ac.ncl.burton.twy.ZPK.components.prover.PKComponentProverBeta;
+import uk.ac.ncl.burton.twy.ZPK.components.verifier.PKComponentVerifier;
+import uk.ac.ncl.burton.twy.ZPK.components.verifier.PKComponentVerifierAlpha;
+import uk.ac.ncl.burton.twy.ZPK.components.verifier.PKComponentVerifierBeta;
+import uk.ac.ncl.burton.twy.maths.CyclicGroup;
+
+public class NetworkedVerifier implements Runnable{
+
+	private PKVerifier verifier;
+	
+	public NetworkedVerifier( PKVerifier verifier ){
+		this.verifier = verifier;
+	}
+	
+	public enum Status {
+		INPROGRESS,
+		FAILED,
+		SUCCESS
+	}
+	private Status status = Status.INPROGRESS;
+	public Status getStatus(){
+		return status;
+	}
+
+	@Override
+	public void run() {
+		
+		
+		try {
+			System.out.println("[Verifier] Waiting for connection...");
+			ServerSocket ss = new ServerSocket(PKConfig.PROTOCOL_PORT);
+			Socket socket = ss.accept();
+			System.out.println("[Verifier] Connected");
+			
+			InputStream in = socket.getInputStream();
+			OutputStream out = socket.getOutputStream();
+			
+			if( runNetworkedProof( in, out) )
+				status = Status.SUCCESS;
+			else
+				status = Status.FAILED;
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	public boolean runNetworkedProof( InputStream in, OutputStream out ) throws IOException{
+		
+		// == Check Protocol Version ==
+		byte[] version = new byte[3];
+		in.read(version, 0, 3);
+		
+		// Return 1 if accepted else return 0
+		if(version[0] != PKConfig.PROTOCOL_VERSION[0] || version[1] != PKConfig.PROTOCOL_VERSION[1] || version[2] != PKConfig.PROTOCOL_VERSION[2] ){
+			System.out.println("[Verifier] Protocol Version Incorrect");
+			out.write(0);
+			in.close();
+			out.close();
+			return false;
+		}
+		out.write(1);
+		System.out.println("[Verifier] Protocol Version Accepted");
+		
+		
+		return true;
+	}
+	
+	
+	
+	
+}

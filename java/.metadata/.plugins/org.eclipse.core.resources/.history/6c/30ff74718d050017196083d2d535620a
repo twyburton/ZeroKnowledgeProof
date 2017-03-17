@@ -1,0 +1,19 @@
+package uk.ac.ncl.burton.twy.ZPK.components.prover;
+
+import java.math.BigInteger;
+import java.util.List;
+
+public interface PKComponentProver {
+	
+	
+	public BigInteger getCommitment();
+	
+	public BigInteger getResponse( BigInteger c );
+	
+	/**
+	 * For the ZKP some variables need to be passed from the prover to the verifier
+	 * @return 
+	 */
+	public List<BigInteger> getPassingVariables();
+
+}

@@ -1,0 +1,21 @@
+package uk.ac.ncl.burton.twy.ZPK.components.verifier;
+
+import java.math.BigInteger;
+import java.util.List;
+
+import uk.ac.ncl.burton.twy.maths.CyclicGroup;
+
+public class PKComponentVerifierBeta extends PKComponentVerifierBasic {
+
+	PKComponentVerifierBeta(CyclicGroup G) {
+		super(G);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public boolean verify(BigInteger commitment, BigInteger response, List<BigInteger> passingVariables) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

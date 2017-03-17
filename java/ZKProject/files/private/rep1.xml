@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><Representation xmlns="http://www.zurich.ibm.com/security/idemix" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.zurich.ibm.com/security/idemix ../xsd/Representation.xsd">
+  <name>rep1</name>
+  <value>107235</value>
+  <modulus>148171</modulus>
+  <base>337</base>
+  <base>1009</base>
+  <base>743</base>
+</Representation>

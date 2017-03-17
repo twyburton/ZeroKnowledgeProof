@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CredentialStructure xmlns="http://www.zurich.ibm.com/security/idemix/credentialStructure"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xsi:schemaLocation="http://www.zurich.ibm.com/security/idemix/credentialStructure ../xsd/CredentialStructure.xsd">
+
+	<References>
+		<IssuerPublicKey>
+			http://www.zurich.ibm.com/security/idmx/v2/testIssuer/ipk.xml
+		</IssuerPublicKey>
+	</References>
+
+	<Attributes>
+		<Attribute issuanceMode="known" name="civilStatus" type="enum">
+			<EnumValue>Marriage</EnumValue>
+			<EnumValue>NeverMarried</EnumValue>
+			<EnumValue>Widowed</EnumValue>
+			<EnumValue>LegallySeparated</EnumValue>
+			<EnumValue>AnnulledMarriage</EnumValue>
+			<EnumValue>Divorced</EnumValue>
+			<EnumValue>Common-lawPartner</EnumValue>
+		</Attribute>
+		<Attribute issuanceMode="hidden" name="officialLanguage"
+			type="enum">
+			<EnumValue>German</EnumValue>
+			<EnumValue>French</EnumValue>
+			<EnumValue>Italian</EnumValue>
+			<EnumValue>Rhaeto-Romanic</EnumValue>
+		</Attribute>
+	</Attributes>
+
+	<Features />
+
+	<Implementation>
+		<PrimeEncoding name="primeEncoding1" numValues="10">
+			<PrimeFactor attName="civilStatus" attValue="Marriage">3
+			</PrimeFactor>
+			<PrimeFactor attName="civilStatus" attValue="NeverMarried">5
+			</PrimeFactor>
+			<PrimeFactor attName="civilStatus" attValue="Widowed">7
+			</PrimeFactor>
+			<PrimeFactor attName="civilStatus" attValue="LegallySeparated">11
+			</PrimeFactor>
+			<PrimeFactor attName="civilStatus" attValue="AnnulledMarriage">13
+			</PrimeFactor>
+			<PrimeFactor attName="civilStatus" attValue="Divorced">17
+			</PrimeFactor>
+			<PrimeFactor attName="civilStatus" attValue="Common-lawPartner">19
+			</PrimeFactor>
+		</PrimeEncoding>
+		<PrimeEncoding name="primeEncoding2" numValues="10">
+			<PrimeFactor attName="officialLanguage" attValue="German">3
+			</PrimeFactor>
+			<PrimeFactor attName="officialLanguage" attValue="French">5
+			</PrimeFactor>
+			<PrimeFactor attName="officialLanguage" attValue="Italian">7
+			</PrimeFactor>
+			<PrimeFactor attName="officialLanguage" attValue="Rhaeto-Romanic">11
+			</PrimeFactor>
+		</PrimeEncoding>
+		<AttributeOrder>
+			<Attribute name="primeEncoding1">1</Attribute>
+			<Attribute name="primeEncoding2">2</Attribute>
+		</AttributeOrder>
+	</Implementation>
+
+</CredentialStructure>

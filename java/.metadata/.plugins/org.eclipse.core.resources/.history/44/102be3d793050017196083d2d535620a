@@ -1,0 +1,65 @@
+package uk.ac.ncl.burton.twy.ZPK.components.testing;
+
+import static org.junit.Assert.*;
+
+import java.math.BigInteger;
+import java.util.List;
+
+import org.junit.Test;
+
+import uk.ac.ncl.burton.twy.ZPK.components.prover.PKComponentProver;
+import uk.ac.ncl.burton.twy.ZPK.components.prover.PKComponentProverAlpha;
+import uk.ac.ncl.burton.twy.ZPK.components.verifier.PKComponentVerifier;
+import uk.ac.ncl.burton.twy.ZPK.components.verifier.PKComponentVerifierAlpha;
+import uk.ac.ncl.burton.twy.maths.CyclicGroup;
+
+public class PKTesting {
+
+	@Test
+	public void ComponentAlphaSetupTest() {
+		
+		CyclicGroup G = CyclicGroup.generateGroup(1024);
+		
+		BigInteger g = G.getG();
+		BigInteger r = BigInteger.TEN;
+		
+		BigInteger h = G.generateGenerator();
+		
+		
+		PKComponentProver PAlpha1 = new PKComponentProverAlpha( G, g, r);
+		PKComponentVerifier VAlpha1 = new PKComponentVerifierAlpha( G );
+		
+		PKComponentProver PAlpha2 = new PKComponentProverAlpha( G, h, r);
+		PKComponentVerifier VAlpha2 = new PKComponentVerifierAlpha( G );
+		
+		// == Commitment ==
+		BigInteger t1 = PAlpha1.getCommitment();
+		System.out.println("t1: " + t1);
+		
+		BigInteger t2 = PAlpha2.getCommitment();
+		System.out.println("t2: " + t2);
+		
+		// == Challenge ==
+		BigInteger c = VAlpha1.getChallenge();
+		System.out.println("c: " + c);
+		
+		VAlpha2.setChallenge(c);
+		
+		// == Response ==
+		BigInteger s1 = PAlpha1.getResponse(c);
+		System.out.println("s1: " + s1);
+		
+		BigInteger s2 = PAlpha2.getResponse(c);
+		System.out.println("s2: " + s2);
+		
+		// == Verify ==	
+		List<BigInteger> passingVariables = PAlpha1.getPassingVariables();
+		assertTrue(VAlpha1.verify(t1, s1, passingVariables));
+		
+		passingVariables = PAlpha2.getPassingVariables();
+		assertTrue(VAlpha2.verify(t2, s2, passingVariables));
+		
+		
+	}
+
+}

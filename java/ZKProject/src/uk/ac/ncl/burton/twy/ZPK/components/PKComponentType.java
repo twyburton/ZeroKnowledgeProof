@@ -1,0 +1,15 @@
+package uk.ac.ncl.burton.twy.ZPK.components;
+
+public enum PKComponentType {
+
+				// - COMPONENT FORM -
+	
+	ALPHA,		// g^r = u
+	
+	BETA,		// g^a . c^r = e 	~Requires an Alpha component
+	
+	GAMMA,		// g = g^(az + bq) 	:GCD
+	
+	DELTA		// g^a . c^r = e 	~Does not require an Alpha component
+	
+}

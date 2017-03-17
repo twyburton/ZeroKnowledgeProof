@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProofSpecification xmlns="http://www.zurich.ibm.com/security/idemix"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zurich.ibm.com/security/idemix ../xsd/ProofSpecification.xsd">
+
+	<Declaration>
+		<AttributeId name="idD" proofMode="revealed" type="enum" />
+		<AttributeId name="idS" proofMode="unrevealed" type="enum" />
+	</Declaration>
+
+	<Specification>
+		<Credentials />
+    
+        <CredentialCommitments>
+          <CredentialCommitment issuerPublicKey="http://www.issuer.com/ipk.xml"
+                  credStruct="http://www.ngo.org/CredStruct7.xml"
+                  name="toBeIssued">
+                  <Attribute name="peDriverCategory">idD</Attribute>
+                  <Attribute name="peSex">idS</Attribute>
+          </CredentialCommitment>
+        </CredentialCommitments>
+
+		<EnumAttributes />
+
+		<Inequalities />
+
+		<Commitments />
+
+		<Representations />
+
+		<Pseudonyms />
+
+		<VerifiableEncryptions />
+
+		<Messages />
+
+	</Specification>
+
+</ProofSpecification>

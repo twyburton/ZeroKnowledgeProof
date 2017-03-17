@@ -1,0 +1,15 @@
+package uk.ac.ncl.burton.twy.ZPK.components.verifier;
+
+import java.math.BigInteger;
+
+public abstract  class PKComponentVerifierBasic implements PKComponentVerifier {
+
+	@Override
+	public BigInteger getChallenge() {
+		return cValue;
+	}
+
+	@Override
+	public abstract boolean verify(BigInteger commitment, BigInteger response);
+
+}

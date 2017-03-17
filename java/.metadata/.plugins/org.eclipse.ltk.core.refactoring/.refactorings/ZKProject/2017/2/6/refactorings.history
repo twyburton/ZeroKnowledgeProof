@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;uk.ac.ncl.burton.twy.testing.PedersonProtocolTest&apos; to &apos;PedersonCommitmentSchemeTest&apos;&#x0D;&#x0A;- Original project: &apos;ZKProject&apos;&#x0D;&#x0A;- Original element: &apos;uk.ac.ncl.burton.twy.testing.PedersonProtocolTest&apos;&#x0D;&#x0A;- Renamed element: &apos;uk.ac.ncl.burton.twy.testing.PedersonCommitmentSchemeTest&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;PedersonProtocolTest&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;uk.ac.ncl.burton.twy.testing{PedersonProtocolTest.java[PedersonProtocolTest" matchStrategy="1" name="PedersonCommitmentSchemeTest" qualified="false" references="true" similarDeclarations="false" stamp="1486472293754" textual="false" version="1.0"/>
+</session>

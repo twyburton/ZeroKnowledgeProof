@@ -1,0 +1,57 @@
+package uk.ac.ncl.burton.twy.ZPK;
+
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+
+import uk.ac.ncl.burton.twy.ZPK.components.prover.PKComponentProver;
+
+public class PKProver {
+
+	private List<PKComponentProver> components = new ArrayList<PKComponentProver>();
+	
+	public PKProver(){
+	}
+	
+	
+	public void addPKComponent( PKComponentProver comp ){
+		components.add( comp );
+	}
+	
+	
+	
+	public List<BigInteger> getCommitmentList(){
+		if( PKConfig.PRINT_LOG ) System.out.println("Prover Generating Commitments...");
+		
+		List<BigInteger> commitmentList = new ArrayList<BigInteger>();
+		
+		for( int i = 0; i < components.size(); i++ ){
+			commitmentList.add( components.get(i).getCommitment() );
+		}
+		
+		return commitmentList;
+	}
+	
+	
+	public List<BigInteger> getResponseList( BigInteger challenge ){
+		if( PKConfig.PRINT_LOG ) System.out.println("Prover Generating Responses...");
+		List<BigInteger> responseList = new ArrayList<BigInteger>();
+		
+		for( int i = 0; i < components.size(); i++ ){
+			responseList.add( components.get(i).getResponse( challenge ) );
+		}
+		
+		return responseList;
+	}
+	
+	
+	public List<List<BigInteger>> getPassingVariablesList(){
+		List<List<BigInteger>> passingVariablesList = new ArrayList<List<BigInteger>>();
+		
+		for( int i = 0 ; i < components.size() ; i++ ){
+			passingVariablesList.add(components.get(i).getPassingVariables());
+		}
+		
+		return passingVariablesList;
+	}
+}

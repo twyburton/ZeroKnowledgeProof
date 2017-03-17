@@ -1,0 +1,37 @@
+package uk.ac.ncl.burton.twy.ZPK;
+
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+
+import uk.ac.ncl.burton.twy.ZPK.components.verifier.PKComponentVerifier;
+import uk.ac.ncl.burton.twy.maths.CyclicGroup;
+
+public class PKVerifier {
+
+	
+private List<PKComponentVerifier> components = new ArrayList<PKComponentVerifier>();
+	
+	private CyclicGroup G;
+	
+	public PKVerifier( CyclicGroup G ){
+		this.G = G;
+	}
+	
+	
+	public void addPKComponent( PKComponentVerifier comp ){
+		components.add( comp );
+	}
+	
+	
+	public BigInteger getChallenge(){
+		BigInteger challenge = components.get(0).getChallenge();
+		
+		for( int i = 1; i < components.size(); i++ ){
+			components.get(i).setChallenge(challenge);
+		}
+		
+		return challenge;
+	}
+	
+}

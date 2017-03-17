@@ -1,0 +1,73 @@
+package uk.ac.ncl.burton.twy.ZPK;
+
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+
+import uk.ac.ncl.burton.twy.ZPK.components.prover.PKComponentProver;
+
+/**
+ * 
+ * The PKProver class combines multiple PKComponents into a single proof of knowledge function
+ * 
+ * @author twyburton
+ *
+ */
+public class PKProver {
+
+	private List<PKComponentProver> components = new ArrayList<PKComponentProver>();
+	
+	public PKProver(){
+	}
+	
+	/**
+	 * Add a PKComponent to the components to be prove
+	 * @param comp
+	 */
+	public void addPKComponent( PKComponentProver comp ){
+		components.add( comp );
+	}
+	
+	/**
+	 * Get the list of commitments to pass to the verifier
+	 * @return List of commitments
+	 */
+	public List<BigInteger> getCommitmentList(){
+		if( PKConfig.PRINT_PK_LOG ) System.out.println("Prover Generating Commitments...");
+		
+		List<BigInteger> commitmentList = new ArrayList<BigInteger>();
+		
+		for( int i = 0; i < components.size(); i++ ){
+			commitmentList.add( components.get(i).getCommitment() );
+		}
+		
+		return commitmentList;
+	}
+	
+	/**
+	 * Get the list of responses to send to the verifier 
+	 * @param challenge
+	 * @return
+	 */
+	public List<BigInteger> getResponseList( BigInteger challenge ){
+		if( PKConfig.PRINT_PK_LOG ) System.out.println("Prover Generating Responses...");
+		List<BigInteger> responseList = new ArrayList<BigInteger>();
+		
+		for( int i = 0; i < components.size(); i++ ){
+			responseList.add( components.get(i).getResponse( challenge ) );
+		}
+		
+		return responseList;
+	}
+	
+	
+	public List<List<BigInteger>> getPassingVariablesList(){
+		List<List<BigInteger>> passingVariablesList = new ArrayList<List<BigInteger>>();
+		
+		for( int i = 0 ; i < components.size() ; i++ ){
+			passingVariablesList.add(components.get(i).getPassingVariables());
+		}
+		
+		return passingVariablesList;
+	}
+}

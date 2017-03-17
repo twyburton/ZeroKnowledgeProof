@@ -1,0 +1,58 @@
+package uk.ac.ncl.burton.twy.ZPK.network;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
+
+import uk.ac.ncl.burton.twy.ZPK.PKConfig;
+import uk.ac.ncl.burton.twy.ZPK.PKProver;
+import uk.ac.ncl.burton.twy.ZPK.network.NetworkedVerifier.Status;
+
+public class NetworkedProver implements Runnable {
+
+	private PKProver prover;
+	
+	public NetworkedProver( PKProver prover ){
+		this.prover = prover;
+	}
+	
+	public enum Status {
+		INPROGRESS,
+		FAILED,
+		SUCCESS
+	}
+	private Status status = Status.INPROGRESS;
+	public Status getStatus(){
+		return status;
+	}
+
+	@Override
+	public void run() {
+		
+		try {
+			Socket socket = new Socket("localhost",PKConfig.PROTOCOL_PORT);
+			
+			InputStream in = socket.getInputStream();
+			OutputStream out = socket.getOutputStream();
+			
+			runNetworkedProof( in, out);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+	
+	
+	
+	public boolean runNetworkedProof( InputStream in, OutputStream out) throws IOException{
+		
+		// == Check Protocol Version ==
+		out.write(PKConfig.PROTOCOL_VERSION);
+		
+		return false;
+	}
+	
+}

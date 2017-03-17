@@ -1,0 +1,18 @@
+package uk.ac.ncl.burton.twy.ZPK.network;
+
+import uk.ac.ncl.burton.twy.ZPK.PKVerifier;
+
+public class NetworkedVerifier implements Runnable{
+
+	private PKVerifier verifier;
+	
+	NetworkedVerifier( PKVerifier verifier ){
+		this.verifier = verifier;
+	}
+	
+	
+	public void run(){
+		
+	}
+	
+}
