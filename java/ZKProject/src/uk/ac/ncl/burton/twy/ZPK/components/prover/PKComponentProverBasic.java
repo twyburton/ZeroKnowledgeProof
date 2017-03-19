@@ -100,6 +100,6 @@ public abstract class PKComponentProverBasic implements PKComponentProver {
 		generatePassingVariables();
 		return passingVariables;
 	}
-	
 	protected abstract void generatePassingVariables();
+	
 }

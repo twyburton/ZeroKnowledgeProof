@@ -14,8 +14,6 @@ import uk.ac.ncl.burton.twy.ZPK.components.prover.PKComponentProverBeta;
 import uk.ac.ncl.burton.twy.ZPK.components.verifier.PKComponentVerifier;
 import uk.ac.ncl.burton.twy.ZPK.components.verifier.PKComponentVerifierAlpha;
 import uk.ac.ncl.burton.twy.ZPK.components.verifier.PKComponentVerifierBeta;
-import uk.ac.ncl.burton.twy.ZPK.network.NetworkedProver;
-import uk.ac.ncl.burton.twy.ZPK.network.NetworkedVerifier;
 import uk.ac.ncl.burton.twy.maths.CyclicGroup;
 
 public class PKNetworkedTesting {
@@ -24,10 +22,10 @@ public class PKNetworkedTesting {
 	public static void main(String[] args) {
 		
 		
-		CyclicGroup G = CyclicGroup.generateGroup(256);
+		CyclicGroup G = CyclicGroup.generateGroup(512);
 		
 		BigInteger g = G.getG();
-		BigInteger r = BigInteger.TEN;
+		BigInteger r = BigInteger.valueOf( 4983 );
 		
 		BigInteger h = G.generateGenerator();
 		
@@ -60,19 +58,29 @@ public class PKNetworkedTesting {
 		
 		
 		
+		
+		
 		// == Network Test ==
 		
-		NetworkedProver nPeggy = new NetworkedProver(peggy);
+		/*NetworkedProver nPeggy = new NetworkedProver(peggy);
 		NetworkedVerifier nVictor = new NetworkedVerifier(victor);
 		
 		Thread tV = new Thread(nVictor);
 		tV.start();
 		Thread tP = new Thread(nPeggy);
-		tP.start();
+		tP.start();*/
 		
 		
-		
-		
+		String t = peggy.getJSONCommitment();
+		System.out.println(t);
+		String c = victor.getJSONCommitment(t);
+		System.out.println(c);
+		String s = peggy.getJSONResponse(c);
+		System.out.println(s);
+		String pv = peggy.getJSONPassingVariables();
+		System.out.println(pv);
+		String out = victor.getJSONOutcome(t, s, pv);
+		System.out.println(out);
 		
 		/*
 		// == Commitment ==
