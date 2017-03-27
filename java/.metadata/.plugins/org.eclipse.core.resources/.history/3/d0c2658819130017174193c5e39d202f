@@ -1,0 +1,16 @@
+package uk.ac.ncl.burton.twy.PSPAKEDH;
+
+public class PDHSender implements PDHParty {
+
+	public PDHSender( CyclicGroup G, String password ){
+		
+	}
+	
+	
+	@Override
+	public void generateValues() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

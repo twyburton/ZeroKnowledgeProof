@@ -1,0 +1,9 @@
+package uk.ac.ncl.burton.twy.crypto;
+
+public class Crypto {
+	
+	public static BigInteger hash(  ){
+		
+	}
+	
+}

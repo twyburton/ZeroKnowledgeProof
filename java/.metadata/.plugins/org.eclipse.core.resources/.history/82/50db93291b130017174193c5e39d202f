@@ -1,0 +1,26 @@
+package uk.ac.ncl.burton.twy.PSPAKEDH;
+
+import java.math.BigInteger;
+
+import uk.ac.ncl.burton.twy.crypto.Crypto;
+import uk.ac.ncl.burton.twy.utils.BigIntegerUtils;
+
+public class PDHReceiver extends PDHParty {
+
+	
+
+
+	private BigInteger x; // Secret value for DH 
+	private BigInteger idP; // Hash of ids and password
+	
+	@Override
+	public void generateValues() {
+		hasGeneratedValues = true;
+		
+		x = BigIntegerUtils.randomBetween( BigInteger.ONE, G.getQ() );
+		
+		idP = Crypto.hash( sender_id.add(receiver_id).add(password) ).mod(G.getQ());
+
+	}
+
+}

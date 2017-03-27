@@ -1,0 +1,9 @@
+package uk.ac.ncl.burton.twy.PSPAKEDH;
+
+public interface PDHParty {
+
+	private boolean hasGeneratedValues = false;
+	
+	public void generateValues();
+	
+}

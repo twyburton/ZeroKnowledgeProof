@@ -1,0 +1,14 @@
+package uk.ac.ncl.burton.twy.hash;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class HashTest {
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}

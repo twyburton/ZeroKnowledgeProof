@@ -1,0 +1,35 @@
+package uk.ac.ncl.burton.twy.PSPAKEDH;
+
+import java.math.BigInteger;
+
+import uk.ac.ncl.burton.twy.maths.CyclicGroup;
+import uk.ac.ncl.burton.twy.utils.BigIntegerUtils;
+
+public class PDHSender implements PDHParty {
+
+	
+	private CyclicGroup G;
+	private BigInteger password;
+	
+	public PDHSender( CyclicGroup G, BigInteger password, BigInteger sender_id, BigInteger receiver_id ){
+		this.G = G;
+		this.password = password;
+	}
+	
+	
+	private BigInteger x; // Secret value for DH 
+	
+	
+	
+	@Override
+	public void generateValues() {
+		
+		BigInteger a = BigIntegerUtils.randomBetween( BigInteger.ONE, G.getQ() );
+
+	}
+	
+	public BigInteger getStep1(){
+		
+	}
+
+}

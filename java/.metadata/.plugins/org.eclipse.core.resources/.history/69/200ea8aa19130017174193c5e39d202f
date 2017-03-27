@@ -1,0 +1,24 @@
+package uk.ac.ncl.burton.twy.PSPAKEDH;
+
+import java.math.BigInteger;
+
+import uk.ac.ncl.burton.twy.maths.CyclicGroup;
+
+public class PDHSender implements PDHParty {
+
+	
+	private CyclicGroup g;
+	private BigInteger password;
+	
+	public PDHSender( CyclicGroup G, BigInteger password ){
+		
+	}
+	
+	
+	@Override
+	public void generateValues() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

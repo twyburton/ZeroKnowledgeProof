@@ -30,7 +30,6 @@
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.components.prover.PKComponentProver"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.maths.CyclicGroup"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.components.verifier.PKComponentVerifier"/>
-<fullyQualifiedTypeName name="java.math.BigInteger"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.PKVerifier"/>
 <fullyQualifiedTypeName name="java.net.ServerSocket"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.PKConfig"/>
@@ -49,4 +48,7 @@
 <fullyQualifiedTypeName name="org.json.simple.parser.JSONParser"/>
 <fullyQualifiedTypeName name="org.json.simple.JSONObject"/>
 <fullyQualifiedTypeName name="org.json.simple.JSONArray"/>
+<fullyQualifiedTypeName name="java.security.MessageDigest"/>
+<fullyQualifiedTypeName name="java.math.BigInteger"/>
+<fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.crypto.Crypto"/>
 </qualifiedTypeNameHistroy>
