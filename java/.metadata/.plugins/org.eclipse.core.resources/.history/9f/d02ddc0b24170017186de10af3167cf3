@@ -1,0 +1,24 @@
+package uk.ac.ncl.burton.twy.ZPK2;
+
+import static org.junit.Assert.*;
+
+import java.math.BigInteger;
+
+import org.junit.Test;
+
+import uk.ac.ncl.burton.twy.maths.CyclicGroup;
+import uk.ac.ncl.burton.twy.utils.BigIntegerUtils;
+
+public class ZPK2Testing {
+
+	@Test
+	public void test() {
+		
+		CyclicGroup G = CyclicGroup.generateGroup(256);
+		BigInteger r = BigIntegerUtils.randomBetween( BigInteger.ONE, G.getQ() );
+		
+		PoKProver peggy = PoKProver.generateProver(G, G.getG(), r);
+		
+	}
+
+}

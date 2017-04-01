@@ -1,0 +1,20 @@
+package uk.ac.ncl.burton.twy.ZPK2;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import uk.ac.ncl.burton.twy.ZPK2.components.PoKComponentProver;
+import uk.ac.ncl.burton.twy.maths.CyclicGroup;
+
+public class PoKProver {
+
+	private CyclicGroup G;
+	
+	public PoKProver(CyclicGroup G){
+		this.G = G;
+	}
+	
+	List<PoKComponentProver> components = new ArrayList<PoKComponentProver>();
+	
+	
+}

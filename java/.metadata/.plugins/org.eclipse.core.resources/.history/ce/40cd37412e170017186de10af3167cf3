@@ -1,0 +1,50 @@
+package uk.ac.ncl.burton.twy.ZPK2;
+
+import static org.junit.Assert.*;
+
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
+import org.junit.Test;
+
+import uk.ac.ncl.burton.twy.maths.CyclicGroup;
+import uk.ac.ncl.burton.twy.utils.BigIntegerUtils;
+
+public class PoKTesting {
+
+	@Test
+	public void PoKTesting() {
+		
+		CyclicGroup G = CyclicGroup.generateGroup(256);
+		BigInteger g = G.getG();
+		
+		BigInteger a = BigInteger.TEN; // BigIntegerUtils.randomBetween(BigInteger.ONE, G.getQ(), ran);
+		BigInteger b = BigInteger.TEN; // BigIntegerUtils.randomBetween(BigInteger.ONE, G.getQ(), ran);
+		
+		BigInteger mod = G.getQ();
+		
+		
+		// === STEP 1 ===
+		
+		// -- Calculations --
+		
+		// -- PoK --
+		
+		PoKProver peggy = new PoKProver(G);
+		PoKVerifier victor = new PoKVerifier(G);
+		
+		
+		
+		
+		
+		
+		
+	}
+
+
+
+	private BigInteger RandomZQ(BigInteger g, BigInteger q, SecureRandom ran){
+		return BigIntegerUtils.randomBetween(BigInteger.ONE, q, ran);
+	}
+
+}

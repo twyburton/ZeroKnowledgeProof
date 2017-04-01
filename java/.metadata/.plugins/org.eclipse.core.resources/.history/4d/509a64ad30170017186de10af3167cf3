@@ -1,0 +1,63 @@
+package uk.ac.ncl.burton.twy.ZPK2;
+
+import java.util.Arrays;
+import java.util.UUID;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import uk.ac.ncl.burton.twy.ZPK.PKConfig;
+import uk.ac.ncl.burton.twy.ZPK.components.verifier.PKComponentVerifierBasic;
+import uk.ac.ncl.burton.twy.maths.CyclicGroup;
+
+public class PoKVerifier {
+
+	private CyclicGroup G;
+	
+	public PoKVerifier(CyclicGroup G){
+		this.G = G;
+	}
+	
+	
+	private UUID PK_id;
+	
+	
+	// == JSON Text ==
+	public String getJSONChallenge( String JSONcommitment ){
+		
+		try {
+			// == JSON PROCESS ==
+			JSONParser parser = new JSONParser();
+			JSONObject obj = (JSONObject) parser.parse(JSONcommitment);
+			
+			PK_id =  (String)obj.get("PK_id") ;
+			
+			// == JSON output ==
+			String json = "";
+			
+			json += "{\n";
+				json += "\t\"PK_id\":\"" + PK_id + "\",\n";
+				json += "\t\"protocol_version\":" + Arrays.toString(PKConfig.PROTOCOL_VERSION) + ",\n";
+				json += "\t\"step\":\"challenge\",\n";
+				json += "\t\"components\":[\n";
+			
+						json += "\t\t{\n";
+							json += "\t\t\t\"type\":\"" +  ((PKComponentVerifierBasic)components.get(0)).getComponentType()  + "\",\n";
+							json += "\t\t\t\"c\":\"" +  getChallenge() + "\",\n";
+							json += "\t\t\t\"component_id\":\"" + ((PKComponentVerifierBasic)components.get(0)).getComponentID() + "\"\n";
+						json += "\t\t}";
+						
+				json += "\t],\n";
+				json += "\t\"time\":" + (System.currentTimeMillis()/1000) + "\n";
+			json += "}\n";
+			
+			return json;
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+}

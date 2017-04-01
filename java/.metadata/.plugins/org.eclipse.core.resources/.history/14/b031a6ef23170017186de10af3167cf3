@@ -1,0 +1,14 @@
+package uk.ac.ncl.burton.twy.ZPK2;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class ZPK2Testing {
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}

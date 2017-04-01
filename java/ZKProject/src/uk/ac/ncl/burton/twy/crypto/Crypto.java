@@ -5,6 +5,10 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+
 public class Crypto {
 	
 	public static BigInteger hash( BigInteger num ){
@@ -42,6 +46,13 @@ public class Crypto {
 		}
         
 	}
+	
+	
+	/*public static byte[] bigIntegerToAESKey(BigInteger x ){
+		
+		
+	}*/
+	
 	
 	public static BigInteger divide( BigInteger x, BigInteger y, BigInteger mod ){
 		// x/y = x*y^-1

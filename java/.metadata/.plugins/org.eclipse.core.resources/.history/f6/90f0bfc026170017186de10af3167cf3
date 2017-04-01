@@ -1,0 +1,32 @@
+package uk.ac.ncl.burton.twy.ZPK2;
+
+import java.math.BigInteger;
+
+import uk.ac.ncl.burton.twy.maths.CyclicGroup;
+import uk.ac.ncl.burton.twy.utils.BigIntegerUtils;
+
+public class PoKVerifier {
+
+	private CyclicGroup G;
+	
+	private BigInteger challenge;
+	
+	public PoKVerifier( CyclicGroup G ){
+		this.G = G;
+	}
+	
+	private void generateRandomValues(){
+		challenge = BigIntegerUtils.randomBetween( BigInteger.ONE, G.getQ() );
+	}
+	
+	public BigInteger getChallenge(){
+		return challenge;
+	}
+
+	public boolean Verify(  ){
+		//u^s1 g^s2 == t(x)^c
+	}
+	
+	
+	
+}

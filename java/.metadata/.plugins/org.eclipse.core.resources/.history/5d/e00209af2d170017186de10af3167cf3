@@ -1,0 +1,16 @@
+package uk.ac.ncl.burton.twy.ZPK2;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class PoKTesting {
+
+	@Test
+	public void PoKTesting() {
+		
+		PoKProver peggy = new PoKProver();
+		
+	}
+
+}

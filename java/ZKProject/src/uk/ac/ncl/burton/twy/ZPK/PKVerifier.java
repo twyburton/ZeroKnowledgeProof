@@ -82,7 +82,7 @@ public class PKVerifier {
 	private String PK_id;
 	
 	// == JSON Text ==
-	public String getJSONCommitment( String JSONcommitment ){
+	public String getJSONChallenge( String JSONcommitment ){
 		
 		try {
 			// == JSON PROCESS ==

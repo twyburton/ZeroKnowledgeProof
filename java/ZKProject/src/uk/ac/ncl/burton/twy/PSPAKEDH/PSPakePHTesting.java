@@ -15,9 +15,8 @@ public class PSPakePHTesting {
 	
 	@Test
 	public void testClasses() throws TerminateProtocolException{
-		CyclicGroup G = CyclicGroup.generateGroup(256);
-		
-		
+		CyclicGroup G = CyclicGroup.generateGroup(526);
+			
 		BigInteger s_password = BigInteger.valueOf(123456);
 		BigInteger r_password = BigInteger.valueOf(123456);
 		

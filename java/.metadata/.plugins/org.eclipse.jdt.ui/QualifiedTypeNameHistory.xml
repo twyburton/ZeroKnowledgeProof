@@ -26,9 +26,7 @@
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.components.verifier.PKComponentVerifierAlpha"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.components.prover.PKComponentProverBeta"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.components.verifier.PKComponentVerifierBeta"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.components.prover.PKComponentProver"/>
-<fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.maths.CyclicGroup"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.components.verifier.PKComponentVerifier"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.PKVerifier"/>
 <fullyQualifiedTypeName name="java.net.ServerSocket"/>
@@ -39,7 +37,6 @@
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.network.NetworkedProver"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.network.NetworkedVerifier"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.network.NetworkedVerifier.Status"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.components.verifier.PKComponentVerifierBasic"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.components.PKComponentType"/>
 <fullyQualifiedTypeName name="java.util.UUID"/>
@@ -49,6 +46,14 @@
 <fullyQualifiedTypeName name="org.json.simple.JSONObject"/>
 <fullyQualifiedTypeName name="org.json.simple.JSONArray"/>
 <fullyQualifiedTypeName name="java.security.MessageDigest"/>
-<fullyQualifiedTypeName name="java.math.BigInteger"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.crypto.Crypto"/>
+<fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.maths.CyclicGroup"/>
+<fullyQualifiedTypeName name="java.math.BigInteger"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.PSPAKEDH.PDHConfig"/>
+<fullyQualifiedTypeName name="javax.crypto.KeyGenerator"/>
+<fullyQualifiedTypeName name="javax.crypto.spec.SecretKeySpec"/>
+<fullyQualifiedTypeName name="javax.crypto.SecretKey"/>
+<fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.jUnitTesting.Repeat"/>
 </qualifiedTypeNameHistroy>

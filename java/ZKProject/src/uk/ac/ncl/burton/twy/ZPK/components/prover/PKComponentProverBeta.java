@@ -28,6 +28,11 @@ public class PKComponentProverBeta extends PKComponentProverBasic {
 	 *  Response: 	s1 = R + c.r	s2 = A + c.a
 	 *  
 	 *  Verification:	g^s1 == t1.(u)^c 	g^s2 . d^s1 == t2.(e)^c
+	 *  
+	 *  
+	 *  
+	 *  
+	 *  
 	 * 
 	 * 
 	 */

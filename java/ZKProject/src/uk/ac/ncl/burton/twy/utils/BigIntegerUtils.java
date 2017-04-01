@@ -2,6 +2,7 @@ package uk.ac.ncl.burton.twy.utils;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
+import java.util.List;
 
 public class BigIntegerUtils {
 
@@ -35,6 +36,19 @@ public class BigIntegerUtils {
 		
 		return x;
 		
+	}
+	
+	public static BigInteger multiplyBaseExponents( BigInteger mod , List<BigInteger> bases, List<BigInteger> exponents){
+		
+		if( bases.size() != exponents.size()){
+			throw new IllegalArgumentException("The number of bases must match the number of exponents");
+		}
+		
+		BigInteger x = BigInteger.ONE;
+		for(int i = 0 ; i < bases.size(); i++ ){
+			x = x.multiply( bases.get(i).modPow(exponents.get(i), mod) ).mod(mod);
+		}
+		return x;
 	}
 
 	

@@ -1,0 +1,29 @@
+package uk.ac.ncl.burton.twy.ZPK2;
+
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+
+import uk.ac.ncl.burton.twy.maths.CyclicGroup;
+
+public class PoKProver {
+
+	/**
+	 * The cyclic group for the proof
+	 */
+	private CyclicGroup G;
+	
+	private List<BigInteger> bases;
+	private List<BigInteger> exponents;
+	
+	public PoKProver(){
+		bases = new ArrayList<BigInteger>();
+		exponents = new ArrayList<BigInteger>();
+	}
+
+	public PoKProver( List<BigInteger> bases ){
+		this.bases = bases;
+	}
+
+	
+}

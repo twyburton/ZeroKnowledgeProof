@@ -22,7 +22,7 @@ public class PKNetworkedTesting {
 	public static void main(String[] args) {
 		
 		
-		CyclicGroup G = CyclicGroup.generateGroup(512);
+		CyclicGroup G = CyclicGroup.generateGroup(2048);
 		
 		BigInteger g = G.getG();
 		BigInteger r = BigInteger.valueOf( 4983 );
@@ -73,7 +73,7 @@ public class PKNetworkedTesting {
 		
 		String t = peggy.getJSONCommitment();
 		System.out.println(t);
-		String c = victor.getJSONCommitment(t);
+		String c = victor.getJSONChallenge(t);
 		System.out.println(c);
 		String s = peggy.getJSONResponse(c);
 		System.out.println(s);

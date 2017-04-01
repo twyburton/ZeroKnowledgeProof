@@ -16,11 +16,87 @@ import uk.ac.ncl.burton.twy.ZPK.components.verifier.PKComponentVerifier;
 import uk.ac.ncl.burton.twy.ZPK.components.verifier.PKComponentVerifierAlpha;
 import uk.ac.ncl.burton.twy.ZPK.components.verifier.PKComponentVerifierBeta;
 import uk.ac.ncl.burton.twy.maths.CyclicGroup;
+import uk.ac.ncl.burton.twy.utils.BigIntegerUtils;
 
 public class PKTesting {
 
 	
 	@Test
+	public void repeatableTest(){
+		int n_tests = 1000;
+		for( int i = 0 ; i < n_tests; i++ ){
+			System.out.println("Test: " + (i+1)+"/" + n_tests );
+			PKETTest();
+		}
+		System.out.println("DONE!");
+	}
+	
+	@Test
+	public void PKETTest() {
+		
+		// ############ FIRST SET UP ############
+		
+		CyclicGroup G = CyclicGroup.generateGroup(256);
+		BigInteger g = G.getG();
+		
+		
+		// ############ STEP 1 ############
+		// == Calculations ==
+		BigInteger r = BigIntegerUtils.randomBetween( BigInteger.ONE, G.getQ() );
+		
+		BigInteger h = G.generateGenerator();
+		
+		BigInteger x1 = BigIntegerUtils.randomBetween( BigInteger.ONE, G.getQ() );
+		BigInteger x2 = BigIntegerUtils.randomBetween( BigInteger.ONE, G.getQ() );
+		BigInteger d = g.modPow(x1, G.getP()).multiply( h.modPow(x2, G.getP()) ).mod(G.getP());
+		
+		BigInteger a = BigInteger.valueOf(100);
+	
+		
+		PKProver peggy = new PKProver();
+		PKVerifier victor = new PKVerifier();
+		
+		// == Component Setup ==
+		PKComponentProver PAlpha1 = new PKComponentProverAlpha( G, g, r);	
+		PKComponentProver PAlpha2 = new PKComponentProverAlpha( G, h, r);
+		PKComponentProver PBeta = new PKComponentProverBeta( G, (PKComponentProverAlpha) PAlpha1, a, d);
+		
+		peggy.addPKComponent(PAlpha1);
+		peggy.addPKComponent(PAlpha2);
+		peggy.addPKComponent(PBeta);
+	
+		PKComponentVerifier VAlpha1 = new PKComponentVerifierAlpha( G );
+		PKComponentVerifier VAlpha2 = new PKComponentVerifierAlpha( G );
+		PKComponentVerifier VBeta = new PKComponentVerifierBeta( G, (PKComponentVerifierAlpha) VAlpha1);
+		
+		victor.addPKComponent(VAlpha1);
+		victor.addPKComponent(VAlpha2);
+		victor.addPKComponent(VBeta);
+		
+		// == Commitment ==
+		List<BigInteger> commitmentList = peggy.getCommitmentList();
+		
+		// == Challenge ==
+		BigInteger c = victor.getChallenge();
+		
+		// == Response ==
+		List<BigInteger> responseList = peggy.getResponseList(c);
+		
+		// == Verify ==
+		List<List<BigInteger>> passingVariablesList = peggy.getPassingVariablesList();
+		
+		assertTrue(victor.verify(commitmentList, responseList, passingVariablesList));
+			
+		// ############ STEP 2 ############
+		
+		// ############ STEP 3 ############
+		
+	}
+	
+	
+	
+	
+	//@Test
 	public void PKTest() {
 		
 		CyclicGroup G = CyclicGroup.generateGroup(256);
