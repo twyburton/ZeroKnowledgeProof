@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="ZPK2Testing" project="ZKProject" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="uk.ac.ncl.burton.twy.ZPK2.ZPK2Testing" time="0.148">
-    <testcase name="test" classname="uk.ac.ncl.burton.twy.ZPK2.ZPK2Testing" time="0.148"/>
-  </testsuite>
-</testrun>

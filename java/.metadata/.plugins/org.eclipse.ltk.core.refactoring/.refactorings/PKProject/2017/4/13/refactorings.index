@@ -1,0 +1,7 @@
+1491128463116	Rename type 'PoKConfig'
+1491128472712	Rename type 'PoKProver'
+1491128481173	Rename type 'PoKTesting'
+1491128487204	Rename type 'PoKVerifier'
+1491128495447	Rename type 'PoKComponentProver'
+1491128502771	Rename type 'PoKComponentTesting'
+1491128522468	Rename type 'PoKComponentVerifier'

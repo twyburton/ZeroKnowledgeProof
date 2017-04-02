@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="ZPK2Testing" project="ZKProject" tests="2" started="2" failures="0" errors="0" ignored="0">
-  <testsuite name="uk.ac.ncl.burton.twy.ZPK2.ZPK2Testing" time="41.293">
-    <testcase name="repeatableTest" classname="uk.ac.ncl.burton.twy.ZPK2.ZPK2Testing" time="40.738"/>
-    <testcase name="PoKTesting" classname="uk.ac.ncl.burton.twy.ZPK2.ZPK2Testing" time="0.555"/>
-  </testsuite>
-</testrun>

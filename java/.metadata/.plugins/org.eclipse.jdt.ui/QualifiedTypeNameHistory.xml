@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.ibm.zurich.idmx.showproof.Verifier"/>
-<fullyQualifiedTypeName name="java.security.KeyPair"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.schnorr.SchnorrKey"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.schnorr.Prover"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.schnorr.Verifier"/>
@@ -39,21 +37,27 @@
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.network.NetworkedVerifier.Status"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.components.verifier.PKComponentVerifierBasic"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.components.PKComponentType"/>
-<fullyQualifiedTypeName name="java.util.UUID"/>
 <fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.PKProver"/>
 <fullyQualifiedTypeName name="org.json.simple.parser.JSONParser"/>
 <fullyQualifiedTypeName name="org.json.simple.JSONObject"/>
 <fullyQualifiedTypeName name="org.json.simple.JSONArray"/>
 <fullyQualifiedTypeName name="java.security.MessageDigest"/>
-<fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.crypto.Crypto"/>
-<fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.maths.CyclicGroup"/>
-<fullyQualifiedTypeName name="java.math.BigInteger"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.PSPAKEDH.PDHConfig"/>
 <fullyQualifiedTypeName name="javax.crypto.KeyGenerator"/>
 <fullyQualifiedTypeName name="javax.crypto.spec.SecretKeySpec"/>
 <fullyQualifiedTypeName name="javax.crypto.SecretKey"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.jUnitTesting.Repeat"/>
+<fullyQualifiedTypeName name="java.math.BigInteger"/>
+<fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.maths.CyclicGroup"/>
+<fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK2.components.PoKComponentProver"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.UUID"/>
+<fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK2.components.PoKComponentVerifier"/>
+<fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.crypto.Crypto"/>
+<fullyQualifiedTypeName name="uk.ac.ncl.burton.twyb.PK.components.PKComponentProver"/>
+<fullyQualifiedTypeName name="uk.ac.ncl.burton.twyb.PK.components.PKComponentVerifier"/>
+<fullyQualifiedTypeName name="uk.ac.ncl.burton.twyb.crypto.CyclicGroup"/>
+<fullyQualifiedTypeName name="uk.ac.ncl.burton.twyb.utils.BigIntegerUtils"/>
 </qualifiedTypeNameHistroy>

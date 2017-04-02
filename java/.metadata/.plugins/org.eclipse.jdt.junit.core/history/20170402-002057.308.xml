@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="PoKTesting" project="ZKProject" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="uk.ac.ncl.burton.twy.ZPK2.PoKTesting" time="0.267">
-    <testcase name="PoKTesting" classname="uk.ac.ncl.burton.twy.ZPK2.PoKTesting" time="0.267"/>
-  </testsuite>
-</testrun>
