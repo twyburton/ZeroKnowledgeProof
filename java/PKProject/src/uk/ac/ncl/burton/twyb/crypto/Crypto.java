@@ -3,11 +3,6 @@ package uk.ac.ncl.burton.twyb.crypto;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
-
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
 
 public class Crypto {
 	

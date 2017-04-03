@@ -1,7 +1,5 @@
 package uk.ac.ncl.burton.twyb.PK.network;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 public class NetworkTesting {

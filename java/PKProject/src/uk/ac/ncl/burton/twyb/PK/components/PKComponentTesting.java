@@ -3,7 +3,6 @@ package uk.ac.ncl.burton.twyb.PK.components;
 import static org.junit.Assert.*;
 
 import java.math.BigInteger;
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 

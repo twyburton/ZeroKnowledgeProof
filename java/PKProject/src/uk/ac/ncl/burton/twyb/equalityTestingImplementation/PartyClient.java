@@ -32,7 +32,7 @@ public class PartyClient {
 		CyclicGroup G = CyclicGroup.generateGroup(256);
 		BigInteger g = G.getG();
 		
-		BigInteger a = BigInteger.TEN;
+		BigInteger a = BigInteger.valueOf(8213); // Secret value
 		
 		BigInteger mod = G.getQ();
 		
@@ -40,14 +40,14 @@ public class PartyClient {
 		
 		// -- Calculations --
 		BigInteger h =  G.generateGenerator();
-		BigInteger x1 = RandomZQ(g,G.getQ(),ran);//BigIntegerUtils.randomBetween(BigInteger.ONE, G.getQ(), ran); 
-		BigInteger x2 = RandomZQ(g,G.getQ(),ran);//BigIntegerUtils.randomBetween(BigInteger.ONE, G.getQ(), ran);
-		BigInteger r =  RandomZQ(g,G.getQ(),ran);//BigIntegerUtils.randomBetween(BigInteger.ONE, G.getQ(), ran);
+		BigInteger x1 = RandomZQ(G.getQ());//BigIntegerUtils.randomBetween(BigInteger.ONE, G.getQ(), ran); 
+		BigInteger x2 = RandomZQ(G.getQ());//BigIntegerUtils.randomBetween(BigInteger.ONE, G.getQ(), ran);
+		BigInteger r =  RandomZQ(G.getQ());//BigIntegerUtils.randomBetween(BigInteger.ONE, G.getQ(), ran);
 		
-		BigInteger c =  g.modPow( x1, mod ).multiply( h.modPow( x2, mod));
+		BigInteger c =  g.modPow( x1, mod ).multiply( h.modPow( x2, mod) );
 		BigInteger u1 = g.modPow(r, mod );
 		BigInteger u2 = h.modPow(r, mod );
-		BigInteger e =  g.modPow( a, mod ).multiply( c.modPow( r, mod));
+		BigInteger e =  g.modPow( a, mod ).multiply( c.modPow( r, mod) );
 		
 		// -- PoK --
 		PKProver peggy = new PKProver(G);
@@ -97,7 +97,7 @@ public class PartyClient {
 		client.sendMessage(passing);
 		
 		String outcome = client.receiveMessage();
-		System.out.println("<CLIENT> " + outcome);
+		System.out.println(outcome);
 		
 		
 		
@@ -117,7 +117,7 @@ public class PartyClient {
 		outcome = victor.getJSONOutcome(commitment, response, passing);
 		client.sendMessage(outcome);
 		
-		boolean success = victor.isProofSucessful();
+		boolean success = victor.isProofSuccessful();
 		System.out.println(success);
 		
 		
@@ -128,7 +128,7 @@ public class PartyClient {
 		// === STEP 3 ===
 		
 		// -- Calculations --
-		BigInteger z = RandomZQ(g,G.getQ(),ran);//BigIntegerUtils.randomBetween(BigInteger.ONE, G.getQ(), ran);
+		BigInteger z = RandomZQ(G.getQ());//BigIntegerUtils.randomBetween(BigInteger.ONE, G.getQ(), ran);
 		
 		
 		BigInteger edz = ed.modPow(z, mod);
@@ -140,8 +140,8 @@ public class PartyClient {
 		BigInteger d = edz.multiply(u1dzx1).multiply(u2dzx2).mod(mod);
 		
 		// GCD PROOF:   PK{(z,q,r1,r2,a,b) : C = g^z h^r1 AND D = g^q h^r2 AND g = C^a D^b
-		BigInteger r1 = RandomZQ(g,G.getQ(),ran);
-		BigInteger r2 = RandomZQ(g,G.getQ(),ran);
+		BigInteger r1 = RandomZQ(G.getQ());
+		BigInteger r2 = RandomZQ(G.getQ());
 		
 		EEAResult eea = EEA.eea(z, G.getQ());
 		
@@ -241,183 +241,13 @@ public class PartyClient {
 		
 		System.out.println("d: " + d );
 		
-		
-	/*	
-		// === STEP 2 ===
-		
-		// -- Calculations --
-		BigInteger s = RandomZQ(g,G.getQ(),ran);//BigIntegerUtils.randomBetween(BigInteger.ONE, G.getQ(), ran);
-		BigInteger t = RandomZQ(g,G.getQ(),ran);//BigIntegerUtils.randomBetween(BigInteger.ONE, G.getQ(), ran);
-		
-		
-		BigInteger u1d = u1.modPow(s, mod).multiply( g.modPow(t, mod) );
-		BigInteger u2d = u2.modPow(s, mod).multiply( h.modPow(t, mod) );
-		
-			BigInteger es = e.modPow(s, mod);
-				BigInteger bs = b.multiply(s);
-			BigInteger gbs = g.modPow( bs ,mod).modInverse(mod);
-			BigInteger ct = c.modPow(t, mod);
-		
-		BigInteger ed = es.multiply(gbs).multiply(ct);	
-		
-		
-		// -- PoK --
-		peggy = new PKProver(G);
-		//victor = new PKVerifier(G,3);
-		
-		// (1)
-		bases = new ArrayList<BigInteger>();
-		exponents = new ArrayList<BigInteger>();
-		bases.add(u1);
-		exponents.add(s);
-		bases.add(g);
-		exponents.add(t);
-		PKComponentProver c2X1 = PKComponentProver .generateProver(G, bases, exponents);
-		
-		// (2)
-		bases = new ArrayList<BigInteger>();
-		exponents = new ArrayList<BigInteger>();
-		bases.add(u2);
-		exponents.add(s);
-		bases.add(h);
-		exponents.add(t);
-		PKComponentProver c2X2 = PKComponentProver .generateProver(G, bases, exponents);
-		
-		// (3)
-		bases = new ArrayList<BigInteger>();
-		exponents = new ArrayList<BigInteger>();
-		bases.add(e);
-		exponents.add(s);
-		bases.add(g);
-			List<BigInteger> nbsList = new ArrayList<BigInteger>(); nbsList.add(BigInteger.valueOf(-1)); nbsList.add(b); nbsList.add(s);
-		exponents.add(BigIntegerUtils.multiplyList(nbsList));
-		bases.add(c);
-		exponents.add(t);
-		PKComponentProver c2X3 = PKComponentProver .generateProver(G, bases, exponents);
-		
-		// -- ADD --
-		peggy.addComponent(c2X1);
-		peggy.addComponent(c2X2);
-		peggy.addComponent(c2X3);
-		
-		// <<<<<<<<<<<<<<<<<<<<<<<< NEED TO DO GCD
-		
-		// -- Proof --
-		init = peggy.getJSONInitialise();
-		System.out.println(init);
-		victor = PKVerifier.getInstance(init);
-		
-		commitment = peggy.getJSONCommitment();
-		System.out.println(commitment);
-		
-		challenge = victor.getJSONChallenge(commitment);
-		System.out.println(challenge);
-		
-		response = peggy.getJSONResponse(challenge);
-		System.out.println(response);
-		
-		passing = peggy.getJSONPassingVariables();
-		System.out.println(passing);
-		
-		outcome = victor.getJSONOutcome(commitment, response, passing);
-		System.out.println(outcome);
-		
-		// === STEP 3 ===
-		
-		// -- Calculations --
-		BigInteger z = RandomZQ(g,G.getQ(),ran);//BigIntegerUtils.randomBetween(BigInteger.ONE, G.getQ(), ran);
-		
-		
-		BigInteger edz = ed.modPow(z, mod);
-			BigInteger zx1 = z.multiply(x1);
-		BigInteger u1dzx1 = u1d.modPow( zx1 , mod).modInverse(mod);
-			BigInteger zx2 = z.multiply(x2);
-		BigInteger u2dzx2 = u2d.modPow( zx2 , mod).modInverse(mod);
-	
-		BigInteger d = edz.multiply(u1dzx1).multiply(u2dzx2).mod(mod);
-	
-		// -- PoK --
-		peggy = new PKProver(G);
-		//victor = new PKVerifier(G,2);
-		
-		// (1)
-		bases = new ArrayList<BigInteger>();
-		exponents = new ArrayList<BigInteger>();
-		bases.add(g);
-		exponents.add(x1);
-		bases.add(h);
-		exponents.add(x2);
-		PKComponentProver c3X1 = PKComponentProver .generateProver(G, bases, exponents);
-		
-		// (2)
-		bases = new ArrayList<BigInteger>();
-		exponents = new ArrayList<BigInteger>();
-		bases.add(ed);
-		exponents.add(z);
-		bases.add(u1d);
-			List<BigInteger> nzx1List = new ArrayList<BigInteger>(); nzx1List.add(BigInteger.valueOf(-1)); nzx1List.add(z); nzx1List.add(x1);
-		exponents.add(BigIntegerUtils.multiplyList(nzx1List));
-		bases.add(u2d);
-			List<BigInteger> nzx2List = new ArrayList<BigInteger>(); nzx2List.add(BigInteger.valueOf(-1)); nzx2List.add(z); nzx2List.add(x2);
-		exponents.add(BigIntegerUtils.multiplyList(nzx2List));
-		PKComponentProver c3X2 = PKComponentProver .generateProver(G, bases, exponents);
-		
-		
-		// -- ADD --
-		peggy.addComponent(c3X1);
-		peggy.addComponent(c3X2);
-		
-		// <<<<<<<<<<<<<<<<<<<<<<<< NEED TO DO GCD
-		
-		// -- Proof --
-		init = peggy.getJSONInitialise();
-		System.out.println(init);
-		victor = PKVerifier.getInstance(init);
-		
-		commitment = peggy.getJSONCommitment();
-		System.out.println(commitment);
-		
-		challenge = victor.getJSONChallenge(commitment);
-		System.out.println(challenge);
-		
-		response = peggy.getJSONResponse(challenge);
-		System.out.println(response);
-		
-		passing = peggy.getJSONPassingVariables();
-		System.out.println(passing);
-		
-		outcome = victor.getJSONOutcome(commitment, response, passing);
-		System.out.println(outcome);
-		
-		
-		
-		
-		*/
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		/*while( !client.isConnectionClosed() ){
-			try {
-				Thread.sleep(10);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			
-		}*/
-		
+		client.stop();
 
 	}
 	
 	
-	private static BigInteger RandomZQ(BigInteger g, BigInteger q, SecureRandom ran){
-		return BigIntegerUtils.randomBetween(BigInteger.ONE, q, ran);
+	private static BigInteger RandomZQ(BigInteger q){
+		return BigIntegerUtils.randomBetween(BigInteger.ONE, q);
 	}
 
 	

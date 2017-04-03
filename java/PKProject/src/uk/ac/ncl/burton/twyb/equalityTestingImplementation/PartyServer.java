@@ -23,9 +23,7 @@ public class PartyServer {
 		Thread serverThread = new Thread(server);
 		serverThread.start();
 
-		
 		server.setBlockingMode( true );
-		
 		
 		
 		// ====== PKS ======
@@ -35,7 +33,7 @@ public class PartyServer {
 		BigInteger g = null;
 		
 		
-		BigInteger b = BigInteger.TEN; // Secret value
+		BigInteger b = BigInteger.valueOf(8213); // Secret value
 		
 		
 		// === STEP 1 ===
@@ -56,7 +54,7 @@ public class PartyServer {
 		String outcome = victor.getJSONOutcome(commitment, response, passing);
 		server.sendMessage(outcome);
 		
-		boolean success = victor.isProofSucessful();
+		boolean success = victor.isProofSuccessful();
 		System.out.println(success);
 		
 		BigInteger u1 = victor.getValue(0);
@@ -72,8 +70,8 @@ public class PartyServer {
 		// === STEP 2 ===
 		
 		// -- Calculations --
-		BigInteger s = RandomZQ(g,G.getQ(),ran);//BigIntegerUtils.randomBetween(BigInteger.ONE, G.getQ(), ran);
-		BigInteger t = RandomZQ(g,G.getQ(),ran);//BigIntegerUtils.randomBetween(BigInteger.ONE, G.getQ(), ran);
+		BigInteger s = RandomZQ(G.getQ());//BigIntegerUtils.randomBetween(BigInteger.ONE, G.getQ(), ran);
+		BigInteger t = RandomZQ(G.getQ());//BigIntegerUtils.randomBetween(BigInteger.ONE, G.getQ(), ran);
 		
 		
 		BigInteger u1d = u1.modPow(s, mod).multiply( g.modPow(t, mod) );
@@ -87,8 +85,8 @@ public class PartyServer {
 		BigInteger ed = es.multiply(gbs).multiply(ct);	
 		
 		// GCD PROOF:   PK{(z,q,r1,r2,a,b) : C = g^z h^r1 AND D = g^q h^r2 AND g = C^a D^b
-		BigInteger r1 = RandomZQ(g,G.getQ(),ran);
-		BigInteger r2 = RandomZQ(g,G.getQ(),ran);
+		BigInteger r1 = RandomZQ(G.getQ());
+		BigInteger r2 = RandomZQ(G.getQ());
 		
 		EEAResult eea = EEA.eea(s, G.getQ());
 		
@@ -183,7 +181,6 @@ public class PartyServer {
 		
 		commitment = peggy.getJSONCommitment();
 		server.sendMessage(commitment);
-		System.out.println(commitment);
 		
 		challenge = server.receiveMessage();
 		
@@ -213,16 +210,18 @@ public class PartyServer {
 		outcome = victor.getJSONOutcome(commitment, response, passing);
 		server.sendMessage(outcome);
 		
-		success = victor.isProofSucessful();
+		success = victor.isProofSuccessful();
 		System.out.println(success);
 		
 		System.out.println("d: " + victor.getValue(1) );
 		
+		//server.stop();
+		
 	}
 
 	
-	private static BigInteger RandomZQ(BigInteger g, BigInteger q, SecureRandom ran){
-		return BigIntegerUtils.randomBetween(BigInteger.ONE, q, ran);
+	private static BigInteger RandomZQ(BigInteger q){
+		return BigIntegerUtils.randomBetween(BigInteger.ONE, q);
 	}
 	
 }

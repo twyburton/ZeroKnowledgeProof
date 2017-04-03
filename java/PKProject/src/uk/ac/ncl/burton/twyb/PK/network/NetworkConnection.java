@@ -11,9 +11,13 @@ import uk.ac.ncl.burton.twyb.utils.NetworkUtils;
 public abstract class NetworkConnection implements NetworkInterface, Runnable{
 
 	/*
-	 *  Messages consist of the byte length of the message with the message attached at the end.
+	 *  Messages consist of a status byte followed by the byte length of the message with the message attached at the end.
 	 *  
-	 *  Use Little Endian
+	 *  status[1] messageLength[4] message[n] 
+	 *  
+	 *  Use Little Endian for integers in messages.
+	 *  
+	 *  
 	 */
 	
 	protected String connectionType = "ERROR";
@@ -57,6 +61,13 @@ public abstract class NetworkConnection implements NetworkInterface, Runnable{
 		return true;
 	}
 	
+	/**
+	 * Used for stopping the connection loop. Should not be used to check if the network connection is open.
+	 */
+	boolean networkRunning = true;
+	public void stop(){
+		networkRunning = false;
+	}
 	
 	protected int connection( Socket socket ){
 		
@@ -65,8 +76,15 @@ public abstract class NetworkConnection implements NetworkInterface, Runnable{
 			InputStream in = socket.getInputStream();
 			OutputStream out = socket.getOutputStream();
 			
-			boolean networkRunning = true;
-			while( networkRunning ){
+			while( true ){
+				
+				// Stop Network
+				if( !networkRunning ){
+					out.write(0);
+					break;
+				}
+				
+				
 				// Write to out
 				if( messageListToSend.size() > 0 ){
 					if( NetworkConfig.LOG_CORE ) System.out.println("[" + connectionType + "] Sending message...");
@@ -74,6 +92,7 @@ public abstract class NetworkConnection implements NetworkInterface, Runnable{
 					String msg = messageListToSend.remove(0);
 					byte[] msgLength = NetworkUtils.my_int_to_bb_le(msg.length());
 					
+					out.write(1);
 					out.write(msgLength);
 					out.write(msg.getBytes());
 					
@@ -86,21 +105,30 @@ public abstract class NetworkConnection implements NetworkInterface, Runnable{
 					
 					if( NetworkConfig.LOG_CORE ) System.out.println("[" + connectionType + "] Receiving message...");
 					
-					byte[] msgLength = new byte[4];
-					in.read(msgLength, 0, 4);
-					int msg_length = NetworkUtils.my_bb_to_int_le(msgLength);
+					byte status = (byte) in.read();
 					
-					byte[] msg = new byte[msg_length];
-					in.read(msg, 0, msg_length);
+					if( status == 1 ){
 					
-					String message = "";
-					for( int i = 0 ; i < msg.length; i++){
-						message += (char)msg[i];
+						byte[] msgLength = new byte[4];
+						in.read(msgLength, 0, 4);
+						int msg_length = NetworkUtils.my_bb_to_int_le(msgLength);
+						
+						byte[] msg = new byte[msg_length];
+						in.read(msg, 0, msg_length);
+						
+						String message = "";
+						for( int i = 0 ; i < msg.length; i++){
+							message += (char)msg[i];
+						}
+						
+						messageList.add(message);
+						
+						if( NetworkConfig.LOG_CORE ) System.out.println("[" + connectionType + "] Message received");
+						
+					} else if (status == 0){
+						networkRunning = false;
+						break;
 					}
-					
-					messageList.add(message);
-					
-					if( NetworkConfig.LOG_CORE ) System.out.println("[" + connectionType + "] Message received");
 						
 				}
 				

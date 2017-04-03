@@ -20,7 +20,7 @@ public class PKVerifier {
 	private String PK_id;
 	
 	private boolean proofSuccessful = false; // This is set to true if the proof is completed successfully
-	public boolean isProofSucessful(){
+	public boolean isProofSuccessful(){
 		return proofSuccessful;
 	}
 	
@@ -99,11 +99,14 @@ public class PKVerifier {
 		return null;
 	}
 	
+	/**
+	 * The list of components that make up the proof of knowledge
+	 */
 	private List<PKComponentVerifier> components = new ArrayList<PKComponentVerifier>();
 	
 	/**
 	 * Get the challenge value. Also ensures the challenge value is set for all components
-	 * @return
+	 * @return challenge value
 	 */
 	private BigInteger getChallenge(){
 		
@@ -176,7 +179,7 @@ public class PKVerifier {
 				successful = false;
 			}
 			
-			
+			// Go through each component and verify
 			for( int i = 0 ; i < components.size() ; i++){
 				
 				JSONObject commitmentComps = (JSONObject) ((JSONArray)jCommitment.get("components")).get(i);
@@ -204,7 +207,6 @@ public class PKVerifier {
 					successful = false;
 				}
 				
-				//List<BigInteger> bases, List<BigInteger> responses, BigInteger commitment, BigInteger value 
 				
 			}
 			

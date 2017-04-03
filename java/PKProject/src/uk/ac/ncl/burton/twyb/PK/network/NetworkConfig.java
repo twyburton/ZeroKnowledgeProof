@@ -7,7 +7,7 @@ public class NetworkConfig {
 	public static int NETWORK_PORT = 28384;
 	
 	
-	public static boolean LOG_SERVER = true;
-	public static boolean LOG_CLIENT = true;
-	public static boolean LOG_CORE = true;
+	public static boolean LOG_SERVER = false;
+	public static boolean LOG_CLIENT = false;
+	public static boolean LOG_CORE = false;
 }
