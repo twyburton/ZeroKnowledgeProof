@@ -1,0 +1,10 @@
+package uk.ac.ncl.burton.twyb.equalityTestingImplementation;
+
+public class PartyServer {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,18 @@
+package uk.ac.ncl.burton.twyb.equalityTestingImplementation;
+
+import uk.ac.ncl.burton.twyb.PK.network.NetworkConnectionClient;
+
+public class PartyClient {
+
+	public static void main(String[] args) {
+		
+		
+		NetworkConnectionClient client = new NetworkConnectionClient("localhost");
+		Thread clientThread = new Thread(client);
+		clientThread.start();
+		
+		
+
+	}
+	
+}

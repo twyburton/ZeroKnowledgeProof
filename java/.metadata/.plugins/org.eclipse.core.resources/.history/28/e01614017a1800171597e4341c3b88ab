@@ -1,0 +1,27 @@
+package uk.ac.ncl.burton.twyb.crypto;
+
+import java.math.BigInteger;
+
+public class ExtendedEuclidianAlgorithm {
+
+	public static BigInteger gcd( BigInteger x , BigInteger y ){
+		BigInteger out = x.mod(y);
+		if( !out.equals(BigInteger.ZERO) ){
+			return gcd( y, out );
+		}
+		return y;
+	}
+	
+	public static Result eea( BigInteger x , BigInteger y ){
+				
+		if( !y.equals(BigInteger.ZERO) ){
+			// Recursive case
+			Result r = eea( y, x.mod(y) );
+			return new Result( r.getD(), x , r.getT() , y, r.getS().subtract( (r.getT()).multiply(x.divide(y)) ) );
+		}
+
+		// Base case
+		return new Result( x, x, BigInteger.ONE, y, BigInteger.ZERO );
+	}
+	
+}

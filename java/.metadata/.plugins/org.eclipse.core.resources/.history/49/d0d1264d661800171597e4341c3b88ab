@@ -1,0 +1,34 @@
+package uk.ac.ncl.burton.twyb.PK.network;
+
+import java.net.Socket;
+import java.util.Vector;
+
+public abstract class NetworkConnection implements NetworkInterface, Runnable{
+
+	
+	protected boolean connection_open = true;
+	
+	private Vector<String> messageList = new Vector<String>();
+	
+	public String receiveMessage(){
+	
+		
+		return null;
+	}
+	
+	public boolean sendMessage(String msg){
+		
+		
+		
+		return true;
+	}
+	
+	
+	protected int connection( Socket socket ){
+		
+		
+		return 0;
+	}
+	
+	
+}

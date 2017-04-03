@@ -1,0 +1,7 @@
+package uk.ac.ncl.burton.twyb.PK.network;
+
+public class NetworkConfig {
+
+	public int MAX_MESSAGES_IN_QUEUE = 20;
+	
+}

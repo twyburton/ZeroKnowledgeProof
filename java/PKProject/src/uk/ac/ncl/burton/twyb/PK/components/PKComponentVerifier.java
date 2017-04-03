@@ -44,13 +44,39 @@ public class PKComponentVerifier {
 		if( bases.size() != expectedNumberBases ) throw new IllegalArgumentException("The number of bases does not match expected. (Received " + bases.size()+ " Expected " + expectedNumberBases+ ")");
 		if( bases.size() != responses.size() ) throw new IllegalArgumentException("The number of bases must match the number of responses");
 		
+		this.value = value;
+		this.bases= bases;
+		
 		BigInteger leftSide = BigIntegerUtils.multiplyBaseExponents(G.getQ(), bases, responses);
 		BigInteger rightSide = commitment.multiply( value.modPow(challenge, G.getQ()) ).mod(G.getQ());
 		
 		return leftSide.equals(rightSide);
 		
 	}
-
+	
+	/**
+	 * Saved value for later use
+	 */
+	private BigInteger value;
+	/**
+	 * Get saved value
+	 * @return saved value
+	 */
+	public BigInteger getValue(){
+		return value;
+	}
+	
+	/**
+	 * Saved bases values for later use
+	 */
+	private List<BigInteger> bases;
+	/**
+	 * Get saved bases values
+	 * @return saved bases
+	 */
+	public List<BigInteger> getBases(){
+		return bases;
+	}
 	
 	
 	

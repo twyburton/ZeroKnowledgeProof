@@ -1,0 +1,41 @@
+package uk.ac.ncl.burton.twyb.PK.network;
+
+import java.io.IOException;
+import java.net.Socket;
+
+public class NetworkConnectionClient extends NetworkConnection {
+
+	
+	public NetworkConnectionClient(){
+		
+	}
+	
+	public NetworkConnectionClient( String address ){
+		this.address = address;
+	}
+	
+	@Override
+	public void run() {
+		
+		try {
+			Socket s = new Socket(address,NetworkConfig.NETWORK_PORT);
+			
+			connection(s);
+			
+			s.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	private String address = "localhost";
+	public void setAddress( String address ){
+		this.address = address;
+	}
+	public String getAddress(){
+		return address;
+	}
+
+}

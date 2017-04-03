@@ -1,0 +1,29 @@
+package uk.ac.ncl.burton.twyb.PK.network;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class NetworkConnectionServer extends NetworkConnection {
+
+	@Override
+	public void run() {
+		
+		try {
+			ServerSocket ss = new ServerSocket(NetworkConfig.NETWORK_PORT);
+			Socket s = ss.accept();
+			
+			connection(s);
+			
+			ss.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	
+	
+}

@@ -19,7 +19,15 @@ public class PKVerifier {
 
 	private String PK_id;
 	
+	private boolean proofSuccessful = false; // This is set to true if the proof is completed successfully
+	public boolean isProofSucessful(){
+		return proofSuccessful;
+	}
+	
 	private CyclicGroup G;
+	public CyclicGroup getGroup(){
+		return G;
+	}
 	
 	/*@Deprecated
 	public PKVerifier(CyclicGroup G, int numberComponents){
@@ -204,6 +212,7 @@ public class PKVerifier {
 			int outcome = 0;
 			if( successful ){
 				outcome = 1;
+				proofSuccessful = true;
 				if( PKConfig.PRINT_PK_LOG ) System.out.println("Proof Succeeded!");
 			} else {
 				if( PKConfig.PRINT_PK_LOG ) System.out.println("Proof Failed!");
@@ -227,5 +236,31 @@ public class PKVerifier {
 		}
 		
 		return null;
+	}
+	
+	
+	/**
+	 * Get the value of the component at index. Zeroth indexed.
+	 * @param componentIndex
+	 * @return the value
+	 */
+	public BigInteger getValue( int componentIndex ){
+		
+		if( proofSuccessful ){
+			return components.get(componentIndex).getValue();
+		} else return null;
+		
+	}
+	
+	/**
+	 * Get a base value at index baseIndex for component at component index. Zeroth indexed.
+	 * @param componentIndex
+	 * @param baseIndex
+	 * @return
+	 */
+	public BigInteger getBase( int componentIndex, int baseIndex ){
+		if( proofSuccessful ){
+			return components.get(componentIndex).getBases().get(baseIndex);
+		} else return null;
 	}
 }

@@ -1,0 +1,11 @@
+package uk.ac.ncl.burton.twyb.PK.network;
+
+import java.util.Vector;
+
+public abstract class NetworkConnection implements NetworkInterface{
+
+	
+	private Vector<String> messageList = new Vector<String>();
+	
+	
+}

@@ -1,0 +1,41 @@
+package core;
+
+import java.math.BigInteger;
+
+public class Result {
+	
+	private BigInteger d;
+	private BigInteger x;
+	private BigInteger s;
+	private BigInteger y;
+	private BigInteger t;
+	
+	public Result(BigInteger d, BigInteger x, BigInteger s, BigInteger y, BigInteger t){
+		this.d = d;
+		this.x = x;
+		this.s = s;
+		this.y = y;
+		this.t = t;
+	}
+	
+	public BigInteger getD(){
+		return d;
+	}
+	
+	public BigInteger getX(){
+		return x;
+	}
+	
+	public BigInteger getS(){
+		return s;
+	}
+	
+	public BigInteger getY(){
+		return y;
+	}
+	
+	public BigInteger getT(){
+		return t;
+	}
+	
+}

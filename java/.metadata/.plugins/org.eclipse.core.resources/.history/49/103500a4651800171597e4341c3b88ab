@@ -1,0 +1,18 @@
+package uk.ac.ncl.burton.twyb.PK.network;
+
+public class NetworkConnectionClient extends NetworkConnection {
+
+	
+	public NetworkConnectionClient(){
+		
+	}
+	
+	@Override
+	public void run() {
+		
+
+	}
+	
+	String address = "localhost";
+
+}

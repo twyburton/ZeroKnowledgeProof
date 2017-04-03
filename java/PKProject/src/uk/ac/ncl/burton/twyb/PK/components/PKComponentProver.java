@@ -88,7 +88,9 @@ public class PKComponentProver {
 		return value;
 	}
 	
-	
+	/**
+	 * Generate the required random values
+	 */
 	private void generateRandomValues(){
 		randomExponents = new ArrayList<BigInteger>();
 		for( int i = 0 ; i < exponents.size(); i++ ) randomExponents.add(BigIntegerUtils.randomBetween( BigInteger.ONE, G.getQ() ));
@@ -126,5 +128,26 @@ public class PKComponentProver {
 		}
 		
 		return s;
+	}
+	
+	/**
+	 * Get the random exponent value for base i
+	 * @param i
+	 * @return
+	 */
+	public BigInteger getRandomExponent( int index ){
+		if( index < 0 || index >= randomExponents.size() ){
+			throw new IllegalArgumentException("Index is out of range");
+		}
+		
+		return randomExponents.get(index);
+	}
+	
+	public BigInteger setRandomExponent( int index, BigInteger value ){
+		if( index < 0 || index >= randomExponents.size() ){
+			throw new IllegalArgumentException("Index is out of range");
+		}
+		
+		return randomExponents.set(index, value);
 	}
 }
