@@ -29,21 +29,16 @@ public class PKProver {
 	/** The list of components for the proof */
 	private final List<PKComponentProver> components = new ArrayList<PKComponentProver>();
 	
-	/**
-	 * Add a component to the poof
-	 * @param comp a component
-	 */
 	public void addComponent( final PKComponentProver comp ){
 		components.add(comp);
 	}
 	
-	/**
-	 * Add multiple components to the proof
-	 * @param comps A list of components
-	 */
-	public void addComponents( final List<PKComponentProver> comps ){
-		components.addAll(comps);
+	
+	@Deprecated
+	public String getSchema(){
+		return null;
 	}
+	
 	
 	
 	// == JSON Text ==

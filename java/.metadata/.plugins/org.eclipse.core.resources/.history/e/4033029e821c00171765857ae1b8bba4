@@ -46,6 +46,13 @@ public class PKProver {
 	}
 	
 	
+	@Deprecated
+	public String getSchema(){
+		return null;
+	}
+	
+	
+	
 	// == JSON Text ==
 	
 	public String getJSONInitialise(){

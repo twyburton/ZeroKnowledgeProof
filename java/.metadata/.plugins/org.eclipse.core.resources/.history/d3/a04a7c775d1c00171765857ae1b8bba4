@@ -31,19 +31,18 @@ public class PKProver {
 	
 	/**
 	 * Add a component to the poof
-	 * @param comp a component
+	 * @param comp
 	 */
 	public void addComponent( final PKComponentProver comp ){
 		components.add(comp);
 	}
 	
-	/**
-	 * Add multiple components to the proof
-	 * @param comps A list of components
-	 */
-	public void addComponents( final List<PKComponentProver> comps ){
-		components.addAll(comps);
+	
+	@Deprecated
+	public String getSchema(){
+		return null;
 	}
+	
 	
 	
 	// == JSON Text ==

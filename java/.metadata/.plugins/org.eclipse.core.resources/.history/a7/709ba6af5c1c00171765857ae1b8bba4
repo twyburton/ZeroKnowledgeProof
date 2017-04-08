@@ -31,7 +31,7 @@ public class PKComponentProver {
 	private final BigInteger value;
 
 
-	private PKComponentProver(final CyclicGroup G, final List<BigInteger> bases, final List<BigInteger> exponents ){
+	private PKComponentProver( CyclicGroup G, List<BigInteger> bases, List<BigInteger> exponents ){
 		
 		if( bases.size() != exponents.size()){
 			throw new IllegalArgumentException("The number of bases must match the number of exponents");
@@ -48,11 +48,11 @@ public class PKComponentProver {
 
 	
 	
-	public static PKComponentProver generateProver( final CyclicGroup G, final List<BigInteger> bases, final List<BigInteger> exponents){
+	public static PKComponentProver generateProver( CyclicGroup G, List<BigInteger> bases, List<BigInteger> exponents){
 		return new PKComponentProver(G,bases,exponents);
 	}
 	
-	public static PKComponentProver generateProver( final CyclicGroup G, final BigInteger base, final BigInteger exponent){
+	public static PKComponentProver generateProver( CyclicGroup G, BigInteger base, BigInteger exponent){
 		
 		List<BigInteger> bases = new ArrayList<BigInteger>();
 		List<BigInteger> exponents = new ArrayList<BigInteger>();
@@ -103,7 +103,7 @@ public class PKComponentProver {
 	 * @param c the challenge
 	 * @return the list of response values
 	 */
-	public List<BigInteger> getResponse( final BigInteger c ){
+	public List<BigInteger> getResponse( BigInteger c ){
 		// s1 = rd + rc			s2 = td + tc
 		
 		List<BigInteger> s = new ArrayList<BigInteger>();
@@ -125,10 +125,10 @@ public class PKComponentProver {
 	/**
 	 * Get the random exponent value for base i.
 	 * This method should only be used for setting the random exponent of another component. This value should never be sent to the other party.
-	 * @param index the base index
+	 * @param i
 	 * @return the random exponent
 	 */
-	public BigInteger getRandomExponent( final int index ){
+	public BigInteger getRandomExponent( int index ){
 		if( index < 0 || index >= randomExponents.size() ){
 			throw new IllegalArgumentException("Index is out of range");
 		}
@@ -136,13 +136,7 @@ public class PKComponentProver {
 		return randomExponents.get(index);
 	}
 	
-	/**
-	 * Set the random exponent to value for base i
-	 * @param index the base index 
-	 * @param value the value which is being set
-	 * @return the previous value at the position
-	 */
-	public BigInteger setRandomExponent( final int index, final BigInteger value ){
+	public BigInteger setRandomExponent( int index, BigInteger value ){
 		if( index < 0 || index >= randomExponents.size() ){
 			throw new IllegalArgumentException("Index is out of range");
 		}

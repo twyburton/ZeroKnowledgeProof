@@ -44,6 +44,7 @@
 	</section>
 	<section name="OptionalMessageDialog.hide.">
 		<item value="true" key="org.eclipse.jdt.ui.typecomment.deprecated"/>
+		<item value="true" key="RunnableJar.export.ipwarning"/>
 	</section>
 	<section name="org.eclipse.jdt.internal.ui.dialogs.OpenTypeSelectionDialog2">
 		<item value="true" key="ShowStatusLine"/>
@@ -81,6 +82,21 @@
 		<item value="false" key="openinbrowser"/>
 		<section name="projects">
 		</section>
+	</section>
+	<section name="FatJarPackageWizard">
+		<item value="D:\Documents\University\Stage 4\CSC8498 - MComp Project\github\MCompProject\java" key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION"/>
+		<item value="PartyServer - PKProject" key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME"/>
+		<item value="D:\Documents\University\Stage 4\CSC8498 - MComp Project\jars\server.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
+		<item value="false" key="FatJarPackageWizardPage.ANTSCRIPT_SAVE"/>
+		<item value="1" key="FatJarPackageWizardPage.LIBRARY_HANDLING"/>
+		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="D:\Documents\University\Stage 4\CSC8498 - MComp Project\jars\server.jar"/>
+			<item value="D:\Documents\University\Stage 4\CSC8498 - MComp Project\jars\client.jar"/>
+		</list>
+		<list key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION_HISTORY">
+			<item value="D:\Documents\University\Stage 4\CSC8498 - MComp Project\github\MCompProject\java.xml"/>
+			<item value=".xml"/>
+		</list>
 	</section>
 	<section name="RenameInformationPopup">
 	</section>

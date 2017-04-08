@@ -52,7 +52,7 @@ public class PKComponentProver {
 		return new PKComponentProver(G,bases,exponents);
 	}
 	
-	public static PKComponentProver generateProver( final CyclicGroup G, final BigInteger base, final BigInteger exponent){
+	public static PKComponentProver generateProver( CyclicGroup G, BigInteger base, BigInteger exponent){
 		
 		List<BigInteger> bases = new ArrayList<BigInteger>();
 		List<BigInteger> exponents = new ArrayList<BigInteger>();

@@ -16,34 +16,25 @@ import uk.ac.ncl.burton.twyb.crypto.CyclicGroup;
 
 public class PKProver {
 
-	/** The id for the proof of knowledge */
-	private final UUID PK_id = UUID.randomUUID();
-	
-	/** The cyclic group for the proof */
+	private final UUID PK_id = UUID.randomUUID(); 
 	private final CyclicGroup G;
 	
 	public PKProver(final CyclicGroup G){
 		this.G = G;
 	}
 	
-	/** The list of components for the proof */
-	private final List<PKComponentProver> components = new ArrayList<PKComponentProver>();
+	private List<PKComponentProver> components = new ArrayList<PKComponentProver>();
 	
-	/**
-	 * Add a component to the poof
-	 * @param comp a component
-	 */
-	public void addComponent( final PKComponentProver comp ){
+	public void addComponent( PKComponentProver comp ){
 		components.add(comp);
 	}
 	
-	/**
-	 * Add multiple components to the proof
-	 * @param comps A list of components
-	 */
-	public void addComponents( final List<PKComponentProver> comps ){
-		components.addAll(comps);
+	
+	@Deprecated
+	public String getSchema(){
+		return null;
 	}
+	
 	
 	
 	// == JSON Text ==
@@ -107,7 +98,7 @@ public class PKProver {
 	}
 	
 	
-	public String getJSONResponse( final String JSONchallenge ){
+	public String getJSONResponse( String JSONchallenge ){
 		
 		
 		try {
@@ -203,7 +194,7 @@ public class PKProver {
 	
 	
 	/*
-	 * NETWORK PROTCOL: [SLIGHTLY DIFFERENT?!]
+	 * NETWORK PROTCOL:
 	 * 
 	 * 		== COMMITMENT == P>V
 	 * 
