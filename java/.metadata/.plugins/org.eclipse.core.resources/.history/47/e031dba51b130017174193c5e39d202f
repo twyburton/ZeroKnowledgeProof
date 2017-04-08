@@ -1,5 +1,0 @@
-package uk.ac.ncl.burton.twy.PSPAKEDH;
-
-public class TerminateProtocolException {
-
-}

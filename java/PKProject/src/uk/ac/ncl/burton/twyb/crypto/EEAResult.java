@@ -4,6 +4,13 @@ import java.math.BigInteger;
 
 public class EEAResult {
 	
+	/*	
+	 * 	GCD(x,y) = d
+	 * 
+	 * 	d = x*s + y*t
+	 * 
+	 */
+	
 	private BigInteger d;
 	private BigInteger x;
 	private BigInteger s;

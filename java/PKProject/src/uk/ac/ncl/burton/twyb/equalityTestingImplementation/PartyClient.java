@@ -27,8 +27,6 @@ public class PartyClient {
 		
 		
 		// ====== PKS ======
-		SecureRandom ran = new SecureRandom();
-		
 		CyclicGroup G = CyclicGroup.generateGroup(256);
 		BigInteger g = G.getG();
 		
@@ -75,6 +73,11 @@ public class PartyClient {
 		bases.add(c);
 		exponents.add(r);
 		PKComponentProver c1X3 = PKComponentProver.generateProver(G, bases, exponents);
+		
+		// -- Random Exponents --
+		BigInteger c1r1 = c1X1.getRandomExponent(0);
+		c1X2.setRandomExponent(0, c1r1);
+		c1X3.setRandomExponent(1, c1r1);
 		
 		// -- ADD --
 		peggy.addComponent(c1X1);
@@ -213,6 +216,12 @@ public class PartyClient {
 		exponents.add(eea.getT());
 		PKComponentProver c3X5 = PKComponentProver.generateProver(G, bases, exponents);
 		
+		// -- Random Exponents --
+		BigInteger c3x1 = c3X1.getRandomExponent(0);
+		BigInteger c3x2 = c3X1.getRandomExponent(1);
+		BigInteger c3z1 = c3X2.getRandomExponent(0);
+		c3X2.setRandomExponent(1, c3z1.multiply(c3x1).multiply(BigInteger.valueOf(-1)));
+		c3X2.setRandomExponent(2, c3z1.multiply(c3x2).multiply(BigInteger.valueOf(-1)));
 		
 		// -- ADD --
 		peggy.addComponent(c3X1);

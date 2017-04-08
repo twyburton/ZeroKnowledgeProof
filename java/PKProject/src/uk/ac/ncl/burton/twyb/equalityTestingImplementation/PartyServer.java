@@ -27,8 +27,6 @@ public class PartyServer {
 		
 		
 		// ====== PKS ======
-		SecureRandom ran = new SecureRandom();
-		
 		CyclicGroup G = null;
 		BigInteger g = null;
 		
@@ -166,6 +164,14 @@ public class PartyServer {
 		bases.add(D);
 		exponents.add(eea.getT());
 		PKComponentProver c2X6 = PKComponentProver.generateProver(G, bases, exponents);
+		
+		// -- Random Exponents --
+		BigInteger c2s1 = c2X1.getRandomExponent(0);
+		BigInteger c2t1 = c2X1.getRandomExponent(1);
+		c2X2.setRandomExponent(0, c2s1);
+		c2X2.setRandomExponent(1, c2t1);
+		c2X3.setRandomExponent(0, c2s1);
+		c2X3.setRandomExponent(2, c2t1);
 		
 		// -- ADD --
 		peggy.addComponent(c2X1);

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.util.UUID;
 import java.util.Vector;
 
 import uk.ac.ncl.burton.twyb.utils.NetworkUtils;
@@ -20,19 +21,53 @@ public abstract class NetworkConnection implements NetworkInterface, Runnable{
 	 *  
 	 */
 	
+	/**
+	 * String stating the connection type. This is only used for logging.
+	 */
 	protected String connectionType = "ERROR";
 	
+	
+	private UUID networkId = UUID.randomUUID();
+	public UUID getNetworkId(){
+		return networkId;
+	}
+	
+	/**
+	 * Boolean value for whether to use blocking mode.
+	 * 
+	 * If blocking mode is true, then the receiveMessage() will block until a message is received
+	 */
 	private boolean blockingMode = false;
+	/**
+	 * Set blocking mode to mode
+	 * @param mode boolean value for whether blocking mode should be enabled
+	 */
 	public void setBlockingMode(boolean mode){
 		blockingMode = mode;
 	}
+	/**
+	 * Check if blocking mode is enabled
+	 * @return returns true if blocking mode is enabled else false
+	 */
 	public boolean isBlockingMode(){
 		return blockingMode;
 	}
 	
+	/**
+	 * Received message queue
+	 */
 	private Vector<String> messageList = new Vector<String>();
+	/**
+	 * Messages to send queue
+	 */
 	private Vector<String> messageListToSend = new Vector<String>();
 	
+	/**
+	 * Retrieves a received message.
+	 * 
+	 * In non-blocking mode null is returned if there are no messages available.
+	 * In blocking mode the method will block until a message is available.
+	 */
 	public String receiveMessage(){
 	
 		if( !blockingMode ){
@@ -50,9 +85,12 @@ public abstract class NetworkConnection implements NetworkInterface, Runnable{
 		
 	}
 	
+	/**
+	 * Adds a message to the send queue.
+	 */
 	public boolean sendMessage(String msg){
 		
-		if( messageListToSend.size() >= NetworkConfig.MAX_MESSAGES_IN_QUEUE ){
+		if( messageListToSend.size() >= NetworkConfig.MAX_MESSAGES_IN_QUEUE && NetworkConfig.MAX_MESSAGES_IN_QUEUE > 0 ){
 			return false;
 		}
 		
@@ -64,11 +102,16 @@ public abstract class NetworkConnection implements NetworkInterface, Runnable{
 	/**
 	 * Used for stopping the connection loop. Should not be used to check if the network connection is open.
 	 */
-	boolean networkRunning = true;
+	boolean networkShouldRun = true;
 	public void stop(){
-		networkRunning = false;
+		networkShouldRun = false;
 	}
 	
+	/**
+	 * The method for running the network.
+	 * @param socket
+	 * @return status value. 0: non-exceptional stop.
+	 */
 	protected int connection( Socket socket ){
 		
 		try {
@@ -79,7 +122,7 @@ public abstract class NetworkConnection implements NetworkInterface, Runnable{
 			while( true ){
 				
 				// Stop Network
-				if( !networkRunning ){
+				if( !networkShouldRun ){
 					out.write(0);
 					break;
 				}
@@ -126,7 +169,7 @@ public abstract class NetworkConnection implements NetworkInterface, Runnable{
 						if( NetworkConfig.LOG_CORE ) System.out.println("[" + connectionType + "] Message received");
 						
 					} else if (status == 0){
-						networkRunning = false;
+						networkShouldRun = false;
 						break;
 					}
 						
@@ -155,4 +198,5 @@ public abstract class NetworkConnection implements NetworkInterface, Runnable{
 	public boolean isConnectionClosed(){
 		return connection_closed;
 	}
+	
 }

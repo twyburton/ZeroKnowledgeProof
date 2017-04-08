@@ -1,9 +1,0 @@
-package uk.ac.ncl.burton.twy.PSPAKEDH;
-
-public interface PDHParty {
-
-	protected boolean hasGeneratedValues = false;
-	
-	public void generateValues();
-	
-}

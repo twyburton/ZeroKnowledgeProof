@@ -9,6 +9,12 @@ import java.math.BigInteger;
  */
 public class EEA {
 
+	/**
+	 * Calculate the greatest common divisor of x and y
+	 * @param x 
+	 * @param y
+	 * @return the GCD of x and y
+	 */
 	public static BigInteger gcd( BigInteger x , BigInteger y ){
 		BigInteger out = x.mod(y);
 		if( !out.equals(BigInteger.ZERO) ){
@@ -17,6 +23,12 @@ public class EEA {
 		return y;
 	}
 	
+	/**
+	 * Do the extended euclidan algorithm on x and y
+	 * @param x
+	 * @param y
+	 * @return an EEAResult object containing the result of the eea
+	 */
 	public static EEAResult eea( BigInteger x , BigInteger y ){
 				
 		if( !y.equals(BigInteger.ZERO) ){

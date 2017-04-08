@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.schnorr.SchnorrKey"/>
-<fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.schnorr.Prover"/>
-<fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.schnorr.Verifier"/>
-<fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.zeroKnowledgeProtocols.Verifier"/>
-<fullyQualifiedTypeName name="com.ibm.zurich.idmx.key.IssuerKeyPair"/>
-<fullyQualifiedTypeName name="com.ibm.zurich.idmx.utils.SystemParameters"/>
-<fullyQualifiedTypeName name="com.ibm.zurich.idmx.key.IssuerPrivateKey"/>
 <fullyQualifiedTypeName name="com.ibm.zurich.idmx.issuance.AdvancedIssuer"/>
 <fullyQualifiedTypeName name="java.net.URI"/>
 <fullyQualifiedTypeName name="com.ibm.zurich.idmx.utils.GroupParameters"/>
@@ -27,10 +20,7 @@
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.components.prover.PKComponentProver"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.components.verifier.PKComponentVerifier"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.PKVerifier"/>
-<fullyQualifiedTypeName name="java.net.ServerSocket"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.PKConfig"/>
-<fullyQualifiedTypeName name="java.net.Socket"/>
-<fullyQualifiedTypeName name="java.io.InputStream"/>
 <fullyQualifiedTypeName name="java.io.OutputStream"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.network.NetworkedProver"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.network.NetworkedVerifier"/>
@@ -48,16 +38,26 @@
 <fullyQualifiedTypeName name="javax.crypto.spec.SecretKeySpec"/>
 <fullyQualifiedTypeName name="javax.crypto.SecretKey"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.jUnitTesting.Repeat"/>
-<fullyQualifiedTypeName name="java.math.BigInteger"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.maths.CyclicGroup"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK2.components.PoKComponentProver"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="java.util.UUID"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK2.components.PoKComponentVerifier"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.crypto.Crypto"/>
-<fullyQualifiedTypeName name="uk.ac.ncl.burton.twyb.PK.components.PKComponentProver"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twyb.PK.components.PKComponentVerifier"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twyb.crypto.CyclicGroup"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twyb.utils.BigIntegerUtils"/>
+<fullyQualifiedTypeName name="java.util.Vector"/>
+<fullyQualifiedTypeName name="java.net.ServerSocket"/>
+<fullyQualifiedTypeName name="java.net.Socket"/>
+<fullyQualifiedTypeName name="java.io.InputStream"/>
+<fullyQualifiedTypeName name="java.nio.ByteBuffer"/>
+<fullyQualifiedTypeName name="java.nio.ByteOrder"/>
+<fullyQualifiedTypeName name="uk.ac.ncl.burton.twyb.utils.NetworkUtils"/>
+<fullyQualifiedTypeName name="java.math.BigInteger"/>
+<fullyQualifiedTypeName name="uk.ac.ncl.burton.twyb.PK.PKProver"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="uk.ac.ncl.burton.twyb.PK.components.PKComponentProver"/>
+<fullyQualifiedTypeName name="uk.ac.ncl.burton.twyb.crypto.EEA"/>
+<fullyQualifiedTypeName name="uk.ac.ncl.burton.twyb.crypto.EEAResult"/>
+<fullyQualifiedTypeName name="java.util.UUID"/>
 </qualifiedTypeNameHistroy>
