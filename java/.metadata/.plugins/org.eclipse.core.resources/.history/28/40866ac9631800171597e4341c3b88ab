@@ -1,5 +1,0 @@
-package uk.ac.ncl.burton.twyb.PK.network;
-
-public interface NetworkInterface {
-
-}

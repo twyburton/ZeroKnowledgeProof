@@ -87,7 +87,7 @@ public class PKTesting {
 		String passing = peggy.getJSONPassingVariables();
 		System.out.println(passing);
 		
-		String outcome = victor.getJSONOutcome(commitment, response, passing);
+		String outcome = victor.getJSONOutcome( response, passing);
 		System.out.println(outcome);
 		
 		
@@ -167,7 +167,7 @@ public class PKTesting {
 		passing = peggy.getJSONPassingVariables();
 		System.out.println(passing);
 		
-		outcome = victor.getJSONOutcome(commitment, response, passing);
+		outcome = victor.getJSONOutcome( response, passing);
 		System.out.println(outcome);
 		
 		// === STEP 3 ===
@@ -234,7 +234,7 @@ public class PKTesting {
 		passing = peggy.getJSONPassingVariables();
 		System.out.println(passing);
 		
-		outcome = victor.getJSONOutcome(commitment, response, passing);
+		outcome = victor.getJSONOutcome( response, passing);
 		System.out.println(outcome);
 		
 		

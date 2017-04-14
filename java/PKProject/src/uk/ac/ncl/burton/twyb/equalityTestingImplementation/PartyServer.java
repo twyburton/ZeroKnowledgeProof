@@ -49,7 +49,7 @@ public class PartyServer {
 		String response = server.receiveMessage();
 		String passing = server.receiveMessage();
 		
-		String outcome = victor.getJSONOutcome(commitment, response, passing);
+		String outcome = victor.getJSONOutcome(response, passing);
 		server.sendMessage(outcome);
 		
 		boolean success = victor.isProofSuccessful();
@@ -213,7 +213,7 @@ public class PartyServer {
 		response = server.receiveMessage();
 		passing = server.receiveMessage();
 		
-		outcome = victor.getJSONOutcome(commitment, response, passing);
+		outcome = victor.getJSONOutcome(response, passing);
 		server.sendMessage(outcome);
 		
 		success = victor.isProofSuccessful();

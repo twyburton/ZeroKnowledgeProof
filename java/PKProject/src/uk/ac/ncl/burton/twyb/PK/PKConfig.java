@@ -13,5 +13,7 @@ public class PKConfig {
 	
 	public static int PROTOCOL_PORT = 50001;
 	
+	public static long PROTOCOL_TIME_TOLERANCE = 10;
+	
 }
 

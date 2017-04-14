@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.ibm.zurich.idmx.issuance.AdvancedIssuer"/>
 <fullyQualifiedTypeName name="java.net.URI"/>
 <fullyQualifiedTypeName name="com.ibm.zurich.idmx.utils.GroupParameters"/>
 <fullyQualifiedTypeName name="java.io.FileOutputStream"/>
@@ -60,4 +59,5 @@
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twyb.crypto.EEA"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twyb.crypto.EEAResult"/>
 <fullyQualifiedTypeName name="java.util.UUID"/>
+<fullyQualifiedTypeName name="uk.ac.ncl.burton.twyb.utils.TimeUtils"/>
 </qualifiedTypeNameHistroy>

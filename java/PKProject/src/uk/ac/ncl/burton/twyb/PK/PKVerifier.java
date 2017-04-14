@@ -13,6 +13,7 @@ import org.json.simple.parser.ParseException;
 
 import uk.ac.ncl.burton.twyb.PK.components.PKComponentVerifier;
 import uk.ac.ncl.burton.twyb.crypto.CyclicGroup;
+import uk.ac.ncl.burton.twyb.utils.TimeUtils;
 
 
 public class PKVerifier {
@@ -42,7 +43,7 @@ public class PKVerifier {
 	 * @param initalisationJSON
 	 * @return a PKVerifier instance
 	 */
-	public static PKVerifier getInstance( String initalisationJSON ){
+	public static PKVerifier getInstance( String initalisationJSON ){ 
 		
 		// == JSON PROCESS ==
 		try {
@@ -106,6 +107,8 @@ public class PKVerifier {
 	}
 	
 	
+	private String JSONcommitment;
+	//private String initalisationJSON; 
 	
 	// == JSON Text ==
 	public String getJSONChallenge( String JSONcommitment ){
@@ -115,7 +118,8 @@ public class PKVerifier {
 			JSONParser parser = new JSONParser();
 			JSONObject obj = (JSONObject) parser.parse(JSONcommitment);
 			
-			PK_id =  (String)obj.get("PK_id") ;
+			//String PK_id =  (String)obj.get("PK_id") ;
+			this.JSONcommitment = JSONcommitment;
 			
 			// == JSON output ==
 			String json = "";
@@ -144,8 +148,12 @@ public class PKVerifier {
 		return null;
 	}
 	
+	private String validationErrorMsg = "";
+	public String getVerificationErrorMsg(){
+		return validationErrorMsg;
+	}
 	
-	public String getJSONOutcome( String JSONcommitment, String JSONresponse, String JSONpassing ){
+	public String getJSONOutcome( String JSONresponse, String JSONpassing ){
 		
 		boolean successful = true;
 		
@@ -157,12 +165,23 @@ public class PKVerifier {
 			JSONObject jPassing = (JSONObject) parser.parse(JSONpassing);
 			
 			String PK_id_commitment =  (String)jCommitment.get("PK_id") ;
-			String PK_id_response =  (String)jCommitment.get("PK_id") ;
-			String PK_id_passing =  (String)jCommitment.get("PK_id") ;
+			String PK_id_response =  (String)jResponse.get("PK_id") ;
+			String PK_id_passing =  (String)jPassing.get("PK_id") ;
 			
+			long time_commitment = (long)jCommitment.get("time");
+			long time_response = (long)jResponse.get("time");
+			long time_passing = (long)jPassing.get("time");
+			
+			if( !(TimeUtils.withinTolerance(time_commitment, PKConfig.PROTOCOL_TIME_TOLERANCE) 
+					&& TimeUtils.withinTolerance(time_response, PKConfig.PROTOCOL_TIME_TOLERANCE) 
+					&& TimeUtils.withinTolerance(time_passing, PKConfig.PROTOCOL_TIME_TOLERANCE) ) ){
+				successful = false;
+				validationErrorMsg += "Timestamps not within tolerance; ";
+			}
 			
 			if( !( PK_id.equals(PK_id_commitment) && PK_id.equals(PK_id_response) && PK_id.equals(PK_id_passing)) ){
 				successful = false;
+				validationErrorMsg += "Proof IDs do not match; ";
 			}
 			
 			// Go through each component and verify
@@ -191,6 +210,7 @@ public class PKVerifier {
 				
 				if (! components.get(i).verify(passingBasesList, responseList, t, passingValue ) ){
 					successful = false;
+					validationErrorMsg += "Proof IDs do not match; ";
 				}
 				
 				

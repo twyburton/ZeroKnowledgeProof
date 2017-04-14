@@ -100,7 +100,7 @@ public class PKProver {
 					json += "\n";
 				}
 			json += "\t],\n";
-			json += "\t\"time\":" + (System.currentTimeMillis()/1000) + "\n";
+			json += "\t\"time\":" + (System.currentTimeMillis()/1000) + "\n";			
 		json += "}\n";
 		
 		return json;

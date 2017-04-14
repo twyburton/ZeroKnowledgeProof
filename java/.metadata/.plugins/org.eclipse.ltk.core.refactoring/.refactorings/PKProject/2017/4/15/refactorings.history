@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename field &apos;commitmentString&apos; in &apos;uk.ac.ncl.burton.twyb.PK.PKVerifier&apos; to &apos;JSONcommitment&apos;&#x0D;&#x0A;- Original project: &apos;PKProject&apos;&#x0D;&#x0A;- Original element: &apos;uk.ac.ncl.burton.twyb.PK.PKVerifier.commitmentString&apos;&#x0D;&#x0A;- Renamed element: &apos;uk.ac.ncl.burton.twyb.PK.PKVerifier.JSONcommitment&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" delegate="false" deprecate="false" description="Rename field &apos;commitmentString&apos;" flags="589826" getter="false" id="org.eclipse.jdt.ui.rename.field" input="/src&lt;uk.ac.ncl.burton.twyb.PK{PKVerifier.java[PKVerifier^commitmentString" name="JSONcommitment" references="true" setter="false" stamp="1491816854767" textual="false" version="1.0"/>
+</session>

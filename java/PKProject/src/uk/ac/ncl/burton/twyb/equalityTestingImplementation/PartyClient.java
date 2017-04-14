@@ -117,7 +117,7 @@ public class PartyClient {
 		response = client.receiveMessage();
 		passing = client.receiveMessage();
 		
-		outcome = victor.getJSONOutcome(commitment, response, passing);
+		outcome = victor.getJSONOutcome(response, passing);
 		client.sendMessage(outcome);
 		
 		boolean success = victor.isProofSuccessful();
