@@ -12,9 +12,8 @@ import javax.crypto.spec.SecretKeySpec;
 public class Crypto {
 	
 	public static BigInteger hash( BigInteger num ){
-		byte[] bytes = hash( num.toByteArray() );
 		
-		return new BigInteger( bytes ).abs();
+		return new BigInteger( hash(num.toString()) );
 	}
 	
 	public static byte[] hash( byte[] bytes ){

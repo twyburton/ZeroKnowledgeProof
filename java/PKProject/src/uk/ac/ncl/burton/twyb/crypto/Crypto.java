@@ -43,10 +43,9 @@ public class Crypto {
 	}
 	
 	
-	/*public static byte[] bigIntegerToAESKey(BigInteger x ){
-		
-		
-	}*/
+	public static byte[] bigIntegerToAESKey(BigInteger x ){
+		return hash(x.toString());
+	}
 	
 	
 	

@@ -1,18 +1,17 @@
 package uk.ac.ncl.burton.twyb.equalityTestingImplementation;
 
 import java.math.BigInteger;
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.ac.ncl.burton.twyb.PK.PKProver;
-import uk.ac.ncl.burton.twyb.PK.PKVerifier;
-import uk.ac.ncl.burton.twyb.PK.components.PKComponentProver;
-import uk.ac.ncl.burton.twyb.PK.network.NetworkConnectionServer;
+import uk.ac.ncl.burton.twyb.ZKPoK.PKProver;
+import uk.ac.ncl.burton.twyb.ZKPoK.PKVerifier;
+import uk.ac.ncl.burton.twyb.ZKPoK.components.PKComponentProver;
+import uk.ac.ncl.burton.twyb.ZKPoK.network.NetworkConnectionServer;
+import uk.ac.ncl.burton.twyb.ZKPoK.utils.BigIntegerUtils;
 import uk.ac.ncl.burton.twyb.crypto.CyclicGroup;
 import uk.ac.ncl.burton.twyb.crypto.EEA;
 import uk.ac.ncl.burton.twyb.crypto.EEAResult;
-import uk.ac.ncl.burton.twyb.utils.BigIntegerUtils;
 
 public class PartyServer {
 

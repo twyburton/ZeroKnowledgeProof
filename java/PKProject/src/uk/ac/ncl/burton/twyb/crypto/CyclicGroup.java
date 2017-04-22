@@ -3,7 +3,7 @@ package uk.ac.ncl.burton.twyb.crypto;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
-import uk.ac.ncl.burton.twyb.utils.BigIntegerUtils;
+import uk.ac.ncl.burton.twyb.ZKPoK.utils.BigIntegerUtils;
 
 public class CyclicGroup {
 

@@ -8,6 +8,7 @@
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="divide"/>
 			<item value="DDH"/>
 			<item value="G.getP()"/>
 			<item value="G.getG()."/>
