@@ -36,6 +36,8 @@ public class PKVerifier {
 		this.PK_id = PK_id;
 		this.components = components;
 		
+		log("Proof Initialised.");
+		
 	}
 	
 	/**
@@ -86,9 +88,7 @@ public class PKVerifier {
 		return null;
 	}
 	
-	/**
-	 * The list of components that make up the proof of knowledge
-	 */
+	/** The list of components that make up the proof of knowledge */
 	private List<PKComponentVerifier> components = new ArrayList<PKComponentVerifier>();
 	
 	/**
@@ -107,18 +107,25 @@ public class PKVerifier {
 	}
 	
 	
-	private String JSONcommitment;
-	//private String initalisationJSON; 
+	private String JSONcommitment = null; 
 	
 	// == JSON Text ==
+	
+	
+	/**
+	 * Get the challenge JSON string. This is used by the PKProver as the challenge for the proof.
+	 * @param JSONcommitment the commitment JSON string from the PKProver
+	 * @return the challenge JSON string.
+	 */
 	public String getJSONChallenge( String JSONcommitment ){
 		
 		try {
 			// == JSON PROCESS ==
 			JSONParser parser = new JSONParser();
-			JSONObject obj = (JSONObject) parser.parse(JSONcommitment);
+			JSONObject commitment = (JSONObject) parser.parse(JSONcommitment);
+			String step = (String) commitment.get("step");
+			if( !step.equals("commitment") ) throw new IllegalArgumentException("JSON string must be a commitment type.");
 			
-			//String PK_id =  (String)obj.get("PK_id") ;
 			this.JSONcommitment = JSONcommitment;
 			
 			// == JSON output ==
@@ -139,6 +146,8 @@ public class PKVerifier {
 				json += "\t\"time\":" + (System.currentTimeMillis()/1000) + "\n";
 			json += "}\n";
 			
+			log("Challenge string created.");
+			
 			return json;
 			
 		} catch (ParseException e) {
@@ -148,11 +157,22 @@ public class PKVerifier {
 		return null;
 	}
 	
-	private String validationErrorMsg = "";
+	/** The message that can be retrieved by the user to see what the error is. */
+	private String verificationErrorMsg = "";
+	/**
+	 * Get the verification error message.
+	 * @return the verification error message.
+	 */
 	public String getVerificationErrorMsg(){
-		return validationErrorMsg;
+		return verificationErrorMsg;
 	}
 	
+	/**
+	 * Get the outcome JSON string. This is used to tell the PKProver the outcome of the ZKP. This function also verifies the ZKP.
+	 * @param JSONresponse the response JSON string
+	 * @param JSONpassing the passing JSON string
+	 * @return the outcome JSON string.
+	 */
 	public String getJSONOutcome( String JSONresponse, String JSONpassing ){
 		
 		boolean successful = true;
@@ -160,6 +180,8 @@ public class PKVerifier {
 		try {
 			// == JSON PROCESS ==
 			JSONParser parser = new JSONParser();
+			
+			if(JSONcommitment == null ) throw new IllegalStateException("Commitment must be received first.");
 			JSONObject jCommitment = (JSONObject) parser.parse(JSONcommitment);
 			JSONObject jResponse = (JSONObject) parser.parse(JSONresponse);
 			JSONObject jPassing = (JSONObject) parser.parse(JSONpassing);
@@ -176,12 +198,12 @@ public class PKVerifier {
 					&& TimeUtils.withinTolerance(time_response, PKConfig.PROTOCOL_TIME_TOLERANCE) 
 					&& TimeUtils.withinTolerance(time_passing, PKConfig.PROTOCOL_TIME_TOLERANCE) ) ){
 				successful = false;
-				validationErrorMsg += "Timestamps not within tolerance; ";
+				verificationErrorMsg += "Timestamps not within tolerance; ";
 			}
 			
 			if( !( PK_id.equals(PK_id_commitment) && PK_id.equals(PK_id_response) && PK_id.equals(PK_id_passing)) ){
 				successful = false;
-				validationErrorMsg += "Proof IDs do not match; ";
+				verificationErrorMsg += "Proof IDs do not match; ";
 			}
 			
 			// Go through each component and verify
@@ -210,7 +232,7 @@ public class PKVerifier {
 				
 				if (! components.get(i).verify(passingBasesList, responseList, t, passingValue ) ){
 					successful = false;
-					validationErrorMsg += "Proof IDs do not match; ";
+					verificationErrorMsg += "Proof IDs do not match; ";
 				}
 				
 				
@@ -221,9 +243,9 @@ public class PKVerifier {
 			if( successful ){
 				outcome = 1;
 				proofSuccessful = true;
-				if( PKConfig.PRINT_PK_LOG ) System.out.println("Proof Succeeded!");
+				log("Proof Succeeded!");
 			} else {
-				if( PKConfig.PRINT_PK_LOG ) System.out.println("Proof Failed!");
+				log("Proof Failed!");
 			}
 			
 			// == JSON output ==
@@ -264,11 +286,19 @@ public class PKVerifier {
 	 * Get a base value at index baseIndex for component at component index. Zeroth indexed.
 	 * @param componentIndex
 	 * @param baseIndex
-	 * @return
+	 * @return the value of the base
 	 */
 	public BigInteger getBase( int componentIndex, int baseIndex ){
 		if( proofSuccessful ){
 			return components.get(componentIndex).getBases().get(baseIndex);
 		} else return null;
+	}
+	
+	/**
+	 * Log a message to console if logging flag is true
+	 * @param msg the message
+	 */
+	private void log(String msg ){
+		if( PKConfig.PRINT_PK_LOG ) System.out.println("[" + PK_id + "] " + msg);
 	}
 }

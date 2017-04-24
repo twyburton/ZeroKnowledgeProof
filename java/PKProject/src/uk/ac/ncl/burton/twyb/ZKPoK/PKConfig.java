@@ -4,7 +4,7 @@ package uk.ac.ncl.burton.twyb.ZKPoK;
 public class PKConfig {
 
 	
-	public static boolean PRINT_PK_LOG = false;
+	public static boolean PRINT_PK_LOG = true;
 	
 	public static boolean PRINT_PK_COMPONENTS_LOG = false;
 	

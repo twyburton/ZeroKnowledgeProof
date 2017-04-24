@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.net.URI"/>
-<fullyQualifiedTypeName name="com.ibm.zurich.idmx.utils.GroupParameters"/>
 <fullyQualifiedTypeName name="java.io.FileOutputStream"/>
 <fullyQualifiedTypeName name="java.io.ObjectOutputStream"/>
 <fullyQualifiedTypeName name="java.io.File"/>
@@ -60,4 +58,6 @@
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twyb.crypto.EEAResult"/>
 <fullyQualifiedTypeName name="java.util.UUID"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twyb.utils.TimeUtils"/>
+<fullyQualifiedTypeName name="java.awt.Robot"/>
+<fullyQualifiedTypeName name="java.awt.event.KeyEvent"/>
 </qualifiedTypeNameHistroy>

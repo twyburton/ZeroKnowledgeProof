@@ -1,5 +1,8 @@
 package uk.ac.ncl.burton.twyb.equalityTestingImplementation;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,16 +10,15 @@ import java.util.List;
 import uk.ac.ncl.burton.twyb.ZKPoK.PKProver;
 import uk.ac.ncl.burton.twyb.ZKPoK.PKVerifier;
 import uk.ac.ncl.burton.twyb.ZKPoK.components.PKComponentProver;
-import uk.ac.ncl.burton.twyb.ZKPoK.network.NetworkConnectionServer;
 import uk.ac.ncl.burton.twyb.ZKPoK.utils.BigIntegerUtils;
 import uk.ac.ncl.burton.twyb.crypto.CyclicGroup;
 import uk.ac.ncl.burton.twyb.crypto.EEA;
 import uk.ac.ncl.burton.twyb.crypto.EEAResult;
+import uk.ac.ncl.burton.twyb.network.NetworkConnectionServer;
 
 public class PartyServer {
 
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) {		
 		
 		NetworkConnectionServer server = new NetworkConnectionServer();
 		Thread serverThread = new Thread(server);
@@ -52,7 +54,7 @@ public class PartyServer {
 		server.sendMessage(outcome);
 		
 		boolean success = victor.isProofSuccessful();
-		System.out.println(success);
+		//System.out.println(success);
 		
 		BigInteger u1 = victor.getValue(0);
 		BigInteger u2 = victor.getValue(1);
@@ -216,7 +218,7 @@ public class PartyServer {
 		server.sendMessage(outcome);
 		
 		success = victor.isProofSuccessful();
-		System.out.println(success);
+		//System.out.println(success);
 		
 		System.out.println("d: " + victor.getValue(1) );
 		

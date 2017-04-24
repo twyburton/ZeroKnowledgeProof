@@ -48,6 +48,11 @@ public class PKProver {
 	
 	// == JSON Text ==
 	
+	
+	/**
+	 * Get the initialisation JSON string. The is used to initialise a PKVerifier.
+	 * @return the initialisation JSON string
+	 */
 	public String getJSONInitialise(){
 		String json = "";
 		
@@ -77,10 +82,16 @@ public class PKProver {
 			json += "\t\"time\":" + (System.currentTimeMillis()/1000) + "\n";
 		json += "}\n";
 		
+		log("Initialise string created");
+		
 		return json;
 	}
 	
 	
+	/**
+	 * Get the commitment JSON string. This is used to make a commitment to a PKVerifier.
+	 * @return the commitment JSON string.
+	 */
 	public String getJSONCommitment(){
 		String json = "";
 		
@@ -103,10 +114,17 @@ public class PKProver {
 			json += "\t\"time\":" + (System.currentTimeMillis()/1000) + "\n";			
 		json += "}\n";
 		
+		log("Commitment string created");
+		
 		return json;
 	}
 	
 	
+	/**
+	 * Get the response JSON string. This is used by the PKVerifier to verify the ZKP.
+	 * @param JSONchallenge the challenge JSON string from the PKVerifier.
+	 * @return the response JSON string.
+	 */
 	public String getJSONResponse( final String JSONchallenge ){
 		
 		
@@ -150,6 +168,8 @@ public class PKProver {
 				json += "\t\"time\":" + (System.currentTimeMillis()/1000) + "\n";
 			json += "}\n";
 			
+			log("Response string created");
+			
 			return json;
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -158,7 +178,10 @@ public class PKProver {
 		return null;
 	}
 	
-	
+	/**
+	 * Get the passing variables JSON string. This is used to give the PKVerifier the value and bases.
+	 * @return the passing variables JSON string.
+	 */
 	public String getJSONPassingVariables(){
 		String json = "";
 		
@@ -193,6 +216,8 @@ public class PKProver {
 			json += "\t],\n";
 			json += "\t\"time\":" + (System.currentTimeMillis()/1000) + "\n";
 		json += "}\n";
+		
+		log("Passing string created");
 		
 		return json;
 	}
@@ -295,4 +320,12 @@ public class PKProver {
 	 * 
 	 * 
 	 */
+	
+	/**
+	 * Log a message to console if logging flag is true
+	 * @param msg the message
+	 */
+	private void log(String msg ){
+		if( PKConfig.PRINT_PK_LOG ) System.out.println("[" + PK_id + "] " + msg);
+	}
 }

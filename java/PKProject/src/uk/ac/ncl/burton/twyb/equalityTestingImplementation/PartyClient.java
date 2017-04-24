@@ -7,11 +7,11 @@ import java.util.List;
 import uk.ac.ncl.burton.twyb.ZKPoK.PKProver;
 import uk.ac.ncl.burton.twyb.ZKPoK.PKVerifier;
 import uk.ac.ncl.burton.twyb.ZKPoK.components.PKComponentProver;
-import uk.ac.ncl.burton.twyb.ZKPoK.network.NetworkConnectionClient;
 import uk.ac.ncl.burton.twyb.ZKPoK.utils.BigIntegerUtils;
 import uk.ac.ncl.burton.twyb.crypto.CyclicGroup;
 import uk.ac.ncl.burton.twyb.crypto.EEA;
 import uk.ac.ncl.burton.twyb.crypto.EEAResult;
+import uk.ac.ncl.burton.twyb.network.NetworkConnectionClient;
 
 public class PartyClient {
 
@@ -120,7 +120,7 @@ public class PartyClient {
 		client.sendMessage(outcome);
 		
 		boolean success = victor.isProofSuccessful();
-		System.out.println(success);
+		//System.out.println(success);
 		
 		
 		BigInteger u1d = victor.getValue(0);
