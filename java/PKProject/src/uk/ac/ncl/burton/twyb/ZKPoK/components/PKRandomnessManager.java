@@ -40,7 +40,7 @@ public final class PKRandomnessManager {
 	public static boolean transferRandomness2Multiplyx( final PKComponentProver comp0, final int index0 
 			, PKComponentProver comp1, final int index1, final PKComponentProver comp2, final int index2, final BigInteger value ){
 		
-		// comp2 = comp0 * comp1 * value 
+		// comp0 = comp1 * comp2 * value 
 				
 		BigInteger r1 = comp1.getRandomExponent(index1);
 		BigInteger r2 = comp2.getRandomExponent(index2);

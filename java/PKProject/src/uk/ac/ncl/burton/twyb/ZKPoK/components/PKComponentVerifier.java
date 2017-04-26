@@ -7,7 +7,7 @@ import java.util.UUID;
 import uk.ac.ncl.burton.twyb.ZKPoK.utils.BigIntegerUtils;
 import uk.ac.ncl.burton.twyb.crypto.CyclicGroup;
 
-public class PKComponentVerifier {
+public final class PKComponentVerifier {
 	
 	/** The UUID of the component */
 	private UUID component_id = UUID.randomUUID();

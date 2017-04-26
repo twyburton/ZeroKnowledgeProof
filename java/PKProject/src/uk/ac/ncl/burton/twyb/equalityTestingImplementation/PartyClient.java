@@ -27,7 +27,9 @@ public class PartyClient {
 		
 		
 		// ====== PKS ======
+		System.out.println("Generating Group...");
 		CyclicGroup G = CyclicGroup.generateGroup(256);
+		System.out.println("Group Generated");
 		BigInteger g = G.getG();
 		
 		BigInteger a = BigInteger.valueOf(8213); // Secret value
@@ -257,6 +259,9 @@ public class PartyClient {
 		System.out.println("d: " + d );
 		
 		client.stop();
+		
+		System.out.println("Data Sent:     " + client.getTotalBytesSent() + " B");
+		System.out.println("Data Received: " + client.getTotalBytesReceived() + " B");
 
 	}
 	

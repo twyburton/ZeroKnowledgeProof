@@ -26,6 +26,16 @@ public abstract class NetworkConnection implements NetworkInterface, Runnable{
 	 */
 	protected String connectionType = "ERROR";
 	
+	private long totalBytesReceived = 0L;
+	private long totalBytesSent = 0L;
+	
+	public long getTotalBytesReceived(){
+		return totalBytesReceived;
+	}
+	public long getTotalBytesSent(){
+		return totalBytesSent;
+	}
+	
 	
 	private UUID networkId = UUID.randomUUID();
 	public UUID getNetworkId(){
@@ -124,6 +134,7 @@ public abstract class NetworkConnection implements NetworkInterface, Runnable{
 				// Stop Network
 				if( !networkShouldRun ){
 					out.write(0);
+					totalBytesSent += 1;
 					break;
 				}
 				
@@ -135,9 +146,9 @@ public abstract class NetworkConnection implements NetworkInterface, Runnable{
 					String msg = messageListToSend.remove(0);
 					byte[] msgLength = NetworkUtils.my_int_to_bb_le(msg.length());
 					
-					out.write(1);
-					out.write(msgLength);
-					out.write(msg.getBytes());
+					out.write(1); totalBytesSent += 1;
+					out.write(msgLength); totalBytesSent += 4;
+					out.write(msg.getBytes()); totalBytesSent += msg.length();
 					
 					if( NetworkConfig.LOG_CORE ) System.out.println("[" + connectionType + "] Message sent");
 				}
@@ -149,21 +160,32 @@ public abstract class NetworkConnection implements NetworkInterface, Runnable{
 					if( NetworkConfig.LOG_CORE ) System.out.println("[" + connectionType + "] Receiving message...");
 					
 					byte status = (byte) in.read();
+					totalBytesReceived += 1L;
 					
 					if( status == 1 ){
 					
+						// Get message length
 						byte[] msgLength = new byte[4];
 						in.read(msgLength, 0, 4);
+						totalBytesReceived += 4L;
 						int msg_length = NetworkUtils.my_bb_to_int_le(msgLength);
 						
+						// Read stream message until message complete
 						byte[] msg = new byte[msg_length];
-						in.read(msg, 0, msg_length);
+						int bytesRead = 0;
+						while( bytesRead < msg_length){
+							long len = in.read(msg, bytesRead, msg_length - bytesRead);
+							bytesRead += len;
+							totalBytesReceived += len;
+						}
 						
+						// Convert message to string
 						String message = "";
 						for( int i = 0 ; i < msg.length; i++){
 							message += (char)msg[i];
 						}
 						
+						// Add to message list
 						messageList.add(message);
 						
 						if( NetworkConfig.LOG_CORE ) System.out.println("[" + connectionType + "] Message received");
