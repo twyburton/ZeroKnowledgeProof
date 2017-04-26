@@ -1,8 +1,5 @@
 package uk.ac.ncl.burton.twyb.equalityTestingImplementation;
 
-import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +7,7 @@ import java.util.List;
 import uk.ac.ncl.burton.twyb.ZKPoK.PKProver;
 import uk.ac.ncl.burton.twyb.ZKPoK.PKVerifier;
 import uk.ac.ncl.burton.twyb.ZKPoK.components.PKComponentProver;
+import uk.ac.ncl.burton.twyb.ZKPoK.components.PKRandomnessManager;
 import uk.ac.ncl.burton.twyb.ZKPoK.utils.BigIntegerUtils;
 import uk.ac.ncl.burton.twyb.crypto.CyclicGroup;
 import uk.ac.ncl.burton.twyb.crypto.EEA;
@@ -167,12 +165,17 @@ public class PartyServer {
 		PKComponentProver c2X6 = PKComponentProver.generateProver(G, bases, exponents);
 		
 		// -- Random Exponents --
-		BigInteger c2s1 = c2X1.getRandomExponent(0);
-		BigInteger c2t1 = c2X1.getRandomExponent(1);
-		c2X2.setRandomExponent(0, c2s1);
-		c2X2.setRandomExponent(1, c2t1);
-		c2X3.setRandomExponent(0, c2s1);
-		c2X3.setRandomExponent(2, c2t1);
+//		BigInteger c2s1 = c2X1.getRandomExponent(0);
+//		BigInteger c2t1 = c2X1.getRandomExponent(1);
+//		c2X2.setRandomExponent(0, c2s1);
+//		c2X2.setRandomExponent(1, c2t1);
+//		c2X3.setRandomExponent(0, c2s1);
+//		c2X3.setRandomExponent(2, c2t1);
+		
+		PKRandomnessManager.transferRandomness(c2X2, 0, c2X1, 0);
+		PKRandomnessManager.transferRandomness(c2X2, 1, c2X1, 1);
+		PKRandomnessManager.transferRandomness(c2X3, 0, c2X1, 0);
+		PKRandomnessManager.transferRandomness(c2X3, 2, c2X1, 1);
 		
 		// -- ADD --
 		peggy.addComponent(c2X1);

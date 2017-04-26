@@ -16,7 +16,7 @@ import uk.ac.ncl.burton.twyb.ZKPoK.utils.TimeUtils;
 import uk.ac.ncl.burton.twyb.crypto.CyclicGroup;
 
 
-public class PKVerifier {
+public final class PKVerifier {
 
 	private String PK_id;
 	
@@ -59,7 +59,8 @@ public class PKVerifier {
 			JSONObject group = (JSONObject) ((JSONObject)obj).get("group");
 			BigInteger g = new BigInteger( (String) ((JSONObject)group).get("generator") );
 			BigInteger q = new BigInteger( (String) ((JSONObject)group).get("modulus") );
-			CyclicGroup G = new CyclicGroup( null, q , g);
+			BigInteger p = new BigInteger( (String) ((JSONObject)group).get("p") );
+			CyclicGroup G = new CyclicGroup( p, q , g);
 			
 			// -- Setup components --
 			JSONArray componentsArray = (JSONArray) ((JSONObject)obj).get("components");
@@ -299,6 +300,6 @@ public class PKVerifier {
 	 * @param msg the message
 	 */
 	private void log(String msg ){
-		if( PKConfig.PRINT_PK_LOG ) System.out.println("[" + PK_id + "] " + msg);
+		if( PKConfig.PRINT_PK_LOG ) System.out.println("[" + PK_id + "][Verifier] " + msg);
 	}
 }

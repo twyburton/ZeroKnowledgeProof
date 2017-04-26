@@ -14,7 +14,7 @@ import org.json.simple.parser.ParseException;
 import uk.ac.ncl.burton.twyb.ZKPoK.components.PKComponentProver;
 import uk.ac.ncl.burton.twyb.crypto.CyclicGroup;
 
-public class PKProver {
+public final class PKProver {
 
 	/** The id for the proof of knowledge */
 	private final UUID PK_id = UUID.randomUUID();
@@ -64,6 +64,7 @@ public class PKProver {
 			json += "\t\"group\":{\n";
 				json += "\t\t\"generator\":\"" + G.getG() + "\"\n";
 				json += "\t\t\"modulus\":\"" + G.getQ() + "\"\n";
+				json += "\t\t\"p\":\"" + G.getP() + "\"\n";
 			json += "\t},\n";
 				
 			json += "\t\"components\":[\n";
@@ -169,6 +170,9 @@ public class PKProver {
 			json += "}\n";
 			
 			log("Response string created");
+			
+			// Call garbage collector to destroy random exponents.
+			System.gc();
 			
 			return json;
 		} catch (ParseException e) {
@@ -326,6 +330,6 @@ public class PKProver {
 	 * @param msg the message
 	 */
 	private void log(String msg ){
-		if( PKConfig.PRINT_PK_LOG ) System.out.println("[" + PK_id + "] " + msg);
+		if( PKConfig.PRINT_PK_LOG ) System.out.println("[" + PK_id + "][Prover] " + msg);
 	}
 }

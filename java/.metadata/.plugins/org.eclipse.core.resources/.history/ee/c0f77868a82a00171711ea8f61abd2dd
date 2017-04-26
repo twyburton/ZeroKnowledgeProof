@@ -1,0 +1,17 @@
+package uk.ac.ncl.burton.twyb.ZKPoK;
+
+import java.math.BigInteger;
+
+import uk.ac.ncl.burton.twyb.ZKPoK.components.PKComponentProver;
+
+public class PKRandomnessManager {
+
+	public static boolean transferRandomness( final PKComponentProver comp0, final int index0 , PKComponentProver comp1, final int index1 ){
+		
+		BigInteger r = comp0.getRandomExponent(index0);
+		comp1.setRandomExponent(index1, r);
+		
+		return true;
+	}
+	
+}

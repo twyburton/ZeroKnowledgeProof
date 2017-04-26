@@ -7,6 +7,7 @@ import java.util.List;
 import uk.ac.ncl.burton.twyb.ZKPoK.PKProver;
 import uk.ac.ncl.burton.twyb.ZKPoK.PKVerifier;
 import uk.ac.ncl.burton.twyb.ZKPoK.components.PKComponentProver;
+import uk.ac.ncl.burton.twyb.ZKPoK.components.PKRandomnessManager;
 import uk.ac.ncl.burton.twyb.ZKPoK.utils.BigIntegerUtils;
 import uk.ac.ncl.burton.twyb.crypto.CyclicGroup;
 import uk.ac.ncl.burton.twyb.crypto.EEA;
@@ -74,9 +75,12 @@ public class PartyClient {
 		PKComponentProver c1X3 = PKComponentProver.generateProver(G, bases, exponents);
 		
 		// -- Random Exponents --
-		BigInteger c1r1 = c1X1.getRandomExponent(0);
-		c1X2.setRandomExponent(0, c1r1);
-		c1X3.setRandomExponent(1, c1r1);
+//		BigInteger c1r1 = c1X1.getRandomExponent(0);
+//		c1X2.setRandomExponent(0, c1r1);
+//		c1X3.setRandomExponent(1, c1r1);
+		
+		PKRandomnessManager.transferRandomness(c1X2, 0, c1X1, 0);
+		PKRandomnessManager.transferRandomness(c1X3, 1, c1X1, 0);
 		
 		// -- ADD --
 		peggy.addComponent(c1X1);
@@ -216,11 +220,14 @@ public class PartyClient {
 		PKComponentProver c3X5 = PKComponentProver.generateProver(G, bases, exponents);
 		
 		// -- Random Exponents --
-		BigInteger c3x1 = c3X1.getRandomExponent(0);
-		BigInteger c3x2 = c3X1.getRandomExponent(1);
-		BigInteger c3z1 = c3X2.getRandomExponent(0);
-		c3X2.setRandomExponent(1, c3z1.multiply(c3x1).multiply(BigInteger.valueOf(-1)));
-		c3X2.setRandomExponent(2, c3z1.multiply(c3x2).multiply(BigInteger.valueOf(-1)));
+//		BigInteger c3x1 = c3X1.getRandomExponent(0);
+//		BigInteger c3x2 = c3X1.getRandomExponent(1);
+//		BigInteger c3z1 = c3X2.getRandomExponent(0);
+//		c3X2.setRandomExponent(1, c3z1.multiply(c3x1).multiply(BigInteger.valueOf(-1)));
+//		c3X2.setRandomExponent(2, c3z1.multiply(c3x2).multiply(BigInteger.valueOf(-1)));
+		
+		PKRandomnessManager.transferRandomness2Multiplyx(c3X2, 1, c3X2, 0 , c3X1, 0 , BigInteger.valueOf(-1));
+		PKRandomnessManager.transferRandomness2Multiplyx(c3X2, 2, c3X2, 0 , c3X1, 1 , BigInteger.valueOf(-1));
 		
 		// -- ADD --
 		peggy.addComponent(c3X1);

@@ -13,16 +13,18 @@ public class CyclicGroup {
 	// http://crypto.stanford.edu/~dabo/papers/DDH.pdf
 	
 	/** Prime order */
-	private BigInteger q;
+	private final BigInteger q;
 	/** Large prime */
-	private BigInteger p;
+	private final BigInteger p;
 	/** Generator */
-	private BigInteger g;
+	private final BigInteger g;
 	
-	public CyclicGroup( BigInteger p , BigInteger q, BigInteger g){
+	public CyclicGroup( final BigInteger p , final BigInteger q, final BigInteger g){
 		this.p = p;
 		this.q = q;
 		this.g = g;
+		
+		if( !this.validate() ) throw new IllegalArgumentException("The group values passed are not valid.");
 	}
 	
 	/**
@@ -80,6 +82,14 @@ public class CyclicGroup {
 		}
 		
 		return g;
+	}
+	
+	/**
+	 * Check that the group is valid
+	 * @return true if the group is valid else false.
+	 */
+	public boolean validate(){		
+		return p.equals( BigInteger.valueOf(2).multiply(q).add(BigInteger.ONE) );
 	}
 	
 	/**

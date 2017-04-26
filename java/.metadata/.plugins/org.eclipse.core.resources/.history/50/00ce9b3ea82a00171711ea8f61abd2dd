@@ -1,0 +1,13 @@
+package uk.ac.ncl.burton.twyb.ZKPoK;
+
+import uk.ac.ncl.burton.twyb.ZKPoK.components.PKComponentProver;
+
+public class PKRandomnessManager {
+
+	public static boolean transferRandomness( PKComponentProver comp0, PKComponentProver comp1 ){
+		
+		
+		return true;
+	}
+	
+}
