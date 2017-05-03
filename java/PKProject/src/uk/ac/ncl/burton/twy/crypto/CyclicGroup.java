@@ -1,12 +1,22 @@
 package uk.ac.ncl.burton.twy.crypto;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
 import uk.ac.ncl.burton.twy.ZKPoK.utils.BigIntegerUtils;
 
-public class CyclicGroup {
+/**
+ * This class represents a cyclic group.
+ * 
+ * @author twyburton
+ */
+public class CyclicGroup implements Serializable {
 
+	/** Serializable ID */
+	private static final long serialVersionUID = -7825577342553182969L;
+	
+	// === Relevant Links ===
 	// https://en.wikipedia.org/wiki/Schnorr_group
 	
 	// http://csrc.nist.gov/publications/fips/fips186-3/fips_186-3.pdf ???
@@ -23,6 +33,14 @@ public class CyclicGroup {
 		this.p = p;
 		this.q = q;
 		this.g = g;
+		
+		if( !this.validate() ) throw new IllegalArgumentException("The group values passed are not valid.");
+	}
+	
+	public CyclicGroup( final String p , final String q, final String g){
+		this.p = new BigInteger(p);
+		this.q = new BigInteger(q);
+		this.g = new BigInteger(g);
 		
 		if( !this.validate() ) throw new IllegalArgumentException("The group values passed are not valid.");
 	}
@@ -99,14 +117,16 @@ public class CyclicGroup {
 	 */
 	public static CyclicGroup generateGroup( int bitLength ){
 		
+		/*	Generated using method from http://crypto.stanford.edu/~dabo/papers/DDH.pdf
+		 * 
+		 */
+		
 		SecureRandom ran = new SecureRandom();
 		
-		
+		// Generate p and q		
 		BigInteger q = null;
 		BigInteger p = null;
 
-		// Generate p and q
-		//System.out.println("GENERATING PRIME NUMBERS...");
 		while (true){
 			
 			// Generate Prime Order
@@ -114,15 +134,16 @@ public class CyclicGroup {
 			// Generate Large Prime
 			p = BigInteger.valueOf(2).multiply(q).add(BigInteger.ONE);
 			
+			System.out.println(p);
 			if( p.isProbablePrime(100) ){
 				break;
 			}
 			
 		}
-			
+
+		// Generate g
 		BigInteger g = null;
 		
-		// Generate g
 		boolean notDone = true;
 		while ( notDone ){
 			g = BigIntegerUtils.randomBetween(BigInteger.valueOf(2), p.subtract(BigInteger.ONE), ran);

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="ProtocolMathsTesting (1)" project="PKProject" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="uk.ac.ncl.burton.twy.proofOfConceptTesting.ProtocolMathsTesting" time="1.505">
+    <testcase name="test" classname="uk.ac.ncl.burton.twy.proofOfConceptTesting.ProtocolMathsTesting" time="1.505"/>
+  </testsuite>
+</testrun>

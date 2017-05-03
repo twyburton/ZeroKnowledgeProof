@@ -1,0 +1,30 @@
+package uk.ac.ncl.burton.twy.efficencyTesting;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import uk.ac.ncl.burton.twy.crypto.CyclicGroup;
+
+public class EfficencyTestingGroupGeneration {
+
+	@Test
+	public void groupGenerationTest() {
+		
+		int[] bitLength = {128,256,512,1024,2048};
+		int numberRuns = 10;
+		
+		for( int b = 0 ; b < bitLength.length; b++ ){
+			
+			for( int n = 0; n < numberRuns; n++ ){
+				
+				CyclicGroup G =  CyclicGroup.generateGroup(bitLength[b]);
+				
+			}
+			
+		}
+		
+		
+	}
+
+}
