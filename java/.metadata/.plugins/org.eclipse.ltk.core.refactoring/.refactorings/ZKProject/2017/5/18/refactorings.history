@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 2 elements to &apos;PKProject/src/uk.ac.ncl.burton.twy.proofOfConceptTesting&apos;&#x0D;&#x0A;- Original project: &apos;ZKProject&apos;&#x0D;&#x0A;- Destination element: &apos;PKProject/src/uk.ac.ncl.burton.twy.proofOfConceptTesting&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     uk.ac.ncl.burton.twy.testing.ProofOfKnowledgeTesting.java&#x0D;&#x0A;     uk.ac.ncl.burton.twy.testing.ProtocolMathsTesting.java" description="Copy compilation units" destination="=PKProject/src&lt;uk.ac.ncl.burton.twy.proofOfConceptTesting" element1="/src&lt;uk.ac.ncl.burton.twy.testing{ProofOfKnowledgeTesting.java" element2="/src&lt;uk.ac.ncl.burton.twy.testing{ProtocolMathsTesting.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1493810594447" units="2" version="1.0"/>
+</session>

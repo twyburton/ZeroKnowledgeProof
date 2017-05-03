@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="ProofOfKnowledgeTesting (1)" project="PKProject" tests="4" started="4" failures="0" errors="0" ignored="0">
+  <testsuite name="uk.ac.ncl.burton.twy.proofOfConceptTesting.ProofOfKnowledgeTesting" time="0.534">
+    <testcase name="GcdPKTest" classname="uk.ac.ncl.burton.twy.proofOfConceptTesting.ProofOfKnowledgeTesting" time="0.181"/>
+    <testcase name="SimplePKTest" classname="uk.ac.ncl.burton.twy.proofOfConceptTesting.ProofOfKnowledgeTesting" time="0.055"/>
+    <testcase name="TriplePKTest" classname="uk.ac.ncl.burton.twy.proofOfConceptTesting.ProofOfKnowledgeTesting" time="0.039"/>
+    <testcase name="DoublePKTest" classname="uk.ac.ncl.burton.twy.proofOfConceptTesting.ProofOfKnowledgeTesting" time="0.259"/>
+  </testsuite>
+</testrun>
