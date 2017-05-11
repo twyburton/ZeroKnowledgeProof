@@ -33,7 +33,7 @@ public final class PKComponentProver {
 	private List<BigInteger> randomExponents;
 	/** Flag set to true when random exponents are destroyed after the getResponse() method. 
 	 * This prevents use of the method after random exponents are set to null. */
-	private boolean randomValuesDestroyed = false;
+	private boolean valuesDestroyed = false;
 	
 	/** The value of the equation */
 	private final BigInteger value;
@@ -136,7 +136,7 @@ public final class PKComponentProver {
 	public List<BigInteger> getResponse( final BigInteger c ){
 		
 		if( c == null ) throw new IllegalArgumentException("The challenge cannot be null");
-		if( randomValuesDestroyed ) throw new IllegalStateException("The random exponents have already been de-referenced. This method cannot be recalled.");
+		if( valuesDestroyed ) throw new IllegalStateException("The exponents have already been de-referenced. This method cannot be recalled.");
 		
 		// s1 = rd + rc			s2 = td + tc
 		
@@ -156,7 +156,7 @@ public final class PKComponentProver {
 		// Destroy  references
 		exponents = null;
 		randomExponents = null;
-		randomValuesDestroyed = true;
+		valuesDestroyed = true;
 		
 		return s;
 	}

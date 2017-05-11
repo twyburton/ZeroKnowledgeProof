@@ -85,13 +85,13 @@
 	</section>
 	<section name="FatJarPackageWizard">
 		<item value="D:\Documents\University\Stage 4\CSC8498 - MComp Project\github\MCompProject\java" key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION"/>
-		<item value="PartyServer - PKProject" key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME"/>
-		<item value="D:\Documents\University\Stage 4\CSC8498 - MComp Project\jars\server.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
+		<item value="PartyClient - PKProject" key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME"/>
+		<item value="D:\Documents\University\Stage 4\CSC8498 - MComp Project\jars\client.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
 		<item value="false" key="FatJarPackageWizardPage.ANTSCRIPT_SAVE"/>
 		<item value="1" key="FatJarPackageWizardPage.LIBRARY_HANDLING"/>
 		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
-			<item value="D:\Documents\University\Stage 4\CSC8498 - MComp Project\jars\server.jar"/>
 			<item value="D:\Documents\University\Stage 4\CSC8498 - MComp Project\jars\client.jar"/>
+			<item value="D:\Documents\University\Stage 4\CSC8498 - MComp Project\jars\server.jar"/>
 		</list>
 		<list key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION_HISTORY">
 			<item value="D:\Documents\University\Stage 4\CSC8498 - MComp Project\github\MCompProject\java.xml"/>

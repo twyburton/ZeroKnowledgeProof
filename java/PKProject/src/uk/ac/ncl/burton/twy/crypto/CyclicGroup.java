@@ -134,7 +134,6 @@ public class CyclicGroup implements Serializable {
 			// Generate Large Prime
 			p = BigInteger.valueOf(2).multiply(q).add(BigInteger.ONE);
 			
-			System.out.println(p);
 			if( p.isProbablePrime(100) ){
 				break;
 			}

@@ -28,6 +28,8 @@ public abstract class NetworkConnection implements NetworkInterface, Runnable{
 	
 	private long totalBytesReceived = 0L;
 	private long totalBytesSent = 0L;
+	private long totalMessagesReceived = 0L;
+	private long totalMessagesSent = 0L;
 	
 	public long getTotalBytesReceived(){
 		return totalBytesReceived;
@@ -36,6 +38,12 @@ public abstract class NetworkConnection implements NetworkInterface, Runnable{
 		return totalBytesSent;
 	}
 	
+	public long getTotalMessagesReceived(){
+		return totalMessagesReceived;
+	}
+	public long getTotalMessagesSent(){
+		return totalMessagesSent;
+	}
 	
 	private UUID networkId = UUID.randomUUID();
 	public UUID getNetworkId(){
@@ -149,6 +157,7 @@ public abstract class NetworkConnection implements NetworkInterface, Runnable{
 					out.write(1); totalBytesSent += 1;
 					out.write(msgLength); totalBytesSent += 4;
 					out.write(msg.getBytes()); totalBytesSent += msg.length();
+					totalMessagesSent += 1;
 					
 					if( NetworkConfig.LOG_CORE ) System.out.println("[" + connectionType + "] Message sent");
 				}
@@ -187,6 +196,7 @@ public abstract class NetworkConnection implements NetworkInterface, Runnable{
 						
 						// Add to message list
 						messageList.add(message);
+						totalMessagesReceived += 1;
 						
 						if( NetworkConfig.LOG_CORE ) System.out.println("[" + connectionType + "] Message received");
 						

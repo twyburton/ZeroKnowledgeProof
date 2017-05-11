@@ -19,11 +19,14 @@ public class PartyServer {
 
 	public static void main(String[] args) {		
 		
+		while(true){
+		
 		NetworkConnectionServer server = new NetworkConnectionServer(PKConfig.PROTOCOL_PORT);
 		Thread serverThread = new Thread(server);
 		serverThread.start();
 
 		server.setBlockingMode( true );
+		
 		
 		
 		// ====== PKS ======
@@ -221,7 +224,14 @@ public class PartyServer {
 		
 		System.out.println("d: " + victor.getValue(1) );
 		
-		//server.stop();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		server.stop();
+		}
 		
 	}
 
