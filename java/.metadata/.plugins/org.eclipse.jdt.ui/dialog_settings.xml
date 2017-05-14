@@ -85,11 +85,13 @@
 	</section>
 	<section name="FatJarPackageWizard">
 		<item value="D:\Documents\University\Stage 4\CSC8498 - MComp Project\github\MCompProject\java" key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION"/>
-		<item value="PartyClient - PKProject" key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME"/>
-		<item value="D:\Documents\University\Stage 4\CSC8498 - MComp Project\jars\client.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
+		<item value="DemoServer - PKProject" key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME"/>
+		<item value="D:\Documents\University\Stage 4\CSC8498 - MComp Project\jars\serverDemo.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
 		<item value="false" key="FatJarPackageWizardPage.ANTSCRIPT_SAVE"/>
 		<item value="1" key="FatJarPackageWizardPage.LIBRARY_HANDLING"/>
 		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="D:\Documents\University\Stage 4\CSC8498 - MComp Project\jars\serverDemo.jar"/>
+			<item value="D:\Documents\University\Stage 4\CSC8498 - MComp Project\jars\clientDemo.jar"/>
 			<item value="D:\Documents\University\Stage 4\CSC8498 - MComp Project\jars\client.jar"/>
 			<item value="D:\Documents\University\Stage 4\CSC8498 - MComp Project\jars\server.jar"/>
 		</list>

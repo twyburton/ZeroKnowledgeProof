@@ -80,6 +80,7 @@ public final class PKComponentVerifier {
 		this.value = value;
 		this.bases= bases;
 		
+		// Q
 		BigInteger leftSide = BigIntegerUtils.multiplyBaseExponents(G.getQ(), bases, responses);
 		BigInteger rightSide = commitment.multiply( value.modPow(challenge, G.getQ()) ).mod(G.getQ());
 		

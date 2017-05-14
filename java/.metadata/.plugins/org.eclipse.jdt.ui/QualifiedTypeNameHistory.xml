@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.zeroKnowledgeProtocols.Prover"/>
-<fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.utils.BigIntegerUtils"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.maths.SchnorrGroup"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.components.ZKPComponent"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZPK.components.prover.PKComponentProverAlpha"/>
@@ -57,7 +55,9 @@
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twyb.ZKPoK.components.PKComponentProver"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twyb.ZKPoK.components.PKRandomnessManager"/>
 <fullyQualifiedTypeName name="uk.ac.ncl.burton.twyb.ZKPoK.PKConfig"/>
-<fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZKPoK.utils.BigIntegerUtils"/>
-<fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.crypto.CyclicGroup"/>
 <fullyQualifiedTypeName name="java.io.Serializable"/>
+<fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.crypto.CyclicGroup"/>
+<fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.ZKPoK.utils.BigIntegerUtils"/>
+<fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.userInterface.TConsole"/>
+<fullyQualifiedTypeName name="uk.ac.ncl.burton.twy.userInterface.Style"/>
 </qualifiedTypeNameHistroy>

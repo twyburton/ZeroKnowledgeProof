@@ -19,7 +19,7 @@ public class CyclicGroup implements Serializable {
 	// === Relevant Links ===
 	// https://en.wikipedia.org/wiki/Schnorr_group
 	
-	// http://csrc.nist.gov/publications/fips/fips186-3/fips_186-3.pdf ???
+	// http://csrc.nist.gov/publications/fips/fips186-3/fips_186-3.pdf
 	// http://crypto.stanford.edu/~dabo/papers/DDH.pdf
 	
 	/** Prime order */
@@ -61,6 +61,10 @@ public class CyclicGroup implements Serializable {
 		return q;
 	}
 	
+	public BigInteger getGroupOrder(){
+		return q.divide(BigInteger.valueOf(2));
+	}
+	
 	/**
 	 * Get the groups generator
 	 * @return generator
@@ -81,22 +85,30 @@ public class CyclicGroup implements Serializable {
 		// Generate g
 		boolean notDone = true;
 		while ( notDone ){
-			g = BigIntegerUtils.randomBetween(BigInteger.valueOf(2), p.subtract(BigInteger.ONE), ran);
-			
-			notDone = false;
-			
-			if( g.modPow(BigInteger.valueOf(2), p).equals(BigInteger.ONE ) ){
-				notDone = true;
-			}
-			
-			if( !g.modPow(q, p).equals( BigInteger.ONE )  ){
-				notDone = true;
-			}
-			
-			if( g.equals(this.g ) ){
-				notDone = true;
-			}
+//			g = BigIntegerUtils.randomBetween(BigInteger.valueOf(2), p.subtract(BigInteger.ONE), ran);
+//			
+//			notDone = false;
+//			
+//			if( g.modPow(BigInteger.valueOf(2), p).equals(BigInteger.ONE ) ){
+//				notDone = true;
+//			}
+//			
+//			if( !g.modPow(q, p).equals( BigInteger.ONE )  ){
+//				notDone = true;
+//			}
+//			
+//			if( g.equals(this.g ) ){
+//				notDone = true;
+//			}
 
+			BigInteger h = BigIntegerUtils.randomBetween(BigInteger.valueOf(2), p.subtract(BigInteger.ONE), ran);
+			
+			g = h.modPow((p.subtract(BigInteger.ONE)).divide(q), q);
+			
+			if( !g.equals(BigInteger.ONE) && !g.equals(this.g)){
+				break;
+			}
+			
 		}
 		
 		return g;
@@ -119,7 +131,9 @@ public class CyclicGroup implements Serializable {
 		
 		/*	Generated using method from http://crypto.stanford.edu/~dabo/papers/DDH.pdf
 		 * 
-		 */
+		 * 
+		 * 	https://crypto.stackexchange.com/a/22719
+		 */ 
 		
 		SecureRandom ran = new SecureRandom();
 		
@@ -145,19 +159,28 @@ public class CyclicGroup implements Serializable {
 		
 		boolean notDone = true;
 		while ( notDone ){
-			g = BigIntegerUtils.randomBetween(BigInteger.valueOf(2), p.subtract(BigInteger.ONE), ran);
+			//g = BigIntegerUtils.randomBetween(BigInteger.valueOf(2), p.subtract(BigInteger.ONE), ran);
+			BigInteger h = BigIntegerUtils.randomBetween(BigInteger.ONE, p.subtract(BigInteger.ONE), ran);
 			
-			notDone = false;
+			g = h.modPow((p.subtract(BigInteger.ONE)).divide(q), q);
 			
-			if( g.modPow(BigInteger.valueOf(2), p).equals(BigInteger.ONE ) ){
-				notDone = true;
+			if( !g.equals(BigInteger.ONE )){
+				break;
 			}
 			
-			if( !g.modPow(q, p).equals( BigInteger.ONE )  ){
-				notDone = true;
-			}
+//			
+//			notDone = false;
+//			
+//			if( g.modPow(BigInteger.valueOf(2), p).equals(BigInteger.ONE ) ){
+//				notDone = true;
+//			}
+//			
+//			if( !g.modPow(q, p).equals( BigInteger.ONE )  ){
+//				notDone = true;
+//			}
 
 		}
+		
 		
 		return new CyclicGroup( p , q , g );
 		

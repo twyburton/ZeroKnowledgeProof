@@ -1,0 +1,10 @@
+package uk.ac.ncl.burton.twy.equalityTestingImplementationDemo;
+
+public class DemoServer {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+}

@@ -49,6 +49,7 @@ public final class PKComponentProver {
 		this.exponents = exponents;
 		this.G = G;
 		
+		// Q
 		this.value =  BigIntegerUtils.multiplyBaseExponents(G.getQ(), bases, exponents);
 		
 		generateRandomValues();
@@ -115,7 +116,7 @@ public final class PKComponentProver {
 	 */
 	private void generateRandomValues(){
 		randomExponents = new ArrayList<BigInteger>();
-		for( int i = 0 ; i < exponents.size(); i++ ) randomExponents.add(BigIntegerUtils.randomBetween( BigInteger.ONE, G.getQ() ));
+		for( int i = 0 ; i < exponents.size(); i++ ) randomExponents.add(BigIntegerUtils.randomBetween( BigInteger.ONE, G.getP() ));
 	}
 	
 	/**
@@ -123,7 +124,7 @@ public final class PKComponentProver {
 	 * @return the commitment value
 	 */
 	public BigInteger getCommitment(){
-		
+		// Q
 		return BigIntegerUtils.multiplyBaseExponents(G.getQ(), bases, randomExponents);
 		
 	}
@@ -149,9 +150,14 @@ public final class PKComponentProver {
 			
 			BigInteger rc = r.multiply(c);
 			BigInteger x = rd.add( rc ); 
+		
+			// P
+			x.mod(G.getP());
 			
 			s.add( x );
 		}
+		
+		
 		
 		// Destroy  references
 		exponents = null;
