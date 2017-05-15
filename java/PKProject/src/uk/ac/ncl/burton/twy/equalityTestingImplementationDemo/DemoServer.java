@@ -4,6 +4,8 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Test;
+
 import uk.ac.ncl.burton.twy.ZKPoK.PKConfig;
 import uk.ac.ncl.burton.twy.ZKPoK.PKProver;
 import uk.ac.ncl.burton.twy.ZKPoK.PKVerifier;
@@ -19,7 +21,8 @@ import uk.ac.ncl.burton.twy.userInterface.TConsole;
 
 public class DemoServer {
 
-	public static void main(String[] args) {
+	@Test
+	public static void serverTest() {
 		
 		TConsole.print(Style.CLEAR);
 		

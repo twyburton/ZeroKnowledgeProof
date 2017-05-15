@@ -19,7 +19,6 @@ public class PartyClient {
 
 	public static void main(String[] args) {
 		
-		while( true ){
 		
 		NetworkConnectionClient client = new NetworkConnectionClient("localhost", PKConfig.PROTOCOL_PORT);
 		Thread clientThread = new Thread(client);
@@ -284,7 +283,7 @@ public class PartyClient {
 		
 		System.out.println("Time (ms): " + (endTime-startTime) );
 		
-		}
+		
 	}
 	
 	
