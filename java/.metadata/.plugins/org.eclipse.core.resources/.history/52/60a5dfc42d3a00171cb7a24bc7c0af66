@@ -50,7 +50,7 @@ public final class PKComponentProver {
 		this.G = G;
 		
 		// Q
-		this.value =  BigIntegerUtils.multiplyBaseExponents(G.getP(), bases, exponents);
+		this.value =  BigIntegerUtils.multiplyBaseExponents(G.getQ(), bases, exponents);
 		
 		generateRandomValues();
 	}

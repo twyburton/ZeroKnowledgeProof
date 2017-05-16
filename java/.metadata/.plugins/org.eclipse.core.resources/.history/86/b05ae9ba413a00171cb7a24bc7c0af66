@@ -33,7 +33,9 @@ public class PKTesting {
 		BigInteger x2 = RandomZQ(g,G.getQ(),ran);
 		BigInteger c =  g.modPow( x1, mod ).multiply( h.modPow( x2, mod));
 		
+		
 		PKProver peggy = new PKProver(G);
+		//PKVerifier victor = new PKVerifier(G,3);
 		
 		// (1)
 		List<BigInteger> bases = new ArrayList<BigInteger>();
@@ -54,29 +56,6 @@ public class PKTesting {
 		// -- ADD --
 		peggy.addComponent(c1X1);
 		peggy.addComponent(c1X2);
-		
-		
-		// -- Proof --
-		String init = peggy.getJSONInitialise();
-		System.out.println(init);
-		PKVerifier victor = PKVerifier.getInstance(init);
-		
-		String commitment = peggy.getJSONCommitment();
-		System.out.println(commitment);
-		
-		String challenge = victor.getJSONChallenge(commitment);
-		System.out.println(challenge);
-		
-		String response = peggy.getJSONResponse(challenge);
-		System.out.println(response);
-		
-		String passing = peggy.getJSONPassingVariables();
-		System.out.println(passing);
-		
-		String outcome = victor.getJSONOutcome( response, passing);
-		System.out.println(outcome);
-		
-		assert(victor.isProofSuccessful());
 		
 	}
 	

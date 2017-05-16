@@ -40,7 +40,7 @@ public class PartyServer {
 		PKVerifier victor = PKVerifier.getInstance(init);
 		G = victor.getGroup();
 		g = G.getG();
-		BigInteger mod = G.getP();
+		BigInteger mod = G.getQ();
 		
 		String commitment = server.receiveMessage();
 		

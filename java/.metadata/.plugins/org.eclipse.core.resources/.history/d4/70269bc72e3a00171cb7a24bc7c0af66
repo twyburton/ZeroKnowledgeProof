@@ -51,7 +51,7 @@ public class DemoClient {
 			*/
 			
 			BigInteger g = G.getG();
-			BigInteger mod = G.getP();
+			BigInteger mod = G.getQ();
 			
 			
 			BigInteger a = new BigInteger(passwordValue); // Secret value

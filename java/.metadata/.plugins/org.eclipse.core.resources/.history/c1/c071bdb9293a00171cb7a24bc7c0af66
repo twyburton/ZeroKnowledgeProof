@@ -39,7 +39,7 @@ public class PartyClient {
 		*/
 		
 		BigInteger g = G.getG();
-		BigInteger mod = G.getP();
+		BigInteger mod = G.getQ();
 		
 		
 		BigInteger a = BigInteger.valueOf(8213); // Secret value
@@ -88,6 +88,10 @@ public class PartyClient {
 		PKComponentProver c1X3 = PKComponentProver.generateProver(G, bases, exponents);
 		
 		// -- Random Exponents --
+//		BigInteger c1r1 = c1X1.getRandomExponent(0);
+//		c1X2.setRandomExponent(0, c1r1);
+//		c1X3.setRandomExponent(1, c1r1);
+		
 		PKRandomnessManager.transferRandomness(c1X2, 0, c1X1, 0);
 		PKRandomnessManager.transferRandomness(c1X3, 1, c1X1, 0);
 		

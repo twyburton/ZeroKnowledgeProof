@@ -21,7 +21,8 @@ import uk.ac.ncl.burton.twy.userInterface.TConsole;
 
 public class DemoServer {
 
-	public static void main(String[] args) {
+	@Test
+	public static void serverTest() {
 		
 		TConsole.print(Style.CLEAR);
 		
@@ -53,7 +54,7 @@ public class DemoServer {
 			PKVerifier victor = PKVerifier.getInstance(init);
 			G = victor.getGroup();
 			g = G.getG();
-			BigInteger mod = G.getP();
+			BigInteger mod = G.getQ();
 			
 			String commitment = server.receiveMessage();
 			

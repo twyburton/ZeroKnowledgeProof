@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="PKTesting (1)" project="PKProject" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="uk.ac.ncl.burton.twy.ZKPoK.PKTesting" time="0.735">
+    <testcase name="PoKTesting" classname="uk.ac.ncl.burton.twy.ZKPoK.PKTesting" time="0.269"/>
+    <testcase name="PoKProtocolTesting" classname="uk.ac.ncl.burton.twy.ZKPoK.PKTesting" time="0.466"/>
+  </testsuite>
+</testrun>

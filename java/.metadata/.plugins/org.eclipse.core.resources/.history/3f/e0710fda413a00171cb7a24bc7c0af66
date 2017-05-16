@@ -33,6 +33,7 @@ public class PKTesting {
 		BigInteger x2 = RandomZQ(g,G.getQ(),ran);
 		BigInteger c =  g.modPow( x1, mod ).multiply( h.modPow( x2, mod));
 		
+		
 		PKProver peggy = new PKProver(G);
 		
 		// (1)

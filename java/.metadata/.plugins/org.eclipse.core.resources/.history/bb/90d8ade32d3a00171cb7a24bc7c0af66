@@ -39,7 +39,7 @@ public class PartyClient {
 		*/
 		
 		BigInteger g = G.getG();
-		BigInteger mod = G.getP();
+		BigInteger mod = G.getQ();
 		
 		
 		BigInteger a = BigInteger.valueOf(8213); // Secret value
